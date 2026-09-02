@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Prevents auto-zooming on iOS when focusing inputs while keeping responsive layout -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Best Buy Promo Calculator</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-bb-blue { background-color: #0046be; }
+        .text-bb-blue { color: #0046be; }
+        .bg-bb-yellow { background-color: #fff200; }
+        .text-bb-yellow { color: #fff200; }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        /* Custom styled checkboxes for easier thumb-tapping */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: #0046be;
+            width: 1.75rem;
+            height: 1.75rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 0.5rem;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.85rem;
+            height: 0.85rem;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #0046be;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        input[type="checkbox"]:checked {
+            border-color: #0046be;
+            background-color: #eff6ff;
+        }
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans flex flex-col pb-28">
+
+    <!-- KILL SWITCH SCREEN -->
+    <div id="kill-switch-screen" class="hidden fixed inset-0 bg-gray-900 text-white flex flex-col items-center justify-center p-6 z-50 text-center">
+        <div class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Access Suspended</div>
+        <h1 class="text-2xl font-extrabold mb-2">Calculator Deactivated</h1>
+        <p class="text-gray-400 max-w-sm text-sm">This version of the calculator has been deactivated due to the end of the promotions that this calculator calculates.</p>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div id="app-content" class="w-full">
+        <!-- Sticky Top Header -->
+        <header class="bg-bb-blue text-white py-3 px-4 shadow-md sticky top-0 z-30">
+            <div class="max-w-md mx-auto flex justify-between items-center">
+                <div>
+                    <span class="bg-bb-yellow text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">Floor Tool</span>
+                    <h1 class="text-lg font-bold tracking-tight leading-tight">Labor Day Event</h1>
+                    <p class="text-[10px] text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 8, 2026 @ 12:00 AM Local Time</p>
+                </div>
+                <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors">
+                    Reset App
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Form Fields -->
+        <main class="max-w-md mx-auto p-3 space-y-3">
+            
+            <!-- SECTION 1: GLOBAL CUSTOMER CONDITIONS -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
+                <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">1. Customer Profile</h2>
+                
+                <!-- Large Checkbox Card for Member -->
+                <label class="flex items-center justify-between p-3 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer">
+                    <div class="pr-2">
+                        <p class="text-sm font-bold text-blue-900">Plus or Total Member?</p>
+                        <p class="text-[10px] text-blue-600">2x Major Appliances (2%) • 1% Storewide • 10x GTA VI</p>
+                    </div>
+                    <input id="global-membership" type="checkbox" onchange="calculate()">
+                </label>
+
+                <!-- Styled Dropdown for Card -->
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Best Buy Credit Card</label>
+                    <select id="global-card" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-12" onchange="handleCardChange()">
+                        <option value="none">No Best Buy Card</option>
+                        <option value="existing">Existing Cardholder (Standard 5%)</option>
+                        <option value="new">New Cardholder Approved Today (Day 1 - 15%)</option>
+                    </select>
+                </div>
+
+                <!-- Financing Switch -->
+                <div id="financing-container" class="hidden">
+                    <label class="flex items-center justify-between p-3 bg-yellow-50/50 rounded-xl border border-yellow-100 active:bg-yellow-100 transition-colors cursor-pointer">
+                        <div class="pr-2">
+                            <p class="text-sm font-bold text-yellow-900 font-sans">Using Financing?</p>
+                            <p class="text-[10px] text-yellow-700">Forfeits card points; keeps member points.</p>
+                        </div>
+                        <input id="global-financing" type="checkbox" onchange="calculate()">
+                    </label>
+                </div>
+            </div>
+
+            <!-- SECTION 2: PURCHASE ITEMS -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
+                <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">2. Line Items</h2>
+                
+                <div class="space-y-3 divide-y divide-gray-100">
+                    
+                    <!-- Major Appliances (2x Member Rewards) -->
+                    <div class="pt-1">
+                        <div class="flex justify-between items-start mb-1">
+                            <div>
+                                <label class="text-xs font-bold text-gray-800 block">Major Appliances</label>
+                                <span class="text-[10px] text-blue-600 font-medium font-sans">2x Member Promo (2%) • Ends 9/16/26</span>
+                            </div>
+                            <span id="rate-appliances" class="text-[10px] font-black text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">Rate: 0%</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <div class="relative flex-1">
+                                <span class="absolute left-3 top-3 text-gray-400 text-sm">$</span>
+                                <input id="amt-appliances" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                            </div>
+                            <div class="w-20 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs font-extrabold text-gray-600" id="reward-appliances">$0.00</div>
+                        </div>
+                    </div>
+
+                    <!-- General Storewide Purchase -->
+                    <div class="pt-2.5">
+                        <div class="flex justify-between items-start mb-1">
+                            <div>
+                                <label class="text-xs font-bold text-gray-800 block">All Other Storewide Purchases</label>
+                                <span class="text-[10px] text-gray-500 font-medium font-sans">Standard Everyday Benefits (1% Member)</span>
+                            </div>
+                            <span id="rate-general" class="text-[10px] font-black text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">Rate: 0%</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <div class="relative flex-1">
+                                <span class="absolute left-3 top-3 text-gray-400 text-sm">$</span>
+                                <input id="amt-general" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                            </div>
+                            <div class="w-20 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs font-extrabold text-gray-600" id="reward-general">$0.00</div>
+                        </div>
+                    </div>
+
+                    <!-- GTA VI Pre-Order Special Offer -->
+                    <div class="pt-2.5">
+                        <div class="p-3 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-xl border border-indigo-150">
+                            <div class="flex items-center justify-between">
+                                <div class="pr-2">
+                                    <div class="flex items-center gap-1.5 mb-0.5">
+                                        <span class="bg-indigo-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded uppercase">10x Rewards</span>
+                                        <span class="text-xs font-bold text-gray-900">Grand Theft Auto VI Pre-Order</span>
+                                    </div>
+                                    <p class="text-[10px] text-indigo-700 font-medium">Adds $79.99 • Plus & Total Members get 10% back ($8.00)</p>
+                                </div>
+                                <input id="toggle-gtavi" type="checkbox" onchange="calculate()">
+                            </div>
+
+                            <!-- Quantity Selector when Toggled -->
+                            <div id="gtavi-qty-container" class="hidden mt-2 pt-2 border-t border-indigo-100 flex justify-between items-center text-xs">
+                                <span class="font-bold text-indigo-900">Copies Pre-Ordered:</span>
+                                <select id="gtavi-qty" class="bg-white border border-indigo-200 rounded-lg px-2 py-1 text-xs font-bold text-indigo-900 outline-none" onchange="calculate()">
+                                    <option value="1">1 Copy ($79.99)</option>
+                                    <option value="2">2 Copies ($159.98)</option>
+                                    <option value="3">3 Copies ($239.97)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reward Breakdown Box -->
+                <div id="reward-breakdown-box" class="hidden bg-blue-50/70 rounded-lg p-2.5 border border-blue-100 text-[11px] text-blue-900 space-y-0.5">
+                    <p class="font-bold text-[10px] uppercase text-blue-700 tracking-wider">Reward Calculation Breakdown:</p>
+                    <div id="reward-breakdown-text" class="font-mono text-[10.5px]"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: FINANCING OFFERS -->
+            <div id="suggested-financing" class="hidden bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-xs space-y-1.5">
+                <p class="font-bold text-gray-800">Qualified Promo Finance Options:</p>
+                <div id="financing-options-list" class="space-y-1 text-[11px]"></div>
+            </div>
+
+            <!-- SECTION 4: REWARDS REDEMPTION VALUE -->
+            <div id="redemption-section" class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3.5">
+                <div class="flex justify-between items-center border-b border-gray-150 pb-2.5">
+                    <div>
+                        <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">4. Rewards Redemption Value</h2>
+                        <p class="text-[10px] text-gray-500 font-medium">Point conversion value based on earned rewards</p>
+                    </div>
+                    <span id="redemption-points-badge" class="text-[10px] font-extrabold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">
+                        0 Points
+                    </span>
+                </div>
+
+                <!-- Segmented Control Toggle -->
+                <div class="bg-gray-100 p-1 rounded-xl flex space-x-1 text-xs">
+                    <button id="btn-mode-bb" type="button" onclick="setRedemptionMode('bb')" class="flex-1 py-2 px-2.5 rounded-lg font-bold text-center transition-all bg-bb-blue text-white shadow-sm">
+                        Best Buy Certificate
+                    </button>
+                    <button id="btn-mode-partner" type="button" onclick="setRedemptionMode('partner')" class="flex-1 py-2 px-2.5 rounded-lg font-medium text-center transition-all text-gray-600 hover:text-gray-900">
+                        Partner eGift Cards
+                    </button>
+                </div>
+
+                <!-- VIEW A: Best Buy Rewards Certificate -->
+                <div id="view-mode-bb" class="space-y-3">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50/50 p-3.5 rounded-xl border border-blue-100 flex items-center justify-between">
+                        <div>
+                            <span class="bg-bb-yellow text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">100% Value</span>
+                            <p class="text-xs font-bold text-blue-950 mt-1">Best Buy Rewards Certificate</p>
+                            <p class="text-[10px] text-blue-600 font-medium">$0.02 / point • 250 points = $5.00</p>
+                        </div>
+                        <div class="text-right">
+                            <p id="redemption-bb-value" class="text-xl font-black text-bb-blue">$0.00</p>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">in BB Certificates</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg p-2.5 border border-gray-150 text-[11px] text-gray-600 flex items-start space-x-2">
+                        <span class="text-blue-600 font-bold text-sm leading-none mt-0.5">ℹ</span>
+                        <p class="leading-relaxed">
+                            Best Buy Certificates provide maximum value (<span class="font-bold text-gray-800">100% redemption rate</span>). Certificates can be issued in increments starting at $5 (250 points) directly in the customer's account.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- VIEW B: Partner eGift Cards -->
+                <div id="view-mode-partner" class="hidden space-y-3">
+                    <div class="bg-gradient-to-br from-amber-50/70 to-orange-50/50 p-3.5 rounded-xl border border-amber-200/80 flex items-center justify-between">
+                        <div>
+                            <span class="bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% Conversion</span>
+                            <p class="text-xs font-bold text-amber-950 mt-1">Partner eGift Card Value</p>
+                            <p class="text-[10px] text-amber-700 font-medium">$0.01 / point • 500 points = $5.00</p>
+                        </div>
+                        <div class="text-right">
+                            <p id="redemption-partner-value" class="text-xl font-black text-amber-700">$0.00</p>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">in Partner eCards</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-[11px] font-bold text-gray-700 uppercase tracking-wider">Top 8 Partner Brands</p>
+                            <span class="text-[9.5px] font-bold text-amber-800 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full">
+                                60+ More Brands Available
+                            </span>
+                        </div>
+
+                        <!-- 8 Partner Brands Grid -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <!-- 1. Amazon -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-amber-700 text-xs shrink-0">a</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Amazon</p>
+                                    <p class="text-[10px] font-extrabold text-amber-700 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 2. Target -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-600 text-xs shrink-0">◎</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Target</p>
+                                    <p class="text-[10px] font-extrabold text-red-600 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 3. Walmart -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center font-black text-blue-600 text-xs shrink-0">✹</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Walmart</p>
+                                    <p class="text-[10px] font-extrabold text-blue-600 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 4. Starbucks -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center font-black text-emerald-700 text-xs shrink-0">☕</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Starbucks</p>
+                                    <p class="text-[10px] font-extrabold text-emerald-700 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 5. Apple -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-gray-200 flex items-center justify-center font-black text-gray-800 text-xs shrink-0"></div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Apple</p>
+                                    <p class="text-[10px] font-extrabold text-gray-800 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 6. Uber / Uber Eats -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-black text-xs shrink-0">U</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate leading-tight">Uber / Eats</p>
+                                    <p class="text-[10px] font-extrabold text-emerald-600 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 7. DoorDash -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-500 text-xs shrink-0">◖</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">DoorDash</p>
+                                    <p class="text-[10px] font-extrabold text-red-500 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+
+                            <!-- 8. Home Depot -->
+                            <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
+                                <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-orange-600 text-xs shrink-0">⌂</div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-xs font-bold text-gray-900 truncate">Home Depot</p>
+                                    <p class="text-[10px] font-extrabold text-orange-600 partner-card-denom">$0.00 available</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Box for 60+ Additional Brands -->
+                    <div class="bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-2.5 rounded-xl border border-amber-200/80 text-center">
+                        <p class="text-xs font-bold text-amber-950 flex items-center justify-center gap-1">
+                            <span>🎁</span> 60+ More Brands Available in Member Portal
+                        </p>
+                        <p class="text-[10px] text-amber-800/90 font-medium mt-0.5">
+                            Includes Nike, Lowe's, Sephora, Chipotle, Delta, Airbnb, Kohl's & more.
+                        </p>
+                    </div>
+
+                    <p class="text-[10px] text-gray-400 italic text-center">
+                        Partner eGift Cards convert at a 50% cash-equivalent rate ($0.01 per point) redeemable through member portal.
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- STICKY BOTTOM RESULTS FOOTER -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] px-4 py-3 z-40">
+            <div class="max-w-md mx-auto grid grid-cols-2 gap-3">
+                <div class="bg-gray-50 p-2 rounded-lg text-center">
+                    <p class="text-[9px] uppercase font-bold text-gray-500">Purchase Total</p>
+                    <p id="output-subtotal" class="text-base font-extrabold text-gray-800">$0.00</p>
+                </div>
+                <div class="bg-blue-50 p-2 rounded-lg text-center border border-blue-100">
+                    <p class="text-[9px] uppercase font-bold text-blue-700">Combined Rewards</p>
+                    <p id="output-rewards" class="text-lg font-black text-bb-blue">$0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIC ENGINE -->
+    <script>
+        // ==========================================
+        // 🛑 ADMIN KILL SWITCH CONFIGURATION
+        // ==========================================
+        const FORCE_KILL = false; 
+        
+        function checkKillSwitch() {
+            const now = new Date();
+            // Multi-timezone safe constructor. Target: September 8, 2026 @ 12:00 AM (Midnight)
+            // (Year, Month index [8 = September], Day, Hours, Minutes, Seconds)
+            // Earliest promo expiration: 9/7/26 (15% Day 1 Card Promo, 18 Mo Storewide Financing, 6 Mo Storewide Financing)
+            const expirationDate = new Date(2026, 8, 8, 0, 0, 0); 
+            
+            if (FORCE_KILL || now >= expirationDate) {
+                document.getElementById('kill-switch-screen').classList.remove('hidden');
+                document.getElementById('app-content').classList.add('hidden');
+            }
+        }
+        checkKillSwitch();
+
+        // State for Redemption Section Mode ('bb' | 'partner')
+        let currentRedemptionMode = 'bb';
+
+        function setRedemptionMode(mode) {
+            currentRedemptionMode = mode;
+            const btnBb = document.getElementById('btn-mode-bb');
+            const btnPartner = document.getElementById('btn-mode-partner');
+            const viewBb = document.getElementById('view-mode-bb');
+            const viewPartner = document.getElementById('view-mode-partner');
+
+            if (mode === 'bb') {
+                btnBb.className = "flex-1 py-2 px-2.5 rounded-lg font-bold text-center transition-all bg-bb-blue text-white shadow-sm";
+                btnPartner.className = "flex-1 py-2 px-2.5 rounded-lg font-medium text-center transition-all text-gray-600 hover:text-gray-900";
+                viewBb.classList.remove('hidden');
+                viewPartner.classList.add('hidden');
+            } else {
+                btnPartner.className = "flex-1 py-2 px-2.5 rounded-lg font-bold text-center transition-all bg-amber-600 text-white shadow-sm";
+                btnBb.className = "flex-1 py-2 px-2.5 rounded-lg font-medium text-center transition-all text-gray-600 hover:text-gray-900";
+                viewPartner.classList.remove('hidden');
+                viewBb.classList.add('hidden');
+            }
+        }
+
+        function handleCardChange() {
+            const cardStatus = document.getElementById('global-card').value;
+            const finContainer = document.getElementById('financing-container');
+            const finCheckbox = document.getElementById('global-financing');
+            
+            if (cardStatus !== 'none') {
+                finContainer.classList.remove('hidden');
+            } else {
+                finContainer.classList.add('hidden');
+                finCheckbox.checked = false;
+            }
+            calculate();
+        }
+
+        function calculate() {
+            const hasMembership = document.getElementById('global-membership').checked;
+            const cardStatus = document.getElementById('global-card').value;
+            const isFinancing = document.getElementById('global-financing').checked;
+            
+            const appliancesAmt = parseFloat(document.getElementById('amt-appliances').value) || 0;
+            const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
+            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
+            const gtaviQtyContainer = document.getElementById('gtavi-qty-container');
+            
+            let gtaviQty = 0;
+            let gtaviTotalAmt = 0;
+
+            if (hasGtaVi) {
+                gtaviQtyContainer.classList.remove('hidden');
+                gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
+                gtaviTotalAmt = gtaviQty * 79.99;
+            } else {
+                gtaviQtyContainer.classList.add('hidden');
+            }
+
+            const totalSubtotal = appliancesAmt + generalAmt + gtaviTotalAmt;
+
+            // 1. Determine Active Rates
+            let cardRate = 0;
+            if (cardStatus !== 'none' && !isFinancing) {
+                cardRate = (cardStatus === 'new') ? 0.15 : 0.05;
+            }
+
+            const appliancesRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
+
+            document.getElementById('rate-appliances').innerText = `Rate: ${(appliancesRate * 100).toFixed(1)}%`;
+            document.getElementById('rate-general').innerText = `Rate: ${(generalRate * 100).toFixed(1)}%`;
+
+            // 2. Line Item Rewards
+            const appliancesReward = appliancesAmt * appliancesRate;
+            const generalReward = generalAmt * generalRate;
+            
+            let gtaviReward = 0;
+            if (hasGtaVi) {
+                const gtaviMemberRate = hasMembership ? 0.10 : 0;
+                gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
+            }
+
+            const totalRewards = appliancesReward + generalReward + gtaviReward;
+
+            // Update Line Item Output Badges
+            document.getElementById('reward-appliances').innerText = "$" + appliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Update Bottom Sticky Results
+            document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('output-rewards').innerText = "$" + totalRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Update Detailed Breakdown Box
+            const breakdownBox = document.getElementById('reward-breakdown-box');
+            const breakdownText = document.getElementById('reward-breakdown-text');
+
+            if (totalSubtotal > 0 && (hasMembership || (cardStatus !== 'none' && !isFinancing))) {
+                breakdownBox.classList.remove('hidden');
+                let parts = [];
+
+                if (appliancesAmt > 0) {
+                    let text = `• Major Appliances: $${appliancesReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("2% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (generalAmt > 0) {
+                    let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("1% Member Baseline");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (hasGtaVi) {
+                    let text = `• GTA VI Pre-Order: $${gtaviReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("10% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')}, ${gtaviQty} copy)`;
+                    parts.push(text);
+                }
+
+                if (isFinancing && cardStatus !== 'none') {
+                    parts.push(`• Card Points: $0.00 (Financing Chosen)`);
+                }
+
+                breakdownText.innerHTML = parts.join('<br>');
+            } else {
+                breakdownBox.classList.add('hidden');
+            }
+
+            // Update Financing Options
+            updateFinancingPromos(totalSubtotal, appliancesAmt, cardStatus);
+
+            // Update Rewards Redemption Section
+            updateRedemptionSection(totalRewards);
+        }
+
+        function updateRedemptionSection(combinedRewards) {
+            // Points Calculation: $1 reward = 50 points (250 pts = $5.00)
+            const totalPoints = Math.round(combinedRewards * 50);
+            
+            // Best Buy Certificate Value = 100% ($0.02/pt = combinedRewards)
+            const bbCertValue = totalPoints * 0.02;
+            
+            // Partner eGift Card Value = 50% ($0.01/pt = combinedRewards * 0.5)
+            const partnerCardValue = totalPoints * 0.01;
+
+            // Update Points Badge
+            document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString('en-US')} Points`;
+
+            // Update BB Certificate Display
+            document.getElementById('redemption-bb-value').innerText = "$" + bbCertValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Update Partner eGift Card Display
+            document.getElementById('redemption-partner-value').innerText = "$" + partnerCardValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Update all 8 Brand Denomination Badges
+            const partnerDenomElements = document.querySelectorAll('.partner-card-denom');
+            partnerDenomElements.forEach(el => {
+                el.innerText = `$${partnerCardValue.toFixed(2)} available`;
+            });
+        }
+
+        function clearBasket() {
+            document.getElementById('amt-appliances').value = "";
+            document.getElementById('amt-general').value = "";
+            document.getElementById('toggle-gtavi').checked = false;
+            document.getElementById('gtavi-qty').value = "1";
+            document.getElementById('global-membership').checked = false;
+            document.getElementById('global-card').value = "none";
+            handleCardChange();
+        }
+
+        function updateFinancingPromos(totalSubtotal, appliancesAmt, cardStatus) {
+            const finBox = document.getElementById('suggested-financing');
+            const list = document.getElementById('financing-options-list');
+            list.innerHTML = ""; 
+
+            if (totalSubtotal <= 0 || cardStatus === 'none') {
+                finBox.classList.add('hidden');
+                return;
+            }
+
+            let offers = [];
+
+            // 1. 24 Mo. Appliance Purchases ($1,499+) - Ends 9/16/26
+            const potentialApplianceTotal = appliancesAmt > 0 ? appliancesAmt : totalSubtotal;
+            if (potentialApplianceTotal >= 1499) {
+                offers.push({ 
+                    term: "24 Mo. Appliance Financing", 
+                    detail: `Est. $${(potentialApplianceTotal/24).toFixed(2)}/mo (On Appliances $1,499+ • Ends 9/16)` 
+                });
+            }
+
+            // 2. 24 Mo. Home Theater Purchases ($999+)
+            if (totalSubtotal >= 999) {
+                offers.push({ 
+                    term: "24 Mo. Home Theater Financing", 
+                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On HT $999+)` 
+                });
+            }
+
+            // 3. 24 Mo. Mac mini (M6/M5) & Mac Studio (M5) Purchases ($899+) - Ends 10/25/26
+            if (totalSubtotal >= 899) {
+                offers.push({ 
+                    term: "24 Mo. Mac mini / Studio Financing", 
+                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On Mac $899+ • Ends 10/25)` 
+                });
+            }
+
+            // 4. 24 Mo. Unlocked Phone Purchases ($649+)
+            if (totalSubtotal >= 649) {
+                offers.push({ 
+                    term: "24 Mo. Unlocked Phone Financing", 
+                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On Phone $649+)` 
+                });
+            }
+
+            // 5. Storewide Financing Tiers
+            if (totalSubtotal >= 599) {
+                offers.push({ term: "18 Mo. Storewide Financing", detail: `Est. $${(totalSubtotal/18).toFixed(2)}/mo (Ends 9/7)` });
+            }
+            if (totalSubtotal >= 299) {
+                offers.push({ term: "12 Mo. Storewide Financing", detail: `Est. $${(totalSubtotal/12).toFixed(2)}/mo` });
+            }
+            if (totalSubtotal >= 149) {
+                offers.push({ term: "6 Mo. Storewide Financing", detail: `Est. $${(totalSubtotal/6).toFixed(2)}/mo (Ends 9/7)` });
+            }
+
+            if (offers.length > 0) {
+                finBox.classList.remove('hidden');
+                offers.forEach(offer => {
+                    const li = document.createElement('div');
+                    li.className = "flex justify-between border-b border-gray-150 py-1 last:border-0";
+                    li.innerHTML = `<span class="font-bold text-gray-800">${offer.term}</span><span class="text-gray-600 text-right">${offer.detail}</span>`;
+                    list.appendChild(li);
+                });
+            } else {
+                finBox.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
