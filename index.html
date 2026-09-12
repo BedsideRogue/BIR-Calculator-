@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Prevents auto-zooming on iOS when focusing inputs while keeping responsive layout -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Best Buy Promo Calculator</title>
     <!-- Tailwind CSS via CDN -->
@@ -71,7 +70,6 @@
 
     <!-- MAIN CONTAINER -->
     <div id="app-content" class="w-full">
-        <!-- Sticky Top Header -->
         <header class="bg-bb-blue text-white py-3 px-4 shadow-md sticky top-0 z-30">
             <div class="max-w-md mx-auto flex justify-between items-center">
                 <div>
@@ -88,7 +86,6 @@
         <!-- Main Form Fields -->
         <main class="max-w-md mx-auto p-3 space-y-3">
             
-            <!-- SECTION 1: GLOBAL CUSTOMER CONDITIONS -->
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
                 <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">1. Customer Profile</h2>
                 
@@ -123,7 +120,6 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: PURCHASE ITEMS -->
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
                 <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">2. Line Items</h2>
                 
@@ -215,13 +211,14 @@
                 </div>
             </div>
 
-            <!-- SECTION 3: FINANCING OFFERS -->
-            <div id="suggested-financing" class="hidden bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-xs space-y-1.5">
-                <p class="font-bold text-gray-800">Qualified Promo Finance Options:</p>
-                <div id="financing-options-list" class="space-y-1 text-[11px]"></div>
+            <div id="suggested-financing" class="hidden bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-2">
+                <div class="flex items-center justify-between border-b border-gray-150 pb-2">
+                    <p class="font-bold text-xs text-gray-800 uppercase tracking-wider">3. Qualified Promo Finance Options</p>
+                    <span class="text-[9.5px] font-extrabold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">0% Interest Offers</span>
+                </div>
+                <div id="financing-options-list" class="space-y-2"></div>
             </div>
 
-            <!-- SECTION 4: REWARDS REDEMPTION VALUE -->
             <div id="redemption-section" class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3.5">
                 <div class="flex justify-between items-center border-b border-gray-150 pb-2.5">
                     <div>
@@ -389,7 +386,6 @@
 
         </main>
 
-        <!-- STICKY BOTTOM RESULTS FOOTER -->
         <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] px-4 py-3 z-40">
             <div class="max-w-md mx-auto grid grid-cols-2 gap-3">
                 <div class="bg-gray-50 p-2 rounded-lg text-center">
@@ -404,7 +400,6 @@
         </div>
     </div>
 
-    <!-- LOGIC ENGINE -->
     <script>
         // ==========================================
         // 🛑 ADMIN KILL SWITCH CONFIGURATION
@@ -664,48 +659,109 @@
             // 1. 24 Mo. Appliance Purchases ($1,499+) - Ends 9/16/26
             const potentialApplianceTotal = appliancesAmt > 0 ? appliancesAmt : totalSubtotal;
             if (potentialApplianceTotal >= 1499) {
+                const monthly = (potentialApplianceTotal / 24).toFixed(2);
                 offers.push({ 
                     term: "24 Mo. Appliance Financing", 
-                    detail: `Est. $${(potentialApplianceTotal/24).toFixed(2)}/mo (On Appliances $1,499+ • Ends 9/16)` 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Major Appliances $1,499+`,
+                    badge: "Ends 9/16",
+                    isLimited: true,
+                    gradient: "from-blue-50/90 via-indigo-50/80 to-blue-50/40 border-blue-200 text-blue-950",
+                    badgeStyle: "bg-blue-600 text-white"
                 });
             }
 
-            // 2. 24 Mo. Home Theater Purchases ($999+)
-            if (totalSubtotal >= 999) {
-                offers.push({ 
-                    term: "24 Mo. Home Theater Financing", 
-                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On HT $999+)` 
-                });
-            }
-
-            // 3. 24 Mo. Mac mini (M6/M5) & Mac Studio (M5) Purchases ($899+) - Ends 10/25/26
+            // 2. 24 Mo. Mac mini (M6/M5) & Mac Studio (M5) Purchases ($899+) - Ends 10/25/26
             if (totalSubtotal >= 899) {
+                const monthly = (totalSubtotal / 24).toFixed(2);
                 offers.push({ 
                     term: "24 Mo. Mac mini / Studio Financing", 
-                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On Mac $899+ • Ends 10/25)` 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Mac mini (M6/M5) & Mac Studio (M5) $899+`,
+                    badge: "Ends 10/25",
+                    isLimited: true,
+                    gradient: "from-purple-50/90 via-indigo-50/80 to-blue-50/40 border-purple-200 text-purple-950",
+                    badgeStyle: "bg-indigo-600 text-white"
                 });
             }
 
-            // 4. 24 Mo. Unlocked Phone Purchases ($649+)
+            // 3. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Ends 10/25/26
+            if (totalSubtotal >= 799) {
+                const monthly = (totalSubtotal / 24).toFixed(2);
+                offers.push({ 
+                    term: "24 Mo. Apple Watch Ultra 4 Financing", 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Apple Watch Ultra 4 $799+`,
+                    badge: "Ends 10/25",
+                    isLimited: true,
+                    gradient: "from-amber-50/90 via-orange-50/70 to-yellow-50/40 border-amber-200 text-amber-950",
+                    badgeStyle: "bg-amber-600 text-white"
+                });
+            }
+
+            // 4. 24 Mo. Home Theater Purchases ($999+)
+            if (totalSubtotal >= 999) {
+                const monthly = (totalSubtotal / 24).toFixed(2);
+                offers.push({ 
+                    term: "24 Mo. Home Theater Financing", 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Home Theater $999+`,
+                    isLimited: false
+                });
+            }
+
+            // 5. 24 Mo. Unlocked Phone Purchases ($649+)
             if (totalSubtotal >= 649) {
+                const monthly = (totalSubtotal / 24).toFixed(2);
                 offers.push({ 
                     term: "24 Mo. Unlocked Phone Financing", 
-                    detail: `Est. $${(totalSubtotal/24).toFixed(2)}/mo (On Phone $649+)` 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Unlocked Phones $649+`,
+                    isLimited: false
                 });
             }
 
-            // 5. Storewide Financing Tiers
+            // 6. 12 Mo. Storewide Financing Tiers ($299+)
             if (totalSubtotal >= 299) {
-                offers.push({ term: "12 Mo. Storewide Financing", detail: `Est. $${(totalSubtotal/12).toFixed(2)}/mo` });
+                const monthly = (totalSubtotal / 12).toFixed(2);
+                offers.push({ 
+                    term: "12 Mo. Storewide Financing", 
+                    monthly: `$${monthly}/mo`,
+                    desc: `On Purchases $299+`,
+                    isLimited: false
+                });
             }
 
             if (offers.length > 0) {
                 finBox.classList.remove('hidden');
                 offers.forEach(offer => {
-                    const li = document.createElement('div');
-                    li.className = "flex justify-between border-b border-gray-150 py-1 last:border-0";
-                    li.innerHTML = `<span class="font-bold text-gray-800">${offer.term}</span><span class="text-gray-600 text-right">${offer.detail}</span>`;
-                    list.appendChild(li);
+                    const card = document.createElement('div');
+                    
+                    if (offer.isLimited) {
+                        // Soft Gradient Highlight Card for Limited-Time Offers
+                        card.className = `p-3 rounded-xl border bg-gradient-to-r ${offer.gradient} shadow-sm space-y-1 transition-all`;
+                        card.innerHTML = `
+                            <div class="flex justify-between items-center gap-2">
+                                <div class="flex items-center gap-1.5 min-w-0">
+                                    <span class="${offer.badgeStyle} text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">${offer.badge}</span>
+                                    <p class="font-extrabold text-xs truncate">${offer.term}</p>
+                                </div>
+                                <span class="font-black text-xs shrink-0 bg-white/80 border border-gray-200/60 px-2 py-0.5 rounded-md text-gray-900 shadow-2xs">${offer.monthly}</span>
+                            </div>
+                            <p class="text-[10px] text-gray-600 font-medium pl-0.5">${offer.desc}</p>
+                        `;
+                    } else {
+                        // Clean Standard Card for Everyday Financing Tiers
+                        card.className = "p-2.5 rounded-xl bg-gray-50 border border-gray-200/80 flex justify-between items-center text-xs";
+                        card.innerHTML = `
+                            <div>
+                                <p class="font-bold text-gray-800">${offer.term}</p>
+                                <p class="text-[10px] text-gray-500 font-medium">${offer.desc}</p>
+                            </div>
+                            <span class="font-extrabold text-xs text-gray-700 bg-white border border-gray-200 px-2 py-0.5 rounded-md">${offer.monthly}</span>
+                        `;
+                    }
+                    list.appendChild(card);
                 });
             } else {
                 finBox.classList.add('hidden');
