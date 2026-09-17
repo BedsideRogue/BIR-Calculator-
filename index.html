@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- Prevents auto-zooming on iOS when focusing inputs while keeping responsive layout -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Best Buy Promo Calculator</title>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -82,8 +83,8 @@
             <div class="max-w-md mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Floor Tool</span>
-                    <h1 class="text-lg font-bold tracking-tight leading-tight">Labor Day Event</h1>
-                    <p class="text-[10px] text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 17, 2026 @ 12:00 AM Local Time</p>
+                    <h1 class="text-lg font-bold tracking-tight leading-tight">Labor Day & Fall Event</h1>
+                    <p class="text-[10px] text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 19, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors">
                     Reset App
@@ -98,19 +99,20 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
                 <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">1. Customer Profile</h2>
                 
-                <!-- Large Checkbox Card for Member -->
-                <label class="flex items-center justify-between p-3 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3">
-                    <div class="min-w-0 flex-1">
-                        <p class="text-sm font-bold text-blue-900">Plus or Total Member?</p>
-                        <p class="text-[10px] text-blue-600 leading-snug">2x Appliances & Apple Pre-Orders (2%) • 10x GTA VI Pre-Order</p>
-                    </div>
-                    <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
-                </label>
+                <!-- Member Tier Selection Dropdown -->
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">My Best Buy Membership Tier</label>
+                    <select id="global-membership" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-12 font-bold text-gray-900" onchange="calculate()">
+                        <option value="none">No Membership (Standard 0%)</option>
+                        <option value="plus">My Best Buy Plus™ Member</option>
+                        <option value="total">My Best Buy Total™ Member (Unlocks Zelda & All Promos)</option>
+                    </select>
+                </div>
 
-                <!-- Styled Dropdown for Card -->
+                <!-- Styled Dropdown for Credit Card -->
                 <div>
                     <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Best Buy Credit Card</label>
-                    <select id="global-card" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-12" onchange="handleCardChange()">
+                    <select id="global-card" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-12 font-bold text-gray-900" onchange="handleCardChange()">
                         <option value="none">No Best Buy Card</option>
                         <option value="existing">Existing Cardholder (Standard 5%)</option>
                         <option value="new">New Cardholder Approved Today (Day 1 - 10%)</option>
@@ -135,12 +137,12 @@
                 
                 <div class="space-y-3 divide-y divide-gray-100">
                     
-                    <!-- Major Appliances & Select Apple Pre-Orders (2x Member Rewards) -->
+                    <!-- Select Apple Pre-Orders (2x Member Rewards) -->
                     <div class="pt-1">
                         <div class="flex justify-between items-start mb-1 gap-2">
                             <div class="min-w-0 flex-1">
-                                <label class="text-xs font-bold text-gray-800 block leading-snug break-words">Major Appliances & Apple Pre-Orders</label>
-                                <span class="text-[10px] text-blue-600 font-medium font-sans block leading-snug break-words">2x Member Promo (2%) • Appliances (Ends 9/16), Apple Watch & AirPods (Ends 9/18), Mac mini/Studio (Ends 9/22)</span>
+                                <label class="text-xs font-bold text-gray-800 block leading-snug break-words">Apple Pre-Orders</label>
+                                <span class="text-[10px] text-blue-600 font-medium font-sans block leading-snug break-words">2x Member Promo (2%) • Apple Watch & AirPods (Ends 9/18), Mac mini/Studio (Ends 9/22)</span>
                             </div>
                             <span id="rate-appliances" class="shrink-0 whitespace-nowrap text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                         </div>
@@ -171,24 +173,90 @@
                         </div>
                     </div>
 
-                    <!-- GTA VI Pre-Order Special Offer -->
+                    <!-- Call of Duty 4: Modern Warfare Pre-Order -->
                     <div class="pt-2.5">
-                        <div class="p-3 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-xl border border-indigo-150">
+                        <div class="p-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 rounded-xl border border-teal-200">
                             <label class="flex items-center justify-between cursor-pointer gap-3">
                                 <div class="min-w-0 flex-1">
                                     <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                        <span class="bg-indigo-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
-                                        <span class="text-xs font-bold text-gray-900 leading-snug break-words">Grand Theft Auto VI Pre-Order</span>
+                                        <span class="bg-teal-700 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
+                                        <span class="text-xs font-bold text-gray-900 leading-snug break-words">Call of Duty 4: Modern Warfare Pre-Order</span>
                                     </div>
-                                    <p class="text-[10px] text-indigo-700 font-medium leading-snug break-words">Adds $79.99 • Plus & Total Members get 10% back ($8.00)</p>
+                                    <p class="text-[10px] text-teal-800 font-medium leading-snug break-words">Adds $69.99 • Plus & Total Members get 10% back ($7.00) • Valid Sep 17 - Oct 22</p>
+                                </div>
+                                <input id="toggle-cod4" type="checkbox" class="shrink-0" onchange="calculate()">
+                            </label>
+
+                            <div id="cod4-qty-container" class="hidden mt-2 pt-2 border-t border-teal-200 flex justify-between items-center text-xs">
+                                <span class="font-bold text-teal-900">Copies Pre-Ordered:</span>
+                                <select id="cod4-qty" class="bg-white border border-teal-300 rounded-lg px-2 py-1 text-xs font-bold text-teal-900 outline-none" onchange="calculate()">
+                                    <option value="1">1 Copy ($69.99)</option>
+                                    <option value="2">2 Copies ($139.98)</option>
+                                    <option value="3">3 Copies ($209.97)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nintendo Switch Zelda Game Pre-Order (TOTAL MEMBERS ONLY) -->
+                    <div class="pt-2.5">
+                        <div class="p-3 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 rounded-xl border border-amber-300 shadow-sm">
+                            <label class="flex items-center justify-between cursor-pointer gap-3">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center gap-1.5 mb-1 flex-wrap">
+                                        <span class="bg-red-600 text-white text-[9.5px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0 inline-flex items-center justify-center text-center shadow-sm">⭐ TOTAL MEMBERS ONLY</span>
+                                        <span class="bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
+                                    </div>
+                                    <p class="text-xs font-bold text-gray-900 leading-snug break-words">NSW Zelda Game Pre-Order</p>
+                                    <p class="text-[10px] text-amber-900 font-medium leading-snug break-words mt-0.5">Adds $69.99 • Total Members get 10% back ($7.00) • Valid Sep 17 - Nov 4</p>
+                                </div>
+                                <input id="toggle-zelda" type="checkbox" class="shrink-0" onchange="calculate()">
+                            </label>
+
+                            <div id="zelda-qty-container" class="hidden mt-2 pt-2 border-t border-amber-200 flex justify-between items-center text-xs">
+                                <span class="font-bold text-amber-900">Copies Pre-Ordered:</span>
+                                <select id="zelda-qty" class="bg-white border border-amber-300 rounded-lg px-2 py-1 text-xs font-bold text-amber-900 outline-none" onchange="calculate()">
+                                    <option value="1">1 Copy ($69.99)</option>
+                                    <option value="2">2 Copies ($139.98)</option>
+                                    <option value="3">3 Copies ($209.97)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GTA VI Pre-Order + Eligible Console ($50 Direct Promo Cert) -->
+                    <div class="pt-2.5">
+                        <div class="p-3 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
+                            <label class="flex items-center justify-between cursor-pointer gap-3">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                        <span class="bg-indigo-700 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">$50 CERTIFICATE</span>
+                                        <span class="text-xs font-bold text-gray-900 leading-snug break-words">GTA VI Pre-Order + Eligible Console</span>
+                                    </div>
+                                    <p class="text-[10px] text-indigo-800 font-medium leading-snug break-words">My Best Buy Members get a $50 Direct Promo Certificate when buying GTA VI pre-order + PS5 or Xbox Series X|S console</p>
+                                </div>
+                                <input id="toggle-gtavi-console" type="checkbox" class="shrink-0" onchange="calculate()">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- GTA VI Pre-Order Standalone 10x Rewards -->
+                    <div class="pt-2.5">
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <label class="flex items-center justify-between cursor-pointer gap-3">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                        <span class="bg-purple-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
+                                        <span class="text-xs font-bold text-gray-900 leading-snug break-words">GTA VI Pre-Order (Game Only)</span>
+                                    </div>
+                                    <p class="text-[10px] text-purple-700 font-medium leading-snug break-words">Adds $79.99 • Plus & Total Members get 10% back ($8.00)</p>
                                 </div>
                                 <input id="toggle-gtavi" type="checkbox" class="shrink-0" onchange="calculate()">
                             </label>
 
-                            <!-- Quantity Selector when Toggled -->
-                            <div id="gtavi-qty-container" class="hidden mt-2 pt-2 border-t border-indigo-100 flex justify-between items-center text-xs">
-                                <span class="font-bold text-indigo-900">Copies Pre-Ordered:</span>
-                                <select id="gtavi-qty" class="bg-white border border-indigo-200 rounded-lg px-2 py-1 text-xs font-bold text-indigo-900 outline-none" onchange="calculate()">
+                            <div id="gtavi-qty-container" class="hidden mt-2 pt-2 border-t border-purple-200 flex justify-between items-center text-xs">
+                                <span class="font-bold text-purple-900">Copies Pre-Ordered:</span>
+                                <select id="gtavi-qty" class="bg-white border border-purple-200 rounded-lg px-2 py-1 text-xs font-bold text-purple-900 outline-none" onchange="calculate()">
                                     <option value="1">1 Copy ($79.99)</option>
                                     <option value="2">2 Copies ($159.98)</option>
                                     <option value="3">3 Copies ($239.97)</option>
@@ -280,6 +348,14 @@
                         </div>
                     </div>
 
+                    <!-- Direct Promo Certificate Notice for Partner View -->
+                    <div id="partner-promo-cert-notice" class="hidden bg-amber-50/90 border border-amber-200 rounded-xl p-2.5 text-[11px] text-amber-900 flex items-start space-x-2">
+                        <span class="text-amber-700 font-bold text-sm leading-none mt-0.5">⚠️</span>
+                        <p class="leading-snug">
+                            <span class="font-bold">Promotional Certificate Notice:</span> The <span class="font-bold text-amber-950">$50 GTA VI + Console Promo Cert</span> is issued directly as a promotional certificate (not as points) and can only be redeemed at Best Buy.
+                        </p>
+                    </div>
+
                     <div>
                         <div class="flex justify-between items-center mb-2 gap-2">
                             <p class="text-[11px] font-bold text-gray-700 uppercase tracking-wider">Top 8 Partner Brands</p>
@@ -290,7 +366,6 @@
 
                         <!-- 8 Partner Brands Grid -->
                         <div class="grid grid-cols-2 gap-2">
-                            <!-- 1. Amazon -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-amber-700 text-xs shrink-0 text-center">a</div>
                                 <div class="min-w-0 flex-1">
@@ -299,7 +374,6 @@
                                 </div>
                             </div>
 
-                            <!-- 2. Target -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-600 text-xs shrink-0 text-center">◎</div>
                                 <div class="min-w-0 flex-1">
@@ -308,7 +382,6 @@
                                 </div>
                             </div>
 
-                            <!-- 3. Walmart -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center font-black text-blue-600 text-xs shrink-0 text-center">✹</div>
                                 <div class="min-w-0 flex-1">
@@ -317,7 +390,6 @@
                                 </div>
                             </div>
 
-                            <!-- 4. Starbucks -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center font-black text-emerald-700 text-xs shrink-0 text-center">☕</div>
                                 <div class="min-w-0 flex-1">
@@ -326,7 +398,6 @@
                                 </div>
                             </div>
 
-                            <!-- 5. Apple -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-gray-200 flex items-center justify-center font-black text-gray-800 text-xs shrink-0 text-center"></div>
                                 <div class="min-w-0 flex-1">
@@ -335,7 +406,6 @@
                                 </div>
                             </div>
 
-                            <!-- 6. Uber / Uber Eats -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-black text-xs shrink-0 text-center">U</div>
                                 <div class="min-w-0 flex-1">
@@ -344,7 +414,6 @@
                                 </div>
                             </div>
 
-                            <!-- 7. DoorDash -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-500 text-xs shrink-0 text-center">◖</div>
                                 <div class="min-w-0 flex-1">
@@ -353,7 +422,6 @@
                                 </div>
                             </div>
 
-                            <!-- 8. Home Depot -->
                             <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
                                 <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-orange-600 text-xs shrink-0 text-center">⌂</div>
                                 <div class="min-w-0 flex-1">
@@ -364,7 +432,6 @@
                         </div>
                     </div>
 
-                    <!-- Highlight Box for 60+ Additional Brands -->
                     <div class="bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-2.5 rounded-xl border border-amber-200/80 text-center">
                         <p class="text-xs font-bold text-amber-950 flex items-center justify-center gap-1">
                             <span>🎁</span> 60+ More Brands Available in Member Portal
@@ -457,8 +524,8 @@
         
         function checkKillSwitch() {
             const now = new Date();
-            // Cutoff: September 17, 2026 @ 12:00 AM (Midnight)
-            const expirationDate = new Date(2026, 8, 17, 0, 0, 0); 
+            // Cutoff: September 19, 2026 @ 12:00 AM (Midnight)
+            const expirationDate = new Date(2026, 8, 19, 0, 0, 0); 
             
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
@@ -580,18 +647,46 @@
         }
 
         function calculate() {
-            const hasMembership = document.getElementById('global-membership').checked;
+            const memberTier = document.getElementById('global-membership').value;
+            const isPlusOrTotal = (memberTier === 'plus' || memberTier === 'total');
+            const isTotalOnly = (memberTier === 'total');
+            
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
             const appliancesAmt = parseFloat(document.getElementById('amt-appliances').value) || 0;
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
-            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
-            const gtaviQtyContainer = document.getElementById('gtavi-qty-container');
-            
-            let gtaviQty = 0;
-            let gtaviTotalAmt = 0;
 
+            // Checkbox toggles
+            const hasCod4 = document.getElementById('toggle-cod4').checked;
+            const hasZelda = document.getElementById('toggle-zelda').checked;
+            const hasGtaviConsole = document.getElementById('toggle-gtavi-console').checked;
+            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
+
+            // Quantity container DOMs
+            const cod4QtyContainer = document.getElementById('cod4-qty-container');
+            const zeldaQtyContainer = document.getElementById('zelda-qty-container');
+            const gtaviQtyContainer = document.getElementById('gtavi-qty-container');
+
+            let cod4Qty = 0, cod4TotalAmt = 0;
+            if (hasCod4) {
+                cod4QtyContainer.classList.remove('hidden');
+                cod4Qty = parseInt(document.getElementById('cod4-qty').value) || 1;
+                cod4TotalAmt = cod4Qty * 69.99;
+            } else {
+                cod4QtyContainer.classList.add('hidden');
+            }
+
+            let zeldaQty = 0, zeldaTotalAmt = 0;
+            if (hasZelda) {
+                zeldaQtyContainer.classList.remove('hidden');
+                zeldaQty = parseInt(document.getElementById('zelda-qty').value) || 1;
+                zeldaTotalAmt = zeldaQty * 69.99;
+            } else {
+                zeldaQtyContainer.classList.add('hidden');
+            }
+
+            let gtaviQty = 0, gtaviTotalAmt = 0;
             if (hasGtaVi) {
                 gtaviQtyContainer.classList.remove('hidden');
                 gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
@@ -600,7 +695,7 @@
                 gtaviQtyContainer.classList.add('hidden');
             }
 
-            const totalSubtotal = appliancesAmt + generalAmt + gtaviTotalAmt;
+            const totalSubtotal = appliancesAmt + generalAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // 1. Determine Active Rates (Day 1 Cardholder is 10%)
             let cardRate = 0;
@@ -608,23 +703,49 @@
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
-            const appliancesRate = (hasMembership ? 0.02 : 0) + cardRate;
-            const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
+            const appliancesRate = (isPlusOrTotal ? 0.02 : 0) + cardRate;
+            const generalRate = (isPlusOrTotal ? 0.01 : 0) + cardRate;
 
             document.getElementById('rate-appliances').innerText = `Rate: ${(appliancesRate * 100).toFixed(1)}%`;
             document.getElementById('rate-general').innerText = `Rate: ${(generalRate * 100).toFixed(1)}%`;
 
-            // 2. Line Item Rewards
+            // 2. Line Item Rewards (Eligible for Points conversion)
             const appliancesReward = appliancesAmt * appliancesRate;
             const generalReward = generalAmt * generalRate;
-            
+
+            let cod4Reward = 0;
+            if (hasCod4) {
+                const cod4MemberRate = isPlusOrTotal ? 0.10 : 0;
+                cod4Reward = cod4TotalAmt * (cod4MemberRate + cardRate);
+            }
+
+            let zeldaReward = 0;
+            if (hasZelda) {
+                // Zelda promo is exclusively for My Best Buy Total members
+                const zeldaMemberRate = isTotalOnly ? 0.10 : (isPlusOrTotal ? 0.01 : 0);
+                zeldaReward = zeldaTotalAmt * (zeldaMemberRate + cardRate);
+            }
+
             let gtaviReward = 0;
             if (hasGtaVi) {
-                const gtaviMemberRate = hasMembership ? 0.10 : 0;
+                const gtaviMemberRate = isPlusOrTotal ? 0.10 : 0;
                 gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
             }
 
-            const totalRewards = appliancesReward + generalReward + gtaviReward;
+            // Total Point-Based Rewards
+            const pointBasedRewards = appliancesReward + generalReward + cod4Reward + zeldaReward + gtaviReward;
+
+            // 3. Direct Promotional Certificates (Not points)
+            let directPromoCerts = 0;
+            if (hasGtaviConsole) {
+                // Member requirement for $50 promo cert
+                if (memberTier !== 'none') {
+                    directPromoCerts += 50.00;
+                }
+            }
+
+            // Combined dollar value
+            const totalCombinedRewards = pointBasedRewards + directPromoCerts;
 
             // Update Line Item Output Badges
             document.getElementById('reward-appliances').innerText = "$" + appliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -632,19 +753,19 @@
 
             // Update Bottom Sticky Results
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('output-rewards').innerText = "$" + totalRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('output-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             // Update Detailed Breakdown Box
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
 
-            if (totalRewards > 0 || totalSubtotal > 0) {
+            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGtaviConsole) {
                 let parts = [];
 
                 if (appliancesAmt > 0) {
-                    let text = `• Appliances / Apple Pre-Orders: $${appliancesReward.toFixed(2)}`;
+                    let text = `• Apple Pre-Orders: $${appliancesReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("2% Member Promo");
+                    if (isPlusOrTotal) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -653,16 +774,46 @@
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("1% Member Baseline");
+                    if (isPlusOrTotal) details.push("1% Member Baseline");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
 
-                if (hasGtaVi) {
-                    let text = `• GTA VI Pre-Order: $${gtaviReward.toFixed(2)}`;
+                if (hasCod4) {
+                    let text = `• CoD 4 MW Pre-Order: $${cod4Reward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("10% Member Promo");
+                    if (isPlusOrTotal) details.push("10x Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')}, ${cod4Qty} copy)`;
+                    parts.push(text);
+                }
+
+                if (hasZelda) {
+                    let text = `• NSW Zelda Pre-Order: $${zeldaReward.toFixed(2)}`;
+                    let details = [];
+                    if (isTotalOnly) {
+                        details.push("10x TOTAL Member Exclusive");
+                    } else if (isPlusOrTotal) {
+                        details.push("1% Plus Baseline (Needs TOTAL for 10x)");
+                    }
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')}, ${zeldaQty} copy)`;
+                    parts.push(text);
+                }
+
+                if (hasGtaviConsole) {
+                    if (memberTier !== 'none') {
+                        parts.push(`• GTA VI + Console: $50.00 (Direct Promo Certificate — Not Points)`);
+                    } else {
+                        parts.push(`• GTA VI + Console: $0.00 (Requires Member Tier for $50 Cert)`);
+                    }
+                }
+
+                if (hasGtaVi) {
+                    let text = `• GTA VI Standalone: $${gtaviReward.toFixed(2)}`;
+                    let details = [];
+                    if (isPlusOrTotal) details.push("10x Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')}, ${gtaviQty} copy)`;
                     parts.push(text);
@@ -686,29 +837,46 @@
             updateFinancingPromos(totalSubtotal, appliancesAmt, cardStatus);
 
             // Update Rewards Redemption Section
-            updateRedemptionSection(totalRewards);
+            updateRedemptionSection(pointBasedRewards, directPromoCerts);
         }
 
-        function updateRedemptionSection(totalRewards) {
-            // Points Calculation: dollar reward * 50 (250 pts = $5.00)
-            const totalPoints = Math.round(totalRewards * 50);
+        function updateRedemptionSection(pointBasedRewards, directPromoCerts) {
+            // Points Calculation: point-based dollar reward * 50 (250 pts = $5.00)
+            const totalPoints = Math.round(pointBasedRewards * 50);
             
             // Value from points in Best Buy Certificates ($0.02/pt)
             const pointsBbValue = totalPoints * 0.02;
+
+            // Total Best Buy Certificate value = points value + direct promotional certificates
+            const totalBbCertValue = pointsBbValue + directPromoCerts;
             
-            // Partner eGift Card Value ($0.01/pt)
+            // Partner eGift Card Value ($0.01/pt from points strictly)
             const partnerCardValue = totalPoints * 0.01;
 
             // Update Points Badge
             document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString('en-US')} Points`;
 
             // Update BB Certificate Display
-            document.getElementById('redemption-bb-value').innerText = "$" + pointsBbValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('redemption-bb-subdetail').innerText = "$0.02 / point • 250 points = $5.00";
+            document.getElementById('redemption-bb-value').innerText = "$" + totalBbCertValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            const subdetailEl = document.getElementById('redemption-bb-subdetail');
+            if (directPromoCerts > 0) {
+                subdetailEl.innerText = `$${pointsBbValue.toFixed(2)} from points + $${directPromoCerts.toFixed(2)} direct promo cert`;
+            } else {
+                subdetailEl.innerText = "$0.02 / point • 250 points = $5.00";
+            }
 
             // Update Partner eGift Card Display
             document.getElementById('redemption-partner-value').innerText = "$" + partnerCardValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('redemption-partner-subdetail').innerText = `Based on ${totalPoints.toLocaleString()} points ($0.01 / point)`;
+
+            // Notice for Direct Promo Certs in Partner View
+            const noticeEl = document.getElementById('partner-promo-cert-notice');
+            if (directPromoCerts > 0) {
+                noticeEl.classList.remove('hidden');
+            } else {
+                noticeEl.classList.add('hidden');
+            }
 
             // Update all 8 Brand Denomination Badges
             const partnerDenomElements = document.querySelectorAll('.partner-card-denom');
@@ -720,9 +888,14 @@
         function clearBasket() {
             document.getElementById('amt-appliances').value = "";
             document.getElementById('amt-general').value = "";
+            document.getElementById('toggle-cod4').checked = false;
+            document.getElementById('cod4-qty').value = "1";
+            document.getElementById('toggle-zelda').checked = false;
+            document.getElementById('zelda-qty').value = "1";
+            document.getElementById('toggle-gtavi-console').checked = false;
             document.getElementById('toggle-gtavi').checked = false;
             document.getElementById('gtavi-qty').value = "1";
-            document.getElementById('global-membership').checked = false;
+            document.getElementById('global-membership').value = "none";
             document.getElementById('global-card').value = "none";
             handleCardChange();
         }
@@ -743,22 +916,7 @@
 
             let offers = [];
 
-            // 1. 24 Mo. Appliance Purchases ($1,499+) - Gradient Highlight (Ends 9/16)
-            const potentialApplianceTotal = appliancesAmt > 0 ? appliancesAmt : totalSubtotal;
-            if (showAllFinancing || potentialApplianceTotal >= 1499) {
-                const calcBase = potentialApplianceTotal >= 1499 ? potentialApplianceTotal : 1499;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-blue-500/10 via-indigo-500/10 to-blue-600/10 border-blue-300",
-                    badgeText: "ENDS 9/16",
-                    badgeClass: "bg-blue-600 text-white",
-                    term: "24 Mo. Appliance Financing", 
-                    detail: `On Major Appliances $1,499+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            // 2. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
+            // 1. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
             if (showAllFinancing || totalSubtotal >= 699) {
                 const calcBase = totalSubtotal >= 699 ? totalSubtotal : 699;
                 offers.push({ 
@@ -772,7 +930,7 @@
                 });
             }
 
-            // 3. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
+            // 2. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 899) {
                 const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
                 offers.push({ 
@@ -786,7 +944,7 @@
                 });
             }
 
-            // 4. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
+            // 3. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 799) {
                 const calcBase = totalSubtotal >= 799 ? totalSubtotal : 799;
                 offers.push({ 
@@ -800,7 +958,7 @@
                 });
             }
 
-            // 5. Standard 24 Mo. Home Theater ($999+)
+            // 4. Standard 24 Mo. Home Theater ($999+)
             if (showAllFinancing || totalSubtotal >= 999) {
                 const calcBase = totalSubtotal >= 999 ? totalSubtotal : 999;
                 offers.push({ 
@@ -811,7 +969,7 @@
                 });
             }
 
-            // 6. Standard 24 Mo. Unlocked Phones ($649+)
+            // 5. Standard 24 Mo. Unlocked Phones ($649+)
             if (showAllFinancing || totalSubtotal >= 649) {
                 const calcBase = totalSubtotal >= 649 ? totalSubtotal : 649;
                 offers.push({ 
@@ -822,7 +980,7 @@
                 });
             }
 
-            // 7. Standard 12 Mo. Storewide ($299+)
+            // 6. Standard 12 Mo. Storewide ($299+)
             if (showAllFinancing || totalSubtotal >= 299) {
                 const calcBase = totalSubtotal >= 299 ? totalSubtotal : 299;
                 offers.push({ 
