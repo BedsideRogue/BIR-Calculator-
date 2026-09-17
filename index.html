@@ -916,7 +916,21 @@
 
             let offers = [];
 
-            // 1. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
+            // 1. 24 Mo. Dacor Appliance Purchases ($1,499+) - Gradient Highlight (Ends 9/30)
+            if (showAllFinancing || totalSubtotal >= 1499) {
+                const calcBase = totalSubtotal >= 1499 ? totalSubtotal : 1499;
+                offers.push({ 
+                    highlight: true,
+                    gradientClass: "from-slate-600/10 via-zinc-600/10 to-gray-700/10 border-slate-300",
+                    badgeText: "ENDS 9/30",
+                    badgeClass: "bg-slate-800 text-white",
+                    term: "24 Mo. Dacor Appliance Financing", 
+                    detail: `On Dacor Appliance Purchases $1,499+`,
+                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
+                });
+            }
+
+            // 2. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
             if (showAllFinancing || totalSubtotal >= 699) {
                 const calcBase = totalSubtotal >= 699 ? totalSubtotal : 699;
                 offers.push({ 
@@ -930,7 +944,7 @@
                 });
             }
 
-            // 2. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
+            // 3. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 899) {
                 const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
                 offers.push({ 
@@ -944,7 +958,7 @@
                 });
             }
 
-            // 3. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
+            // 4. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 799) {
                 const calcBase = totalSubtotal >= 799 ? totalSubtotal : 799;
                 offers.push({ 
@@ -958,7 +972,18 @@
                 });
             }
 
-            // 4. Standard 24 Mo. Home Theater ($999+)
+            // 5. Standard 18 Mo. Appliance Financing ($599+)
+            if (showAllFinancing || totalSubtotal >= 599) {
+                const calcBase = totalSubtotal >= 599 ? totalSubtotal : 599;
+                offers.push({ 
+                    highlight: false,
+                    term: "18 Mo. Appliance Financing", 
+                    detail: `On Appliance Purchases $599+`,
+                    monthly: `$${(calcBase/18).toFixed(2)}/mo`
+                });
+            }
+
+            // 6. Standard 24 Mo. Home Theater ($999+)
             if (showAllFinancing || totalSubtotal >= 999) {
                 const calcBase = totalSubtotal >= 999 ? totalSubtotal : 999;
                 offers.push({ 
@@ -969,7 +994,7 @@
                 });
             }
 
-            // 5. Standard 24 Mo. Unlocked Phones ($649+)
+            // 7. Standard 24 Mo. Unlocked Phones ($649+)
             if (showAllFinancing || totalSubtotal >= 649) {
                 const calcBase = totalSubtotal >= 649 ? totalSubtotal : 649;
                 offers.push({ 
@@ -980,7 +1005,7 @@
                 });
             }
 
-            // 6. Standard 12 Mo. Storewide ($299+)
+            // 8. Standard 12 Mo. Storewide ($299+)
             if (showAllFinancing || totalSubtotal >= 299) {
                 const calcBase = totalSubtotal >= 299 ? totalSubtotal : 299;
                 offers.push({ 
