@@ -84,7 +84,7 @@
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Floor Tool</span>
                     <h1 class="text-lg font-bold tracking-tight leading-tight">Labor Day & Fall Event</h1>
-                    <p class="text-[10px] text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 19, 2026 @ 12:00 AM Local Time</p>
+                    <p class="text-[10px] text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 23, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors">
                     Reset App
@@ -99,15 +99,14 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3">
                 <h2 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">1. Customer Profile</h2>
                 
-                <!-- Member Tier Selection Dropdown -->
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">My Best Buy Membership Tier</label>
-                    <select id="global-membership" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-12 font-bold text-gray-900" onchange="calculate()">
-                        <option value="none">No Membership (Standard 0%)</option>
-                        <option value="plus">My Best Buy Plus™ Member</option>
-                        <option value="total">My Best Buy Total™ Member (Unlocks Zelda & All Promos)</option>
-                    </select>
-                </div>
+                <!-- Member Checkbox Card -->
+                <label class="flex items-center justify-between p-3 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3">
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-bold text-blue-900 font-sans">Plus or Total Member?</p>
+                        <p class="text-[10px] text-blue-600 leading-snug">2x Mac Pre-Orders (2%) • 10x CoD 4, Zelda & GTA VI • $50 GTA VI + Console Cert</p>
+                    </div>
+                    <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
+                </label>
 
                 <!-- Styled Dropdown for Credit Card -->
                 <div>
@@ -142,7 +141,7 @@
                         <div class="flex justify-between items-start mb-1 gap-2">
                             <div class="min-w-0 flex-1">
                                 <label class="text-xs font-bold text-gray-800 block leading-snug break-words">Apple Pre-Orders</label>
-                                <span class="text-[10px] text-blue-600 font-medium font-sans block leading-snug break-words">2x Member Promo (2%) • Apple Watch & AirPods (Ends 9/18), Mac mini/Studio (Ends 9/22)</span>
+                                <span class="text-[10px] text-blue-600 font-medium font-sans block leading-snug break-words">2x Member Promo (2%) • Mac mini & Mac Studio (Ends 9/22)</span>
                             </div>
                             <span id="rate-appliances" class="shrink-0 whitespace-nowrap text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                         </div>
@@ -198,24 +197,23 @@
                         </div>
                     </div>
 
-                    <!-- Nintendo Switch Zelda Game Pre-Order (TOTAL MEMBERS ONLY) -->
+                    <!-- Nintendo Switch Zelda Game Pre-Order -->
                     <div class="pt-2.5">
-                        <div class="p-3 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 rounded-xl border border-amber-300 shadow-sm">
+                        <div class="p-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100/50 rounded-xl border border-emerald-200">
                             <label class="flex items-center justify-between cursor-pointer gap-3">
                                 <div class="min-w-0 flex-1">
-                                    <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                                        <span class="bg-red-600 text-white text-[9.5px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0 inline-flex items-center justify-center text-center shadow-sm">⭐ TOTAL MEMBERS ONLY</span>
-                                        <span class="bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
+                                    <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                        <span class="bg-emerald-700 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x Rewards</span>
+                                        <span class="text-xs font-bold text-gray-900 leading-snug break-words">NSW Zelda Game Pre-Order</span>
                                     </div>
-                                    <p class="text-xs font-bold text-gray-900 leading-snug break-words">NSW Zelda Game Pre-Order</p>
-                                    <p class="text-[10px] text-amber-900 font-medium leading-snug break-words mt-0.5">Adds $69.99 • Total Members get 10% back ($7.00) • Valid Sep 17 - Nov 4</p>
+                                    <p class="text-[10px] text-emerald-800 font-medium leading-snug break-words">Adds $69.99 • Plus & Total Members get 10% back ($7.00) • Valid Sep 17 - Nov 4</p>
                                 </div>
                                 <input id="toggle-zelda" type="checkbox" class="shrink-0" onchange="calculate()">
                             </label>
 
-                            <div id="zelda-qty-container" class="hidden mt-2 pt-2 border-t border-amber-200 flex justify-between items-center text-xs">
-                                <span class="font-bold text-amber-900">Copies Pre-Ordered:</span>
-                                <select id="zelda-qty" class="bg-white border border-amber-300 rounded-lg px-2 py-1 text-xs font-bold text-amber-900 outline-none" onchange="calculate()">
+                            <div id="zelda-qty-container" class="hidden mt-2 pt-2 border-t border-emerald-200 flex justify-between items-center text-xs">
+                                <span class="font-bold text-emerald-900">Copies Pre-Ordered:</span>
+                                <select id="zelda-qty" class="bg-white border border-emerald-300 rounded-lg px-2 py-1 text-xs font-bold text-emerald-900 outline-none" onchange="calculate()">
                                     <option value="1">1 Copy ($69.99)</option>
                                     <option value="2">2 Copies ($139.98)</option>
                                     <option value="3">3 Copies ($209.97)</option>
@@ -524,8 +522,8 @@
         
         function checkKillSwitch() {
             const now = new Date();
-            // Cutoff: September 19, 2026 @ 12:00 AM (Midnight)
-            const expirationDate = new Date(2026, 8, 19, 0, 0, 0); 
+            // Cutoff: September 23, 2026 @ 12:00 AM (Midnight)
+            const expirationDate = new Date(2026, 8, 23, 0, 0, 0); 
             
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
@@ -647,10 +645,7 @@
         }
 
         function calculate() {
-            const memberTier = document.getElementById('global-membership').value;
-            const isPlusOrTotal = (memberTier === 'plus' || memberTier === 'total');
-            const isTotalOnly = (memberTier === 'total');
-            
+            const hasMembership = document.getElementById('global-membership').checked;
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
@@ -703,8 +698,8 @@
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
-            const appliancesRate = (isPlusOrTotal ? 0.02 : 0) + cardRate;
-            const generalRate = (isPlusOrTotal ? 0.01 : 0) + cardRate;
+            const appliancesRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
 
             document.getElementById('rate-appliances').innerText = `Rate: ${(appliancesRate * 100).toFixed(1)}%`;
             document.getElementById('rate-general').innerText = `Rate: ${(generalRate * 100).toFixed(1)}%`;
@@ -715,20 +710,19 @@
 
             let cod4Reward = 0;
             if (hasCod4) {
-                const cod4MemberRate = isPlusOrTotal ? 0.10 : 0;
+                const cod4MemberRate = hasMembership ? 0.10 : 0;
                 cod4Reward = cod4TotalAmt * (cod4MemberRate + cardRate);
             }
 
             let zeldaReward = 0;
             if (hasZelda) {
-                // Zelda promo is exclusively for My Best Buy Total members
-                const zeldaMemberRate = isTotalOnly ? 0.10 : (isPlusOrTotal ? 0.01 : 0);
+                const zeldaMemberRate = hasMembership ? 0.10 : 0;
                 zeldaReward = zeldaTotalAmt * (zeldaMemberRate + cardRate);
             }
 
             let gtaviReward = 0;
             if (hasGtaVi) {
-                const gtaviMemberRate = isPlusOrTotal ? 0.10 : 0;
+                const gtaviMemberRate = hasMembership ? 0.10 : 0;
                 gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
             }
 
@@ -738,8 +732,7 @@
             // 3. Direct Promotional Certificates (Not points)
             let directPromoCerts = 0;
             if (hasGtaviConsole) {
-                // Member requirement for $50 promo cert
-                if (memberTier !== 'none') {
+                if (hasMembership) {
                     directPromoCerts += 50.00;
                 }
             }
@@ -765,7 +758,7 @@
                 if (appliancesAmt > 0) {
                     let text = `• Apple Pre-Orders: $${appliancesReward.toFixed(2)}`;
                     let details = [];
-                    if (isPlusOrTotal) details.push("2% Member Promo");
+                    if (hasMembership) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -774,7 +767,7 @@
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
                     let details = [];
-                    if (isPlusOrTotal) details.push("1% Member Baseline");
+                    if (hasMembership) details.push("1% Member Baseline");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -783,7 +776,7 @@
                 if (hasCod4) {
                     let text = `• CoD 4 MW Pre-Order: $${cod4Reward.toFixed(2)}`;
                     let details = [];
-                    if (isPlusOrTotal) details.push("10x Member Promo");
+                    if (hasMembership) details.push("10x Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')}, ${cod4Qty} copy)`;
                     parts.push(text);
@@ -792,28 +785,24 @@
                 if (hasZelda) {
                     let text = `• NSW Zelda Pre-Order: $${zeldaReward.toFixed(2)}`;
                     let details = [];
-                    if (isTotalOnly) {
-                        details.push("10x TOTAL Member Exclusive");
-                    } else if (isPlusOrTotal) {
-                        details.push("1% Plus Baseline (Needs TOTAL for 10x)");
-                    }
+                    if (hasMembership) details.push("10x Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')}, ${zeldaQty} copy)`;
                     parts.push(text);
                 }
 
                 if (hasGtaviConsole) {
-                    if (memberTier !== 'none') {
+                    if (hasMembership) {
                         parts.push(`• GTA VI + Console: $50.00 (Direct Promo Certificate — Not Points)`);
                     } else {
-                        parts.push(`• GTA VI + Console: $0.00 (Requires Member Tier for $50 Cert)`);
+                        parts.push(`• GTA VI + Console: $0.00 (Requires Plus/Total Member for $50 Cert)`);
                     }
                 }
 
                 if (hasGtaVi) {
                     let text = `• GTA VI Standalone: $${gtaviReward.toFixed(2)}`;
                     let details = [];
-                    if (isPlusOrTotal) details.push("10x Member Promo");
+                    if (hasMembership) details.push("10x Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')}, ${gtaviQty} copy)`;
                     parts.push(text);
@@ -895,7 +884,7 @@
             document.getElementById('toggle-gtavi-console').checked = false;
             document.getElementById('toggle-gtavi').checked = false;
             document.getElementById('gtavi-qty').value = "1";
-            document.getElementById('global-membership').value = "none";
+            document.getElementById('global-membership').checked = false;
             document.getElementById('global-card').value = "none";
             handleCardChange();
         }
