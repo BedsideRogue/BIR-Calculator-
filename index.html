@@ -86,7 +86,7 @@
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Deals Event</h1>
                     <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: September 30, 2026 @ 12:00 AM Local Time</p>
                 </div>
-                <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm">
+                <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer">
                     Reset App
                 </button>
             </div>
@@ -175,7 +175,29 @@
                             </div>
                         </div>
 
-                        <!-- 3. Call of Duty 4: Modern Warfare Pre-Order -->
+                        <!-- 3. Galaxy Buds4 (2x Credit Card Rewards: 10% Existing / 20% New Approved Today) -->
+                        <div class="pt-2.5">
+                            <div class="flex justify-between items-start mb-1 gap-2">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                        <span class="bg-purple-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2x Card Rewards</span>
+                                        <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Samsung Galaxy Buds4</label>
+                                    </div>
+                                    <span class="text-[10px] lg:text-xs text-purple-900 font-bold font-sans block leading-snug">2x Best Buy Credit Card Rewards</span>
+                                    <span class="text-[9.5px] lg:text-[11px] text-purple-700 font-medium font-sans block leading-snug mt-0.5">(10% Existing / 20% New Day 1)</span>
+                                </div>
+                                <span id="rate-buds4" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-purple-700 bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                    <input id="amt-buds4" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="179.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                </div>
+                                <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-buds4">$0.00</div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Call of Duty 4: Modern Warfare Pre-Order -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 rounded-xl border border-teal-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -200,7 +222,7 @@
                             </div>
                         </div>
 
-                        <!-- 4. The Legend of Zelda Pre-Order -->
+                        <!-- 5. The Legend of Zelda Pre-Order -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100/50 rounded-xl border border-emerald-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -225,7 +247,7 @@
                             </div>
                         </div>
 
-                        <!-- 5. GTA VI Pre-Order + Eligible Console ($50 Direct Promo Cert) -->
+                        <!-- 6. GTA VI Pre-Order + Eligible Console ($50 Direct Promo Cert) -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -241,7 +263,7 @@
                             </div>
                         </div>
 
-                        <!-- 6. GTA VI Pre-Order Standalone 10x Rewards -->
+                        <!-- 7. GTA VI Pre-Order Standalone 10x Rewards -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gray-50 rounded-xl border border-gray-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -661,6 +683,7 @@
             
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const googlebookAmt = parseFloat(document.getElementById('amt-googlebook').value) || 0;
+            const buds4Amt = parseFloat(document.getElementById('amt-buds4').value) || 0;
 
             // Checkbox toggles
             const hasCod4 = document.getElementById('toggle-cod4').checked;
@@ -700,23 +723,34 @@
                 gtaviQtyContainer.classList.add('hidden');
             }
 
-            const totalSubtotal = generalAmt + googlebookAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + googlebookAmt + buds4Amt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
-            // 1. Determine Active Rates (Day 1 Cardholder is 10%)
+            // 1. Determine Active Base Rates
             let cardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
+            // Buds4 2x Credit Card Multiplier Logic (10% Existing / 20% New approved today)
+            let buds4CardRate = 0;
+            if (cardStatus !== 'none' && !isFinancing) {
+                buds4CardRate = (cardStatus === 'new') ? 0.20 : 0.10;
+            }
+
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
             const googlebookRate = (hasMembership ? 0.05 : 0) + cardRate;
+            const buds4Rate = (hasMembership ? 0.01 : 0) + buds4CardRate;
 
-            document.getElementById('rate-general').innerText = `Rate: ${(generalRate * 100).toFixed(1)}%`;
-            document.getElementById('rate-googlebook').innerText = `Rate: ${(googlebookRate * 100).toFixed(1)}%`;
+            const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
-            // 2. Line Item Rewards (Eligible for Points conversion)
+            document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
+            document.getElementById('rate-googlebook').innerText = `Rate: ${formatRate(googlebookRate)}%`;
+            document.getElementById('rate-buds4').innerText = `Rate: ${formatRate(buds4CardRate)}%`;
+
+            // 2. Line Item Rewards
             const generalReward = generalAmt * generalRate;
             const googlebookReward = googlebookAmt * googlebookRate;
+            const buds4Reward = buds4Amt * buds4Rate;
 
             let cod4Reward = 0;
             if (hasCod4) {
@@ -737,7 +771,7 @@
             }
 
             // Total Point-Based Rewards
-            const pointBasedRewards = generalReward + googlebookReward + cod4Reward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + googlebookReward + buds4Reward + cod4Reward + zeldaReward + gtaviReward;
 
             // 3. Direct Promotional Certificates (Not points)
             let directPromoCerts = 0;
@@ -753,6 +787,7 @@
             // Update Line Item Output Badges
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-googlebook').innerText = "$" + googlebookReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-buds4').innerText = "$" + buds4Reward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             // Update Bottom Sticky Results
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -779,6 +814,15 @@
                     let details = [];
                     if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (buds4Amt > 0) {
+                    let text = `• Galaxy Buds4: $${buds4Reward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("1% Member Baseline");
+                    if (buds4CardRate > 0) details.push(`${(buds4CardRate*100).toFixed(0)}% 2x Card Promo`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
@@ -887,6 +931,7 @@
         function clearBasket() {
             document.getElementById('amt-general').value = "";
             document.getElementById('amt-googlebook').value = "";
+            document.getElementById('amt-buds4').value = "";
             document.getElementById('toggle-cod4').checked = false;
             document.getElementById('cod4-qty').value = "1";
             document.getElementById('toggle-zelda').checked = false;
