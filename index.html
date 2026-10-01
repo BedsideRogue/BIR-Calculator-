@@ -84,7 +84,7 @@
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Floor Tool</span>
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Deals Event</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 1, 2026 @ 12:00 AM Local Time</p>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 5, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer">
                     Reset App
@@ -106,7 +106,7 @@
                     <label class="flex items-center justify-between p-3 lg:p-3.5 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3 hover:bg-blue-50">
                         <div class="min-w-0 flex-1">
                             <p class="text-sm lg:text-base font-bold text-blue-900 font-sans">Plus or Total Member?</p>
-                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% Googlebook Pre-Orders • 10x CoD 4, Zelda & GTA VI</p>
+                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% KitchenAid & Googlebook • 10x CoD 4, Zelda & GTA VI</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -157,7 +157,25 @@
                             </div>
                         </div>
 
-                        <!-- 2. Googlebook Pre-Orders (5% Member Rewards) -->
+                        <!-- 2. KitchenAid Major Appliances (5% Member Rewards) -->
+                        <div class="pt-2.5">
+                            <div class="flex justify-between items-start mb-1 gap-2">
+                                <div class="min-w-0 flex-1">
+                                    <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">KitchenAid Major Appliances</label>
+                                    <span class="text-[10px] lg:text-xs text-red-700 font-medium font-sans block leading-snug break-words">5% Member Promo (5% Back) • Valid Oct 1 - Oct 21</span>
+                                </div>
+                                <span id="rate-kitchenaid" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-red-700 bg-red-50 border border-red-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                    <input id="amt-kitchenaid" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                </div>
+                                <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-kitchenaid">$0.00</div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Googlebook Pre-Orders (5% Member Rewards) -->
                         <div class="pt-2.5">
                             <div class="flex justify-between items-start mb-1 gap-2">
                                 <div class="min-w-0 flex-1">
@@ -175,7 +193,7 @@
                             </div>
                         </div>
 
-                        <!-- 3. Galaxy Buds4 (2x Credit Card Rewards: 10% Existing / 20% New Approved Today) -->
+                        <!-- 4. Galaxy Buds4 (2x Credit Card Rewards: 10% Existing / 20% New Approved Today) -->
                         <div class="pt-2.5">
                             <div class="flex justify-between items-start mb-1 gap-2">
                                 <div class="min-w-0 flex-1">
@@ -197,7 +215,7 @@
                             </div>
                         </div>
 
-                        <!-- 4. Call of Duty 4: Modern Warfare Pre-Order -->
+                        <!-- 5. Call of Duty 4: Modern Warfare Pre-Order -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 rounded-xl border border-teal-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -222,7 +240,7 @@
                             </div>
                         </div>
 
-                        <!-- 5. The Legend of Zelda Pre-Order -->
+                        <!-- 6. The Legend of Zelda Pre-Order -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100/50 rounded-xl border border-emerald-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -247,7 +265,7 @@
                             </div>
                         </div>
 
-                        <!-- 6. GTA VI Pre-Order + Eligible Console ($50 Direct Promo Cert) -->
+                        <!-- 7. GTA VI Pre-Order + Eligible Console ($50 Direct Promo Cert) -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -263,7 +281,7 @@
                             </div>
                         </div>
 
-                        <!-- 7. GTA VI Pre-Order Standalone 10x Rewards -->
+                        <!-- 8. GTA VI Pre-Order Standalone 10x Rewards -->
                         <div class="pt-2.5">
                             <div class="p-3 lg:p-3.5 bg-gray-50 rounded-xl border border-gray-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -312,7 +330,7 @@
                         
                         <!-- Toggle Button for Showing All Offers -->
                         <button id="btn-toggle-show-all-financing" type="button" onclick="toggleShowAllFinancing()" class="text-[10px] lg:text-xs font-bold px-2.5 py-1 rounded-lg border transition-colors inline-flex items-center gap-1 bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200 shrink-0 cursor-pointer">
-                            <span id="show-all-financing-icon">👁️</span> <span id="show-all-financing-text">Show All Offers</span>
+                            <span id="show-all-financing-icon">👁️️</span> <span id="show-all-financing-text">Show All Offers</span>
                         </button>
                     </div>
                     <div id="financing-options-list" class="space-y-2"></div>
@@ -554,8 +572,8 @@
         
         function checkKillSwitch() {
             const now = new Date();
-            // Cutoff: October 1, 2026 @ 12:00 AM (Midnight after 9/30 Dacor promo last valid day)
-            const expirationDate = new Date(2026, 9, 1, 0, 0, 0); 
+            // Cutoff: October 5, 2026 @ 12:00 AM (Midnight after 10/4 Googlebook promo last valid day)
+            const expirationDate = new Date(2026, 9, 5, 0, 0, 0); 
             
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
@@ -682,6 +700,7 @@
             const isFinancing = document.getElementById('global-financing').checked;
             
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
+            const kitchenaidAmt = parseFloat(document.getElementById('amt-kitchenaid').value) || 0;
             const googlebookAmt = parseFloat(document.getElementById('amt-googlebook').value) || 0;
             const buds4Amt = parseFloat(document.getElementById('amt-buds4').value) || 0;
 
@@ -723,7 +742,7 @@
                 gtaviQtyContainer.classList.add('hidden');
             }
 
-            const totalSubtotal = generalAmt + googlebookAmt + buds4Amt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + kitchenaidAmt + googlebookAmt + buds4Amt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // 1. Determine Active Base Rates
             let cardRate = 0;
@@ -738,17 +757,20 @@
             }
 
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
+            const kitchenaidRate = (hasMembership ? 0.05 : 0) + cardRate;
             const googlebookRate = (hasMembership ? 0.05 : 0) + cardRate;
             const buds4Rate = (hasMembership ? 0.01 : 0) + buds4CardRate;
 
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
+            document.getElementById('rate-kitchenaid').innerText = `Rate: ${formatRate(kitchenaidRate)}%`;
             document.getElementById('rate-googlebook').innerText = `Rate: ${formatRate(googlebookRate)}%`;
             document.getElementById('rate-buds4').innerText = `Rate: ${formatRate(buds4CardRate)}%`;
 
             // 2. Line Item Rewards
             const generalReward = generalAmt * generalRate;
+            const kitchenaidReward = kitchenaidAmt * kitchenaidRate;
             const googlebookReward = googlebookAmt * googlebookRate;
             const buds4Reward = buds4Amt * buds4Rate;
 
@@ -771,7 +793,7 @@
             }
 
             // Total Point-Based Rewards
-            const pointBasedRewards = generalReward + googlebookReward + buds4Reward + cod4Reward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + kitchenaidReward + googlebookReward + buds4Reward + cod4Reward + zeldaReward + gtaviReward;
 
             // 3. Direct Promotional Certificates (Not points)
             let directPromoCerts = 0;
@@ -786,6 +808,7 @@
 
             // Update Line Item Output Badges
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-kitchenaid').innerText = "$" + kitchenaidReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-googlebook').innerText = "$" + googlebookReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-buds4').innerText = "$" + buds4Reward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
@@ -804,6 +827,15 @@
                     let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("1% Member Baseline");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (kitchenaidAmt > 0) {
+                    let text = `• KitchenAid Appliances: $${kitchenaidReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -930,6 +962,7 @@
 
         function clearBasket() {
             document.getElementById('amt-general').value = "";
+            document.getElementById('amt-kitchenaid').value = "";
             document.getElementById('amt-googlebook').value = "";
             document.getElementById('amt-buds4').value = "";
             document.getElementById('toggle-cod4').checked = false;
@@ -960,21 +993,7 @@
 
             let offers = [];
 
-            // 1. 24 Mo. Dacor Appliance Purchases ($1,499+) - Gradient Highlight (Ends 9/30 - TODAY)
-            if (showAllFinancing || totalSubtotal >= 1499) {
-                const calcBase = totalSubtotal >= 1499 ? totalSubtotal : 1499;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-slate-600/10 via-zinc-600/10 to-gray-700/10 border-slate-300",
-                    badgeText: "ENDS TODAY (9/30)",
-                    badgeClass: "bg-red-700 text-white",
-                    term: "24 Mo. Dacor Appliance Financing", 
-                    detail: `On Dacor Appliance Purchases $1,499+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            // 2. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
+            // 1. 24 Mo. Samsung Galaxy Watch Ultra2 Purchases ($699+) - Gradient Highlight (Ends 10/11)
             if (showAllFinancing || totalSubtotal >= 699) {
                 const calcBase = totalSubtotal >= 699 ? totalSubtotal : 699;
                 offers.push({ 
@@ -988,7 +1007,7 @@
                 });
             }
 
-            // 3. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
+            // 2. 24 Mo. Mac mini / Studio Purchases ($899+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 899) {
                 const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
                 offers.push({ 
@@ -1002,7 +1021,7 @@
                 });
             }
 
-            // 4. 24 Mo. Googlebook Purchases ($899+) - Gradient Highlight (Ends 10/25)
+            // 3. 24 Mo. Googlebook Purchases ($899+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 899) {
                 const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
                 offers.push({ 
@@ -1016,7 +1035,7 @@
                 });
             }
 
-            // 5. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
+            // 4. 24 Mo. Apple Watch Ultra 4 Purchases ($799+) - Gradient Highlight (Ends 10/25)
             if (showAllFinancing || totalSubtotal >= 799) {
                 const calcBase = totalSubtotal >= 799 ? totalSubtotal : 799;
                 offers.push({ 
@@ -1030,7 +1049,7 @@
                 });
             }
 
-            // 6. Standard 18 Mo. Appliance Financing ($599+)
+            // 5. Standard 18 Mo. Appliance Financing ($599+)
             if (showAllFinancing || totalSubtotal >= 599) {
                 const calcBase = totalSubtotal >= 599 ? totalSubtotal : 599;
                 offers.push({ 
@@ -1041,7 +1060,7 @@
                 });
             }
 
-            // 7. Standard 24 Mo. Home Theater ($999+)
+            // 6. Standard 24 Mo. Home Theater ($999+)
             if (showAllFinancing || totalSubtotal >= 999) {
                 const calcBase = totalSubtotal >= 999 ? totalSubtotal : 999;
                 offers.push({ 
@@ -1052,7 +1071,7 @@
                 });
             }
 
-            // 8. Standard 24 Mo. Unlocked Phones ($649+)
+            // 7. Standard 24 Mo. Unlocked Phones ($649+)
             if (showAllFinancing || totalSubtotal >= 649) {
                 const calcBase = totalSubtotal >= 649 ? totalSubtotal : 649;
                 offers.push({ 
@@ -1063,7 +1082,7 @@
                 });
             }
 
-            // 9. Standard 12 Mo. Storewide ($299+)
+            // 8. Standard 12 Mo. Storewide ($299+)
             if (showAllFinancing || totalSubtotal >= 299) {
                 const calcBase = totalSubtotal >= 299 ? totalSubtotal : 299;
                 offers.push({ 
