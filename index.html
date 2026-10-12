@@ -69,7 +69,7 @@
             opacity: 0;
         }
         .accordion-content.open {
-            max-height: 1200px;
+            max-height: 1400px;
             opacity: 1;
         }
         .chevron {
@@ -96,8 +96,8 @@
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Floor Tool</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Techtober Event</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 12, 2026 @ 12:00 AM Local Time</p>
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Savings Event</h1>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 22, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer">
                     Reset App
@@ -118,7 +118,7 @@
                     <label class="flex items-center justify-between p-3 lg:p-3.5 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3 hover:bg-blue-50">
                         <div class="min-w-0 flex-1">
                             <p class="text-sm lg:text-base font-bold text-blue-900 font-sans">Plus or Total Member?</p>
-                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">2% Storewide • 5% KitchenAid • 10x CoD 4, Zelda & GTA VI</p>
+                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% OLED TVs • 5% KitchenAid • 10x CoD 4, Zelda & GTA VI</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -153,18 +153,36 @@
                 <!-- SECTION 2: PURCHASE ITEMS (NESTED DEPARTMENT ACCORDIONS) -->
                 <div class="bg-white p-4 lg:p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 hover:shadow-md transition-shadow">
                     <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-                        <h2 class="text-[11px] lg:text-xs font-bold text-gray-400 uppercase tracking-wider">2. Line Items by Department</h2>
+                        <h2 class="text-[11px] lg:text-xs font-bold text-gray-400 uppercase tracking-wider">2. Line Items & Categories</h2>
                         <span id="active-promo-count-badge" class="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">0 Promos Active</span>
                     </div>
 
-                    <!-- DEPARTMENT 1: GENERAL & APPLIANCES -->
+                    <!-- STANDALONE STOREWIDE PURCHASE FIELD -->
+                    <div class="p-3 bg-blue-50/30 border border-blue-100 rounded-xl space-y-1">
+                        <div class="flex justify-between items-start mb-1 gap-2">
+                            <div class="min-w-0 flex-1">
+                                <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">All Other Storewide Purchases</label>
+                                <span class="text-[10px] lg:text-xs text-gray-500 font-medium font-sans block leading-snug break-words">Standard Everyday Benefits (1% Member)</span>
+                            </div>
+                            <span id="rate-general" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <div class="relative flex-1">
+                                <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                <input id="amt-general" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-blue-500" oninput="calculate()">
+                            </div>
+                            <div class="w-20 lg:w-24 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-general">$0.00</div>
+                        </div>
+                    </div>
+
+                    <!-- DEPARTMENT 1: APPLIANCES & TV -->
                     <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-general')" class="w-full bg-gray-50 hover:bg-gray-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
-                                <span class="text-base">🏠</span>
+                                <span class="text-base">📺</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">General & Appliances</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">Storewide 2% & KitchenAid 5%</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">Appliances & Home Theater</h3>
+                                    <p class="text-[10px] text-gray-500 font-medium">5% OLED TVs & 5% KitchenAid</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -173,21 +191,21 @@
                             </div>
                         </button>
                         <div id="dept-general" class="accordion-content open p-3 space-y-3 border-t border-gray-100">
-                            <!-- Storewide Purchase -->
+                            <!-- Select OLED TVs -->
                             <div>
                                 <div class="flex justify-between items-start mb-1 gap-2">
                                     <div class="min-w-0 flex-1">
-                                        <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">All Other Storewide Purchases</label>
-                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">2% Member Promo • Valid Oct 5 - Oct 11</span>
+                                        <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Select OLED TVs</label>
+                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">5% Member Promo • Valid Oct 12 - Oct 25</span>
                                     </div>
-                                    <span id="rate-general" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-oled" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-general" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-oled" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-general">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-oled">$0.00</div>
                                 </div>
                             </div>
 
@@ -211,40 +229,40 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 2: AUDIO & MOBILE -->
+                    <!-- DEPARTMENT 2: TECH & LIFESTYLE -->
                     <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
-                        <button type="button" onclick="toggleAccordion('dept-audio')" class="w-full bg-gray-50 hover:bg-gray-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
+                        <button type="button" onclick="toggleAccordion('dept-lifestyle')" class="w-full bg-gray-50 hover:bg-gray-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
-                                <span class="text-base">🎧</span>
+                                <span class="text-base">☕</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">Audio & Wearables</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">Samsung Galaxy Buds4 2x Card Rewards</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">Tech & Lifestyle</h3>
+                                    <p class="text-[10px] text-gray-500 font-medium">Fellow Products 2x Card Rewards ($99+)</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span id="badge-dept-audio" class="hidden text-[10px] font-extrabold text-purple-700 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-md">Active</span>
-                                <span id="chevron-dept-audio" class="chevron text-gray-400 text-xs">▼</span>
+                                <span id="badge-dept-lifestyle" class="hidden text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md">Active</span>
+                                <span id="chevron-dept-lifestyle" class="chevron text-gray-400 text-xs">▼</span>
                             </div>
                         </button>
-                        <div id="dept-audio" class="accordion-content p-3 space-y-3 border-t border-gray-100">
+                        <div id="dept-lifestyle" class="accordion-content p-3 space-y-3 border-t border-gray-100">
                             <div>
                                 <div class="flex justify-between items-start mb-1 gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-purple-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2x Card Rewards</span>
-                                            <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Samsung Galaxy Buds4</label>
+                                            <span class="bg-amber-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2x Card Rewards</span>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Fellow Products ($99+)</label>
                                         </div>
-                                        <span class="text-[10px] lg:text-xs text-purple-900 font-bold font-sans block leading-snug">2x Best Buy Credit Card Rewards</span>
-                                        <span class="text-[9.5px] lg:text-[11px] text-purple-700 font-medium font-sans block leading-snug mt-0.5">(10% Existing / 20% New Day 1) • Valid through Oct 11</span>
+                                        <span class="text-[10px] lg:text-xs text-amber-900 font-bold font-sans block leading-snug">2x Best Buy Credit Card Rewards</span>
+                                        <span class="text-[9.5px] lg:text-[11px] text-amber-700 font-medium font-sans block leading-snug mt-0.5">(10% Existing / 20% New Day 1) • Valid through Nov 1</span>
                                     </div>
-                                    <span id="rate-buds4" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-purple-700 bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-fellow" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-buds4" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="179.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-fellow" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="195.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-buds4">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-fellow">$0.00</div>
                                 </div>
                             </div>
                         </div>
@@ -592,8 +610,8 @@
         
         function checkKillSwitch() {
             const now = new Date();
-            // Cutoff: October 12, 2026 @ 12:00 AM
-            const expirationDate = new Date(2026, 9, 12, 0, 0, 0); 
+            // Cutoff: October 22, 2026 @ 12:00 AM Local Time (following last valid day Oct 21 for KitchenAid)
+            const expirationDate = new Date(2026, 9, 22, 0, 0, 0); 
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -742,8 +760,9 @@
             const isFinancing = document.getElementById('global-financing').checked;
             
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
+            const oledAmt = parseFloat(document.getElementById('amt-oled').value) || 0;
             const kitchenaidAmt = parseFloat(document.getElementById('amt-kitchenaid').value) || 0;
-            const buds4Amt = parseFloat(document.getElementById('amt-buds4').value) || 0;
+            const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
 
             const hasCod4 = document.getElementById('toggle-cod4').checked;
             const hasZelda = document.getElementById('toggle-zelda').checked;
@@ -781,7 +800,7 @@
                 gtaviQtyContainer.classList.add('hidden');
             }
 
-            const totalSubtotal = generalAmt + kitchenaidAmt + buds4Amt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Base Card Rate
             let cardRate = 0;
@@ -789,33 +808,37 @@
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
-            // Buds4 2x Card Rate
-            let buds4CardRate = 0;
+            // Fellow Products 2x Card Rate
+            let fellowCardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
-                buds4CardRate = (cardStatus === 'new') ? 0.20 : 0.10;
+                fellowCardRate = (cardStatus === 'new') ? 0.20 : 0.10;
             }
 
-            const generalRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
+            const oledRate = (hasMembership ? 0.05 : 0) + cardRate;
             const kitchenaidRate = (hasMembership ? 0.05 : 0) + cardRate;
 
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
+            document.getElementById('rate-oled').innerText = `Rate: ${formatRate(oledRate)}%`;
             document.getElementById('rate-kitchenaid').innerText = `Rate: ${formatRate(kitchenaidRate)}%`;
-            document.getElementById('rate-buds4').innerText = `Rate: ${formatRate(buds4CardRate)}%`;
+            document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
 
             // Active Department Badges & Smart Open
             let activePromosCount = 0;
             
-            // General & Appliances
-            const hasGeneralActive = generalAmt > 0 || kitchenaidAmt > 0;
-            if (hasGeneralActive) activePromosCount += (generalAmt > 0 ? 1 : 0) + (kitchenaidAmt > 0 ? 1 : 0);
+            if (generalAmt > 0) activePromosCount += 1;
+
+            // General, Appliances & TV Accordion
+            const hasGeneralActive = oledAmt > 0 || kitchenaidAmt > 0;
+            if (hasGeneralActive) activePromosCount += (oledAmt > 0 ? 1 : 0) + (kitchenaidAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
-            // Audio
-            const hasAudioActive = buds4Amt > 0;
-            if (hasAudioActive) activePromosCount += 1;
-            document.getElementById('badge-dept-audio').classList.toggle('hidden', !hasAudioActive);
+            // Tech & Lifestyle
+            const hasLifestyleActive = fellowAmt > 0;
+            if (hasLifestyleActive) activePromosCount += 1;
+            document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
             // Gaming
             const hasGamingActive = hasCod4 || hasZelda || hasGtaviConsole || hasGtaVi;
@@ -827,8 +850,9 @@
 
             // Line Rewards
             const generalReward = generalAmt * generalRate;
+            const oledReward = oledAmt * oledRate;
             const kitchenaidReward = kitchenaidAmt * kitchenaidRate;
-            const buds4Reward = buds4Amt * ( (hasMembership ? 0.02 : 0) + buds4CardRate );
+            const fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
 
             let cod4Reward = 0;
             if (hasCod4) {
@@ -848,7 +872,7 @@
                 gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
             }
 
-            const pointBasedRewards = generalReward + kitchenaidReward + buds4Reward + cod4Reward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + cod4Reward + zeldaReward + gtaviReward;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -858,8 +882,9 @@
             const totalCombinedRewards = pointBasedRewards + directPromoCerts;
 
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-oled').innerText = "$" + oledReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-kitchenaid').innerText = "$" + kitchenaidReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-buds4').innerText = "$" + buds4Reward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('output-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -874,7 +899,16 @@
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("2% Member Promo");
+                    if (hasMembership) details.push("1% Member Baseline");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (oledAmt > 0) {
+                    let text = `• Select OLED TVs: $${oledReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -889,11 +923,11 @@
                     parts.push(text);
                 }
 
-                if (buds4Amt > 0) {
-                    let text = `• Galaxy Buds4: $${buds4Reward.toFixed(2)}`;
+                if (fellowAmt > 0) {
+                    let text = `• Fellow Products ($99+): $${fellowReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("2% Member Baseline");
-                    if (buds4CardRate > 0) details.push(`${(buds4CardRate*100).toFixed(0)}% 2x Card Promo`);
+                    if (hasMembership) details.push("1% Member Baseline");
+                    if (fellowCardRate > 0) details.push(`${(fellowCardRate*100).toFixed(0)}% 2x Card Promo`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
@@ -985,8 +1019,9 @@
 
         function clearBasket() {
             document.getElementById('amt-general').value = "";
+            document.getElementById('amt-oled').value = "";
             document.getElementById('amt-kitchenaid').value = "";
-            document.getElementById('amt-buds4').value = "";
+            document.getElementById('amt-fellow').value = "";
             document.getElementById('toggle-cod4').checked = false;
             document.getElementById('cod4-qty').value = "1";
             document.getElementById('toggle-zelda').checked = false;
@@ -1014,15 +1049,28 @@
 
             let offers = [];
 
-            if (showAllFinancing || totalSubtotal >= 699) {
-                const calcBase = totalSubtotal >= 699 ? totalSubtotal : 699;
+            if (showAllFinancing || totalSubtotal >= 2599.99) {
+                const calcBase = totalSubtotal >= 2599.99 ? totalSubtotal : 2599.99;
                 offers.push({ 
                     highlight: true,
-                    gradientClass: "from-teal-500/10 via-cyan-500/10 to-blue-500/10 border-teal-300",
-                    badgeText: "ENDS 10/11",
-                    badgeClass: "bg-teal-700 text-white",
-                    term: "24 Mo. Galaxy Watch Ultra2 Financing", 
-                    detail: `On Samsung Galaxy Watch Ultra2 $699+`,
+                    gradientClass: "from-blue-600/10 via-indigo-600/10 to-purple-600/10 border-blue-300",
+                    badgeText: "ENDS 10/25",
+                    badgeClass: "bg-blue-700 text-white",
+                    term: "24 Mo. NVIDIA RTX Spark PC Financing", 
+                    detail: `On NVIDIA RTX Spark PCs $2,599.99+`,
+                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
+                });
+            }
+
+            if (showAllFinancing || totalSubtotal >= 1199.99) {
+                const calcBase = totalSubtotal >= 1199.99 ? totalSubtotal : 1199.99;
+                offers.push({ 
+                    highlight: true,
+                    gradientClass: "from-cyan-500/10 via-blue-500/10 to-indigo-500/10 border-cyan-300",
+                    badgeText: "ENDS 10/25",
+                    badgeClass: "bg-cyan-700 text-white",
+                    term: "24 Mo. Samsung Galaxy Tab S12 Financing", 
+                    detail: `On Galaxy Tab S12 Series $1,199.99+`,
                     monthly: `$${(calcBase/24).toFixed(2)}/mo`
                 });
             }
