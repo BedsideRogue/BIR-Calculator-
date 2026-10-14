@@ -69,7 +69,7 @@
             opacity: 0;
         }
         .accordion-content.open {
-            max-height: 1400px;
+            max-height: 1600px;
             opacity: 1;
         }
         .chevron {
@@ -236,7 +236,7 @@
                                 <span class="text-base">☕</span>
                                 <div>
                                     <h3 class="text-xs lg:text-sm font-bold text-gray-900">Tech & Lifestyle</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">Fellow Products 2x Card Rewards ($99+)</p>
+                                    <p class="text-[10px] text-gray-500 font-medium">Fellow Products (2x Card) & Apple Pre-Orders (2% Member)</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -245,6 +245,7 @@
                             </div>
                         </button>
                         <div id="dept-lifestyle" class="accordion-content p-3 space-y-3 border-t border-gray-100">
+                            <!-- Fellow Products -->
                             <div>
                                 <div class="flex justify-between items-start mb-1 gap-2">
                                     <div class="min-w-0 flex-1">
@@ -263,6 +264,48 @@
                                         <input id="amt-fellow" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="195.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
                                     <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-fellow">$0.00</div>
+                                </div>
+                            </div>
+
+                            <!-- Apple HomePod mini 2 Pre-Order -->
+                            <div class="pt-2 border-t border-gray-100">
+                                <div class="flex justify-between items-start mb-1 gap-2">
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                            <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% Member Promo</span>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Apple HomePod mini 2 Pre-Order</label>
+                                        </div>
+                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% Member Promo) • Valid Oct 13 - Oct 30</span>
+                                    </div>
+                                    <span id="rate-homepod" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                        <input id="amt-homepod" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="99.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                    </div>
+                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-homepod">$0.00</div>
+                                </div>
+                            </div>
+
+                            <!-- Select Apple Pre-Orders (HomeView, Apple TV 4K, Siri Remote) -->
+                            <div class="pt-2 border-t border-gray-100">
+                                <div class="flex justify-between items-start mb-1 gap-2">
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                            <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% Member Promo</span>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-800 block leading-snug break-words">Select Apple Pre-Orders</label>
+                                        </div>
+                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">HomeView, Apple TV 4K (4th gen) & Siri Remote (4th gen) • Valid Oct 13 - Nov 13</span>
+                                    </div>
+                                    <span id="rate-apple-preorder" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                        <input id="amt-apple-preorder" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="129.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                    </div>
+                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-apple-preorder">$0.00</div>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +412,7 @@
                     <!-- Detailed Reward Breakdown Box -->
                     <div id="reward-breakdown-box" class="hidden bg-blue-50/70 rounded-lg p-2.5 border border-blue-100 text-[11px] lg:text-xs text-blue-900 space-y-0.5">
                         <p class="font-bold text-[10px] lg:text-[11px] uppercase text-blue-700 tracking-wider">Reward Calculation Breakdown:</p>
-                        <div id="reward-breakdown-text" class="font-mono text-[10.5px] lg:text-xs"></div>
+                        <div id="reward-breakdown-text" class="font-mono text-[10.5px] lg:text-xs space-y-0.5"></div>
                     </div>
                 </div>
 
@@ -619,7 +662,6 @@
         }
         checkKillSwitch();
 
-        // ACCORDION TOGGLE LOGIC
         function toggleAccordion(id) {
             const content = document.getElementById(id);
             const chevron = document.getElementById('chevron-' + id);
@@ -627,7 +669,6 @@
             chevron.classList.toggle('open');
         }
 
-        // GTA VI CONSOLE TOGGLE DEPENDENCY (ONE-WAY)
         function handleGtaviConsoleToggle() {
             if (document.getElementById('toggle-gtavi-console').checked) {
                 document.getElementById('toggle-gtavi').checked = true;
@@ -635,7 +676,6 @@
             calculate();
         }
 
-        // PRESS & HOLD QR CODE GATE LOGIC
         let holdTimer = null;
         const HOLD_DURATION = 1500;
 
@@ -759,48 +799,36 @@
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
+            // Amounts
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const oledAmt = parseFloat(document.getElementById('amt-oled').value) || 0;
             const kitchenaidAmt = parseFloat(document.getElementById('amt-kitchenaid').value) || 0;
             const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
+            const homepodAmt = parseFloat(document.getElementById('amt-homepod').value) || 0;
+            const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
 
+            // Gaming Qty & Totals
             const hasCod4 = document.getElementById('toggle-cod4').checked;
-            const hasZelda = document.getElementById('toggle-zelda').checked;
-            const hasGtaviConsole = document.getElementById('toggle-gtavi-console').checked;
-            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
-
             const cod4QtyContainer = document.getElementById('cod4-qty-container');
+            cod4QtyContainer.classList.toggle('hidden', !hasCod4);
+            const cod4Qty = parseInt(document.getElementById('cod4-qty').value) || 1;
+            const cod4TotalAmt = hasCod4 ? cod4Qty * 69.99 : 0;
+
+            const hasZelda = document.getElementById('toggle-zelda').checked;
             const zeldaQtyContainer = document.getElementById('zelda-qty-container');
+            zeldaQtyContainer.classList.toggle('hidden', !hasZelda);
+            const zeldaQty = parseInt(document.getElementById('zelda-qty').value) || 1;
+            const zeldaTotalAmt = hasZelda ? zeldaQty * 69.99 : 0;
+
+            const hasGtaviConsole = document.getElementById('toggle-gtavi-console').checked;
+
+            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
             const gtaviQtyContainer = document.getElementById('gtavi-qty-container');
+            gtaviQtyContainer.classList.toggle('hidden', !hasGtaVi);
+            const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
+            const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            let cod4Qty = 0, cod4TotalAmt = 0;
-            if (hasCod4) {
-                cod4QtyContainer.classList.remove('hidden');
-                cod4Qty = parseInt(document.getElementById('cod4-qty').value) || 1;
-                cod4TotalAmt = cod4Qty * 69.99;
-            } else {
-                cod4QtyContainer.classList.add('hidden');
-            }
-
-            let zeldaQty = 0, zeldaTotalAmt = 0;
-            if (hasZelda) {
-                zeldaQtyContainer.classList.remove('hidden');
-                zeldaQty = parseInt(document.getElementById('zelda-qty').value) || 1;
-                zeldaTotalAmt = zeldaQty * 69.99;
-            } else {
-                zeldaQtyContainer.classList.add('hidden');
-            }
-
-            let gtaviQty = 0, gtaviTotalAmt = 0;
-            if (hasGtaVi) {
-                gtaviQtyContainer.classList.remove('hidden');
-                gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
-                gtaviTotalAmt = gtaviQty * 79.99;
-            } else {
-                gtaviQtyContainer.classList.add('hidden');
-            }
-
-            const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + homepodAmt + applePreorderAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Base Card Rate
             let cardRate = 0;
@@ -817,6 +845,8 @@
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
             const oledRate = (hasMembership ? 0.05 : 0) + cardRate;
             const kitchenaidRate = (hasMembership ? 0.05 : 0) + cardRate;
+            const homepodRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const applePreorderRate = (hasMembership ? 0.02 : 0) + cardRate;
 
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
@@ -824,6 +854,8 @@
             document.getElementById('rate-oled').innerText = `Rate: ${formatRate(oledRate)}%`;
             document.getElementById('rate-kitchenaid').innerText = `Rate: ${formatRate(kitchenaidRate)}%`;
             document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
+            document.getElementById('rate-homepod').innerText = `Rate: ${formatRate(homepodRate)}%`;
+            document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
 
             // Active Department Badges & Smart Open
             let activePromosCount = 0;
@@ -836,8 +868,8 @@
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
             // Tech & Lifestyle
-            const hasLifestyleActive = fellowAmt > 0;
-            if (hasLifestyleActive) activePromosCount += 1;
+            const hasLifestyleActive = fellowAmt > 0 || homepodAmt > 0 || applePreorderAmt > 0;
+            if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (homepodAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
             // Gaming
@@ -853,6 +885,8 @@
             const oledReward = oledAmt * oledRate;
             const kitchenaidReward = kitchenaidAmt * kitchenaidRate;
             const fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
+            const homepodReward = homepodAmt * homepodRate;
+            const applePreorderReward = applePreorderAmt * applePreorderRate;
 
             let cod4Reward = 0;
             if (hasCod4) {
@@ -872,7 +906,7 @@
                 gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
             }
 
-            const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + cod4Reward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + homepodReward + applePreorderReward + cod4Reward + zeldaReward + gtaviReward;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -885,9 +919,29 @@
             document.getElementById('reward-oled').innerText = "$" + oledReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-kitchenaid').innerText = "$" + kitchenaidReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-homepod').innerText = "$" + homepodReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('output-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Render Financing Offers
+            renderFinancingOptions(totalSubtotal);
+
+            // Render Redemption Values
+            const totalPoints = Math.round(pointBasedRewards * 50); // 250 pts = $5 -> 50 pts/dollar
+            document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
+            document.getElementById('redemption-bb-value').innerText = "$" + pointBasedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            const partnerValue = pointBasedRewards * 0.50;
+            document.getElementById('redemption-partner-value').innerText = "$" + partnerValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            
+            document.getElementById('partner-promo-cert-notice').classList.toggle('hidden', directPromoCerts === 0);
+
+            const partnerDenomEls = document.querySelectorAll('.partner-card-denom');
+            partnerDenomEls.forEach(el => {
+                el.innerText = `$${partnerValue.toFixed(2)} available`;
+            });
 
             // Breakdown
             const breakdownBox = document.getElementById('reward-breakdown-box');
@@ -897,7 +951,7 @@
                 let parts = [];
 
                 if (generalAmt > 0) {
-                    let text = `• Storewide Purchase: $${generalReward.toFixed(2)}`;
+                    let text = `• Storewide Purchases: $${generalReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("1% Member Baseline");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -915,7 +969,7 @@
                 }
 
                 if (kitchenaidAmt > 0) {
-                    let text = `• KitchenAid Appliances: $${kitchenaidReward.toFixed(2)}`;
+                    let text = `• KitchenAid Major Appliances: $${kitchenaidReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -932,89 +986,110 @@
                     parts.push(text);
                 }
 
-                if (hasCod4) {
-                    let text = `• CoD 4 MW Pre-Order: $${cod4Reward.toFixed(2)}`;
+                if (homepodAmt > 0) {
+                    let text = `• Apple HomePod mini 2 Pre-Order: $${homepodReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("10x Member Promo");
+                    if (hasMembership) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')}, ${cod4Qty} copy)`;
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (applePreorderAmt > 0) {
+                    let text = `• Select Apple Pre-Orders: $${applePreorderReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("2% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (hasCod4) {
+                    let text = `• Call of Duty 4 Pre-Order (${cod4Qty}x): $${cod4Reward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("10% Member (10x)");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
 
                 if (hasZelda) {
-                    let text = `• Legend of Zelda Pre-Order: $${zeldaReward.toFixed(2)}`;
+                    let text = `• The Legend of Zelda Pre-Order (${zeldaQty}x): $${zeldaReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("10x Member Promo");
+                    if (hasMembership) details.push("10% Member (10x)");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')}, ${zeldaQty} copy)`;
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
-                }
-
-                if (hasGtaviConsole) {
-                    if (hasMembership) {
-                        parts.push(`• GTA VI + Console: $50.00 (Direct Promo Certificate — Not Points)`);
-                    } else {
-                        parts.push(`• GTA VI + Console: $0.00 (Requires Plus/Total Member for $50 Cert)`);
-                    }
                 }
 
                 if (hasGtaVi) {
-                    let text = `• GTA VI Standalone: $${gtaviReward.toFixed(2)}`;
+                    let text = `• GTA VI Pre-Order (${gtaviQty}x): $${gtaviReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("10x Member Promo");
+                    if (hasMembership) details.push("10% Member (10x)");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')}, ${gtaviQty} copy)`;
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
 
-                if (isFinancing && cardStatus !== 'none') {
-                    parts.push(`• Card Points: $0.00 (Financing Chosen)`);
+                if (hasGtaviConsole && hasMembership) {
+                    parts.push(`• GTA VI + Console Promo: $50.00 Direct Best Buy Promo Certificate`);
                 }
 
                 if (parts.length > 0) {
                     breakdownBox.classList.remove('hidden');
-                    breakdownText.innerHTML = parts.join('<br>');
+                    breakdownText.innerHTML = parts.map(p => `<div>${p}</div>`).join('');
                 } else {
                     breakdownBox.classList.add('hidden');
+                    breakdownText.innerHTML = '';
                 }
             } else {
                 breakdownBox.classList.add('hidden');
+                breakdownText.innerHTML = '';
             }
-
-            updateFinancingPromos(totalSubtotal, cardStatus);
-            updateRedemptionSection(pointBasedRewards, directPromoCerts);
         }
 
-        function updateRedemptionSection(pointBasedRewards, directPromoCerts) {
-            const totalPoints = Math.round(pointBasedRewards * 50);
-            const pointsBbValue = totalPoints * 0.02;
-            const totalBbCertValue = pointsBbValue + directPromoCerts;
-            const partnerCardValue = totalPoints * 0.01;
+        function renderFinancingOptions(subtotal) {
+            const container = document.getElementById('financing-options-list');
+            if (!container) return;
 
-            document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString('en-US')} Points`;
-            document.getElementById('redemption-bb-value').innerText = "$" + totalBbCertValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const offers = [
+                { title: "24 Month Financing on Apple Watch Ultra 4", min: 799, exp: "10/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on Mac mini (M6/M5) & Mac Studio (M5)", min: 899, exp: "10/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on Samsung Galaxy Tab S12 Series", min: 1199.99, exp: "10/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on NVIDIA RTX Spark PCs", min: 2599.99, exp: "10/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on Googlebook Purchases", min: 899, exp: "10/25/26", tag: "Limited Time" },
+                { title: "18 Month Financing on Appliance Purchases", min: 599, exp: "Everyday Offer", tag: "Standard" },
+                { title: "24 Month Financing on Home Theater Purchases", min: 999, exp: "Everyday Offer", tag: "Standard" },
+                { title: "24 Month Financing on Unlocked Phone Purchases", min: 649, exp: "Everyday Offer", tag: "Standard" },
+                { title: "12 Month Financing on Storewide Purchases", min: 299, exp: "Everyday Offer", tag: "Standard" }
+            ];
 
-            const subdetailEl = document.getElementById('redemption-bb-subdetail');
-            if (directPromoCerts > 0) {
-                subdetailEl.innerText = `$${pointsBbValue.toFixed(2)} from points + $${directPromoCerts.toFixed(2)} direct promo cert`;
-            } else {
-                subdetailEl.innerText = "$0.02 / point • 250 points = $5.00";
-            }
-
-            document.getElementById('redemption-partner-value').innerText = "$" + partnerCardValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('redemption-partner-subdetail').innerText = `Based on ${totalPoints.toLocaleString()} points ($0.01 / point)`;
-
-            const noticeEl = document.getElementById('partner-promo-cert-notice');
-            if (directPromoCerts > 0) {
-                noticeEl.classList.remove('hidden');
-            } else {
-                noticeEl.classList.add('hidden');
-            }
-
-            const partnerDenomElements = document.querySelectorAll('.partner-card-denom');
-            partnerDenomElements.forEach(el => {
-                el.innerText = `$${partnerCardValue.toFixed(2)} available`;
+            let html = "";
+            offers.forEach(o => {
+                const qualifies = subtotal >= o.min;
+                if (showAllFinancing || qualifies) {
+                    html += `
+                        <div class="p-2.5 rounded-xl border transition-all ${qualifies ? 'bg-blue-50/70 border-blue-200' : 'bg-gray-50 border-gray-200 opacity-70'} flex justify-between items-center gap-2">
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <span class="${qualifies ? 'bg-blue-700 text-white' : 'bg-gray-400 text-white'} text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">${o.tag}</span>
+                                    <p class="text-xs font-bold text-gray-900 leading-tight">${o.title}</p>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5 font-medium">$${o.min.toLocaleString()} minimum • Ends: ${o.exp}</p>
+                            </div>
+                            <span class="text-[10px] font-black px-2 py-1 rounded-md shrink-0 ${qualifies ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-gray-200 text-gray-600'}">
+                                ${qualifies ? 'Qualified ✓' : 'Add $' + (o.min - subtotal).toFixed(2)}
+                            </span>
+                        </div>
+                    `;
+                }
             });
+
+            if (!html) {
+                html = `<div class="p-3 bg-gray-50 rounded-xl border border-gray-200 text-center text-xs text-gray-500">Enter a subtotal of $299+ or click "Show All Offers" to view 0% interest financing options.</div>`;
+            }
+
+            container.innerHTML = html;
         }
 
         function clearBasket() {
@@ -1022,169 +1097,27 @@
             document.getElementById('amt-oled').value = "";
             document.getElementById('amt-kitchenaid').value = "";
             document.getElementById('amt-fellow').value = "";
+            document.getElementById('amt-homepod').value = "";
+            document.getElementById('amt-apple-preorder').value = "";
+
             document.getElementById('toggle-cod4').checked = false;
-            document.getElementById('cod4-qty').value = "1";
             document.getElementById('toggle-zelda').checked = false;
-            document.getElementById('zelda-qty').value = "1";
             document.getElementById('toggle-gtavi-console').checked = false;
             document.getElementById('toggle-gtavi').checked = false;
+
+            document.getElementById('cod4-qty').value = "1";
+            document.getElementById('zelda-qty').value = "1";
             document.getElementById('gtavi-qty').value = "1";
+
             document.getElementById('global-membership').checked = false;
-            document.getElementById('global-card').value = "none";
-            handleCardChange();
+            setCardStatus('none');
+            calculate();
         }
 
-        function updateFinancingPromos(totalSubtotal, cardStatus) {
-            const list = document.getElementById('financing-options-list');
-            list.innerHTML = ""; 
-
-            if (!showAllFinancing && (totalSubtotal <= 0 || cardStatus === 'none')) {
-                list.innerHTML = `
-                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 text-center text-gray-500 text-[11px] lg:text-xs">
-                        Select a Best Buy Credit Card & enter item amounts above to view qualified financing, or click <span class="font-bold text-gray-700">"Show All Offers"</span> above.
-                    </div>
-                `;
-                return;
-            }
-
-            let offers = [];
-
-            if (showAllFinancing || totalSubtotal >= 2599.99) {
-                const calcBase = totalSubtotal >= 2599.99 ? totalSubtotal : 2599.99;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-blue-600/10 via-indigo-600/10 to-purple-600/10 border-blue-300",
-                    badgeText: "ENDS 10/25",
-                    badgeClass: "bg-blue-700 text-white",
-                    term: "24 Mo. NVIDIA RTX Spark PC Financing", 
-                    detail: `On NVIDIA RTX Spark PCs $2,599.99+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 1199.99) {
-                const calcBase = totalSubtotal >= 1199.99 ? totalSubtotal : 1199.99;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-cyan-500/10 via-blue-500/10 to-indigo-500/10 border-cyan-300",
-                    badgeText: "ENDS 10/25",
-                    badgeClass: "bg-cyan-700 text-white",
-                    term: "24 Mo. Samsung Galaxy Tab S12 Financing", 
-                    detail: `On Galaxy Tab S12 Series $1,199.99+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 899) {
-                const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-purple-500/10 via-indigo-500/10 to-blue-500/10 border-purple-300",
-                    badgeText: "ENDS 10/25",
-                    badgeClass: "bg-purple-700 text-white",
-                    term: "24 Mo. Mac mini / Studio Financing", 
-                    detail: `On Mac mini (M6/M5) & Mac Studio (M5) $899+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 899) {
-                const calcBase = totalSubtotal >= 899 ? totalSubtotal : 899;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-emerald-300",
-                    badgeText: "ENDS 10/25",
-                    badgeClass: "bg-emerald-700 text-white",
-                    term: "24 Mo. Googlebook Financing", 
-                    detail: `On Googlebook Laptops $899+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 799) {
-                const calcBase = totalSubtotal >= 799 ? totalSubtotal : 799;
-                offers.push({ 
-                    highlight: true,
-                    gradientClass: "from-amber-500/10 via-orange-500/10 to-yellow-500/10 border-amber-300",
-                    badgeText: "ENDS 10/25",
-                    badgeClass: "bg-amber-700 text-white",
-                    term: "24 Mo. Apple Watch Ultra 4 Financing", 
-                    detail: `On Apple Watch Ultra 4 $799+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 599) {
-                const calcBase = totalSubtotal >= 599 ? totalSubtotal : 599;
-                offers.push({ 
-                    highlight: false,
-                    term: "18 Mo. Appliance Financing", 
-                    detail: `On Appliance Purchases $599+`,
-                    monthly: `$${(calcBase/18).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 999) {
-                const calcBase = totalSubtotal >= 999 ? totalSubtotal : 999;
-                offers.push({ 
-                    highlight: false,
-                    term: "24 Mo. Home Theater Financing", 
-                    detail: `On Home Theater $999+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 649) {
-                const calcBase = totalSubtotal >= 649 ? totalSubtotal : 649;
-                offers.push({ 
-                    highlight: false,
-                    term: "24 Mo. Unlocked Phone Financing", 
-                    detail: `On Unlocked Phones $649+`,
-                    monthly: `$${(calcBase/24).toFixed(2)}/mo`
-                });
-            }
-
-            if (showAllFinancing || totalSubtotal >= 299) {
-                const calcBase = totalSubtotal >= 299 ? totalSubtotal : 299;
-                offers.push({ 
-                    highlight: false,
-                    term: "12 Mo. Storewide Financing", 
-                    detail: `On Purchases $299+`,
-                    monthly: `$${(calcBase/12).toFixed(2)}/mo`
-                });
-            }
-
-            if (offers.length > 0) {
-                offers.forEach(offer => {
-                    const card = document.createElement('div');
-                    if (offer.highlight) {
-                        card.className = `p-2.5 lg:p-3 bg-gradient-to-r ${offer.gradientClass} rounded-xl border space-y-1`;
-                        card.innerHTML = `
-                            <div class="flex items-center justify-between gap-2">
-                                <div class="flex items-center gap-1.5 min-w-0 flex-1 flex-wrap">
-                                    <span class="${offer.badgeClass} text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase inline-flex items-center justify-center text-center shrink-0">${offer.badgeText}</span>
-                                    <span class="font-bold text-gray-900 leading-snug break-words text-xs lg:text-sm">${offer.term}</span>
-                                </div>
-                                <span class="font-extrabold text-gray-900 bg-white/80 border border-gray-200 px-2 py-0.5 rounded-md text-[10.5px] lg:text-xs shrink-0 inline-flex items-center justify-center text-center">${offer.monthly}</span>
-                            </div>
-                            <p class="text-[10px] lg:text-xs text-gray-600 font-medium leading-snug">${offer.detail}</p>
-                        `;
-                    } else {
-                        card.className = "p-2.5 lg:p-3 bg-gray-50/70 hover:bg-white rounded-xl border border-gray-150 space-y-0.5 transition-colors";
-                        card.innerHTML = `
-                            <div class="flex justify-between items-center gap-2">
-                                <span class="font-bold text-gray-800 leading-snug min-w-0 flex-1 break-words text-xs lg:text-sm">${offer.term}</span>
-                                <span class="font-bold text-gray-700 bg-white border border-gray-200 px-2 py-0.5 rounded-md text-[10.5px] lg:text-xs shrink-0 inline-flex items-center justify-center text-center">${offer.monthly}</span>
-                            </div>
-                            <p class="text-[10px] lg:text-xs text-gray-500 leading-snug">${offer.detail}</p>
-                        `;
-                    }
-                    list.appendChild(card);
-                });
-            }
-        }
-
-        calculate();
+        // Initialize calculation on page load
+        window.onload = function() {
+            calculate();
+        };
     </script>
 </body>
 </html>
