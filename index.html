@@ -134,7 +134,7 @@
                                 Existing (5%)
                             </button>
                             <button id="btn-card-new" type="button" onclick="setCardStatus('new')" class="py-2.5 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all text-gray-600 hover:text-gray-900 cursor-pointer leading-tight active:scale-95">
-                                New Approved (10%)
+                                New Approved (10% / Min $20)
                             </button>
                         </div>
                     </div>
@@ -462,23 +462,24 @@
                             <div>
                                 <span class="bg-bb-yellow text-black text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">100% Value</span>
                                 <p class="text-xs lg:text-sm font-bold text-blue-950 mt-1">Best Buy Rewards Certificate</p>
-                                <p id="redemption-bb-subdetail" class="text-[10px] lg:text-xs text-blue-600 font-medium leading-snug">$0.02 / point • 250 points = $5.00</p>
-                            </div>
-                            <div class="text-right shrink-0">
-                                <p id="redemption-bb-value" class="text-xl lg:text-2xl font-black text-bb-blue">$0.00</p>
-                                <p class="text-[9px] lg:text-[10px] text-gray-500 font-bold uppercase tracking-wider text-center">in BB Certificates</p>
-                            </div>
-                        </div>
+                    <p class="text-xs md:text-sm font-bold text-blue-950 mt-1">Best Buy Rewards Certificate</p>
+                    <p id="redemption-bb-subdetail" class="text-[10px] lg:text-xs text-blue-600 font-medium leading-snug">$0.02 / point • 250 points = $5.00</p>
+                </div>
+                <div class="text-right shrink-0">
+                    <p id="redemption-bb-value" class="text-xl lg:text-2xl font-black text-bb-blue">$0.00</p>
+                    <p class="text-[9px] lg:text-[10px] text-gray-500 font-bold uppercase tracking-wider text-center">in BB Certificates</p>
+                </div>
+            </div>
 
-                        <div class="bg-gray-50 rounded-lg p-2.5 border border-gray-150 text-[11px] lg:text-xs text-gray-600 flex items-start space-x-2">
-                            <span class="text-blue-600 font-bold text-sm lg:text-base leading-none mt-0.5">ℹ</span>
-                            <p class="leading-relaxed">
-                                Best Buy Certificates provide maximum value (<span class="font-bold text-gray-800">100% redemption rate</span>). Certificates can be issued in increments starting at $5 (250 points).
-                            </p>
-                        </div>
-                    </div>
+            <div class="bg-gray-50 rounded-lg p-2.5 border border-gray-150 text-[11px] lg:text-xs text-gray-600 flex items-start space-x-2">
+                <span class="text-blue-600 font-bold text-sm lg:text-base leading-none mt-0.5">ⓘ</span>
+                <p class="leading-relaxed">
+                    Best Buy Certificates provide maximum value (<span class="font-bold text-gray-800">100% redemption rate</span>). Certificates can be issued in increments starting at $5 (250 points).
+                </p>
+            </div>
+        </div>
 
-                    <!-- Partner View -->
+        <!-- Partner View -->
                     <div id="view-mode-partner" class="hidden space-y-3">
                         <div class="bg-gradient-to-br from-amber-50/70 to-orange-50/50 p-3.5 rounded-xl border border-amber-200/80 flex items-center justify-between gap-2">
                             <div>
@@ -830,7 +831,7 @@
 
             const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + homepodAmt + applePreorderAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
-            // Base Card Rate
+            // Standard Base Card Rate
             let cardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
@@ -857,36 +858,31 @@
             document.getElementById('rate-homepod').innerText = `Rate: ${formatRate(homepodRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
 
-            // Active Department Badges & Smart Open
+            // Active Department Badges
             let activePromosCount = 0;
-            
             if (generalAmt > 0) activePromosCount += 1;
 
-            // General, Appliances & TV Accordion
             const hasGeneralActive = oledAmt > 0 || kitchenaidAmt > 0;
             if (hasGeneralActive) activePromosCount += (oledAmt > 0 ? 1 : 0) + (kitchenaidAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
-            // Tech & Lifestyle
             const hasLifestyleActive = fellowAmt > 0 || homepodAmt > 0 || applePreorderAmt > 0;
             if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (homepodAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
-            // Gaming
             const hasGamingActive = hasCod4 || hasZelda || hasGtaviConsole || hasGtaVi;
             if (hasGamingActive) activePromosCount += (hasCod4 ? 1 : 0) + (hasZelda ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
             document.getElementById('badge-dept-gaming').classList.toggle('hidden', !hasGamingActive);
 
-            // Update Total Active Badge
             document.getElementById('active-promo-count-badge').innerText = `${activePromosCount} Promo${activePromosCount === 1 ? '' : 's'} Active`;
 
-            // Line Rewards
-            const generalReward = generalAmt * generalRate;
-            const oledReward = oledAmt * oledRate;
-            const kitchenaidReward = kitchenaidAmt * kitchenaidRate;
-            const fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
-            const homepodReward = homepodAmt * homepodRate;
-            const applePreorderReward = applePreorderAmt * applePreorderRate;
+            // Calculate Base Line Rewards
+            let generalReward = generalAmt * generalRate;
+            let oledReward = oledAmt * oledRate;
+            let kitchenaidReward = kitchenaidAmt * kitchenaidRate;
+            let fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
+            let homepodReward = homepodAmt * homepodRate;
+            let applePreorderReward = applePreorderAmt * applePreorderRate;
 
             let cod4Reward = 0;
             if (hasCod4) {
@@ -904,6 +900,26 @@
             if (hasGtaVi) {
                 const gtaviMemberRate = hasMembership ? 0.10 : 0;
                 gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
+            }
+
+            let calculatedCardRewards = (generalAmt * cardRate) + 
+                                         (oledAmt * cardRate) + 
+                                         (kitchenaidAmt * cardRate) + 
+                                         (fellowAmt * fellowCardRate) + 
+                                         (homepodAmt * cardRate) + 
+                                         (applePreorderAmt * cardRate) + 
+                                         (cod4TotalAmt * cardRate) + 
+                                         (zeldaTotalAmt * cardRate) + 
+                                         (gtaviTotalAmt * cardRate);
+
+            // Minimum $20 Guarantee for New Approved Cardholders on First-Day Purchases
+            let isNewCardGuaranteeApplied = false;
+            if (cardStatus === 'new' && !isFinancing && totalSubtotal > 0) {
+                if (calculatedCardRewards < 20.00) {
+                    isNewCardGuaranteeApplied = true;
+                    const cardRewardDeficit = 20.00 - calculatedCardRewards;
+                    generalReward += cardRewardDeficit; // Adjust overall rewards sum up to reflect $20 card minimum
+                }
             }
 
             const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + homepodReward + applePreorderReward + cod4Reward + zeldaReward + gtaviReward;
@@ -949,6 +965,10 @@
 
             if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGtaviConsole) {
                 let parts = [];
+
+                if (isNewCardGuaranteeApplied) {
+                    parts.push(`• ✨ New Card Promo: Includes $20.00 Guaranteed Minimum Certificate (Purchase < $200)`);
+                }
 
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchases: $${generalReward.toFixed(2)}`;
