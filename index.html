@@ -462,24 +462,23 @@
                             <div>
                                 <span class="bg-bb-yellow text-black text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">100% Value</span>
                                 <p class="text-xs lg:text-sm font-bold text-blue-950 mt-1">Best Buy Rewards Certificate</p>
-                    <p class="text-xs md:text-sm font-bold text-blue-950 mt-1">Best Buy Rewards Certificate</p>
-                    <p id="redemption-bb-subdetail" class="text-[10px] lg:text-xs text-blue-600 font-medium leading-snug">$0.02 / point • 250 points = $5.00</p>
-                </div>
-                <div class="text-right shrink-0">
-                    <p id="redemption-bb-value" class="text-xl lg:text-2xl font-black text-bb-blue">$0.00</p>
-                    <p class="text-[9px] lg:text-[10px] text-gray-500 font-bold uppercase tracking-wider text-center">in BB Certificates</p>
-                </div>
-            </div>
+                                <p id="redemption-bb-subdetail" class="text-[10px] lg:text-xs text-blue-600 font-medium leading-snug">$0.02 / point • 250 points = $5.00</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p id="redemption-bb-value" class="text-xl lg:text-2xl font-black text-bb-blue">$0.00</p>
+                                <p class="text-[9px] lg:text-[10px] text-gray-500 font-bold uppercase tracking-wider text-center">in BB Certificates</p>
+                            </div>
+                        </div>
 
-            <div class="bg-gray-50 rounded-lg p-2.5 border border-gray-150 text-[11px] lg:text-xs text-gray-600 flex items-start space-x-2">
-                <span class="text-blue-600 font-bold text-sm lg:text-base leading-none mt-0.5">ⓘ</span>
-                <p class="leading-relaxed">
-                    Best Buy Certificates provide maximum value (<span class="font-bold text-gray-800">100% redemption rate</span>). Certificates can be issued in increments starting at $5 (250 points).
-                </p>
-            </div>
-        </div>
+                        <div class="bg-gray-50 rounded-lg p-2.5 border border-gray-150 text-[11px] lg:text-xs text-gray-600 flex items-start space-x-2">
+                            <span class="text-blue-600 font-bold text-sm lg:text-base leading-none mt-0.5">ⓘ</span>
+                            <p class="leading-relaxed">
+                                Best Buy Certificates provide maximum value (<span class="font-bold text-gray-800">100% redemption rate</span>). Certificates can be issued in increments starting at $5 (250 points).
+                            </p>
+                        </div>
+                    </div>
 
-        <!-- Partner View -->
+                    <!-- Partner View -->
                     <div id="view-mode-partner" class="hidden space-y-3">
                         <div class="bg-gradient-to-br from-amber-50/70 to-orange-50/50 p-3.5 rounded-xl border border-amber-200/80 flex items-center justify-between gap-2">
                             <div>
@@ -542,7 +541,7 @@
                                 </div>
 
                                 <div class="p-2.5 bg-gray-50 hover:bg-white rounded-xl border border-gray-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-gray-200 flex items-center justify-center font-black text-gray-800 text-xs shrink-0 text-center"></div>
+                                    <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center font-black text-base shrink-0 text-center">🍎</div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-xs font-bold text-gray-900 truncate">Apple</p>
                                         <p class="text-[10px] font-extrabold text-gray-800 partner-card-denom">$0.00 available</p>
@@ -1087,6 +1086,21 @@
             let html = "";
             offers.forEach(o => {
                 const qualifies = subtotal >= o.min;
+                
+                // Extract term month duration from title (e.g., "24 Month...", "18 Month...", "12 Month...")
+                const matchTerm = o.title.match(/(\d+)\s*Month/i);
+                const termMonths = matchTerm ? parseInt(matchTerm[1], 10) : 12;
+                
+                let monthlyPaymentBadge = "";
+                if (qualifies && subtotal > 0) {
+                    const monthlyPayment = subtotal / termMonths;
+                    monthlyPaymentBadge = `
+                        <span class="text-[10px] font-black px-2 py-0.5 rounded-md shrink-0 bg-emerald-50 text-emerald-800 border border-emerald-200 text-center whitespace-nowrap">
+                            ~$${monthlyPayment.toFixed(2)}/mo
+                        </span>
+                    `;
+                }
+
                 if (showAllFinancing || qualifies) {
                     html += `
                         <div class="p-2.5 rounded-xl border transition-all ${qualifies ? 'bg-blue-50/70 border-blue-200' : 'bg-gray-50 border-gray-200 opacity-70'} flex justify-between items-center gap-2">
@@ -1097,9 +1111,12 @@
                                 </div>
                                 <p class="text-[10px] text-gray-500 mt-0.5 font-medium">$${o.min.toLocaleString()} minimum • Ends: ${o.exp}</p>
                             </div>
-                            <span class="text-[10px] font-black px-2 py-1 rounded-md shrink-0 ${qualifies ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-gray-200 text-gray-600'}">
-                                ${qualifies ? 'Qualified ✓' : 'Add $' + (o.min - subtotal).toFixed(2)}
-                            </span>
+                            <div class="flex flex-col items-end gap-1 shrink-0">
+                                <span class="text-[10px] font-black px-2 py-0.5 rounded-md shrink-0 ${qualifies ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-gray-200 text-gray-600'} whitespace-nowrap">
+                                    ${qualifies ? 'Qualified ✓' : 'Add $' + (o.min - subtotal).toFixed(2)}
+                                </span>
+                                ${monthlyPaymentBadge}
+                            </div>
                         </div>
                     `;
                 }
@@ -1113,31 +1130,33 @@
         }
 
         function clearBasket() {
-            document.getElementById('amt-general').value = "";
-            document.getElementById('amt-oled').value = "";
-            document.getElementById('amt-kitchenaid').value = "";
-            document.getElementById('amt-fellow').value = "";
-            document.getElementById('amt-homepod').value = "";
-            document.getElementById('amt-apple-preorder').value = "";
-
-            document.getElementById('toggle-cod4').checked = false;
-            document.getElementById('toggle-zelda').checked = false;
-            document.getElementById('toggle-gtavi-console').checked = false;
-            document.getElementById('toggle-gtavi').checked = false;
-
-            document.getElementById('cod4-qty').value = "1";
-            document.getElementById('zelda-qty').value = "1";
-            document.getElementById('gtavi-qty').value = "1";
-
             document.getElementById('global-membership').checked = false;
             setCardStatus('none');
+            
+            document.getElementById('amt-general').value = '';
+            document.getElementById('amt-oled').value = '';
+            document.getElementById('amt-kitchenaid').value = '';
+            document.getElementById('amt-fellow').value = '';
+            document.getElementById('amt-homepod').value = '';
+            document.getElementById('amt-apple-preorder').value = '';
+
+            document.getElementById('toggle-cod4').checked = false;
+            document.getElementById('cod4-qty').value = '1';
+
+            document.getElementById('toggle-zelda').checked = false;
+            document.getElementById('zelda-qty').value = '1';
+
+            document.getElementById('toggle-gtavi-console').checked = false;
+
+            document.getElementById('toggle-gtavi').checked = false;
+            document.getElementById('gtavi-qty').value = '1';
+
             calculate();
         }
 
-        // Initialize calculation on page load
-        window.onload = function() {
-            calculate();
-        };
+        // Initialize
+        handleCardChange();
+        calculate();
     </script>
 </body>
 </html>
