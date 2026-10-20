@@ -261,7 +261,7 @@
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-fellow" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="195.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-fellow" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
                                     <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-fellow">$0.00</div>
                                 </div>
@@ -282,7 +282,7 @@
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-homepod" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="99.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-homepod" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
                                     <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-homepod">$0.00</div>
                                 </div>
@@ -303,7 +303,7 @@
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-apple-preorder" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="129.99" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-apple-preorder" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
                                     <div class="w-20 lg:w-24 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-600 shrink-0 text-center" id="reward-apple-preorder">$0.00</div>
                                 </div>
@@ -318,7 +318,7 @@
                                 <span class="text-base">🎮</span>
                                 <div>
                                     <h3 class="text-xs lg:text-sm font-bold text-gray-900">Gaming & Pre-Orders</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">10x Rewards on CoD 4, Zelda & GTA VI</p>
+                                    <p class="text-[10px] text-gray-500 font-medium">20% on 5 Games, 2% Games & Gear, 10x CoD 4, Zelda & GTA VI</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -327,6 +327,49 @@
                             </div>
                         </button>
                         <div id="dept-gaming" class="accordion-content p-3 space-y-3 border-t border-gray-100">
+                            
+                            <!-- 20% Rewards on 5 Select Video Games -->
+                            <div class="p-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100/60 rounded-xl border border-emerald-300 space-y-2">
+                                <div class="flex justify-between items-start gap-2">
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                            <span class="bg-emerald-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">20% Member Promo</span>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">5 Select Video Games Package</label>
+                                        </div>
+                                        <span class="text-[10px] lg:text-xs text-emerald-800 font-medium font-sans block leading-snug break-words">20% Back in Rewards (normally 1%) when buying 5 qualifying titles • Valid Oct 20 - Jan 31</span>
+                                    </div>
+                                    <span id="rate-games-5pack" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                        <input id="amt-games-5pack" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-emerald-500" oninput="calculate()">
+                                    </div>
+                                    <div class="w-20 lg:w-24 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-emerald-800 shrink-0 text-center" id="reward-games-5pack">$0.00</div>
+                                </div>
+                            </div>
+
+                            <!-- Double Rewards (2%) on Select Games and Gear -->
+                            <div class="p-3 bg-blue-50/50 rounded-xl border border-blue-200 space-y-2">
+                                <div class="flex justify-between items-start gap-2">
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                            <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% Member Promo</span>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">Select Games, Consoles & Gear</label>
+                                        </div>
+                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% Member Promo) on games, consoles & gaming PCs • Valid Oct 20 - Nov 18</span>
+                                    </div>
+                                    <span id="rate-gaming-gear" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-3 text-gray-400 text-sm lg:text-base">$</span>
+                                        <input id="amt-gaming-gear" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-blue-500" oninput="calculate()">
+                                    </div>
+                                    <div class="w-20 lg:w-24 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-blue-800 shrink-0 text-center" id="reward-gaming-gear">$0.00</div>
+                                </div>
+                            </div>
+
                             <!-- CoD 4 -->
                             <div class="p-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 rounded-xl border border-teal-200">
                                 <label class="flex items-center justify-between cursor-pointer gap-3">
@@ -806,6 +849,8 @@
             const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
             const homepodAmt = parseFloat(document.getElementById('amt-homepod').value) || 0;
             const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
+            const games5packAmt = parseFloat(document.getElementById('amt-games-5pack').value) || 0;
+            const gamingGearAmt = parseFloat(document.getElementById('amt-gaming-gear').value) || 0;
 
             // Gaming Qty & Totals
             const hasCod4 = document.getElementById('toggle-cod4').checked;
@@ -828,7 +873,7 @@
             const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
             const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + homepodAmt + applePreorderAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + oledAmt + kitchenaidAmt + fellowAmt + homepodAmt + applePreorderAmt + games5packAmt + gamingGearAmt + cod4TotalAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Standard Base Card Rate
             let cardRate = 0;
@@ -847,6 +892,8 @@
             const kitchenaidRate = (hasMembership ? 0.05 : 0) + cardRate;
             const homepodRate = (hasMembership ? 0.02 : 0) + cardRate;
             const applePreorderRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const games5packRate = (hasMembership ? 0.20 : 0) + cardRate;
+            const gamingGearRate = (hasMembership ? 0.02 : 0) + cardRate;
 
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
@@ -856,6 +903,8 @@
             document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
             document.getElementById('rate-homepod').innerText = `Rate: ${formatRate(homepodRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
+            document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
+            document.getElementById('rate-gaming-gear').innerText = `Rate: ${formatRate(gamingGearRate)}%`;
 
             // Active Department Badges
             let activePromosCount = 0;
@@ -869,8 +918,8 @@
             if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (homepodAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
-            const hasGamingActive = hasCod4 || hasZelda || hasGtaviConsole || hasGtaVi;
-            if (hasGamingActive) activePromosCount += (hasCod4 ? 1 : 0) + (hasZelda ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
+            const hasGamingActive = games5packAmt > 0 || gamingGearAmt > 0 || hasCod4 || hasZelda || hasGtaviConsole || hasGtaVi;
+            if (hasGamingActive) activePromosCount += (games5packAmt > 0 ? 1 : 0) + (gamingGearAmt > 0 ? 1 : 0) + (hasCod4 ? 1 : 0) + (hasZelda ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
             document.getElementById('badge-dept-gaming').classList.toggle('hidden', !hasGamingActive);
 
             document.getElementById('active-promo-count-badge').innerText = `${activePromosCount} Promo${activePromosCount === 1 ? '' : 's'} Active`;
@@ -882,6 +931,8 @@
             let fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
             let homepodReward = homepodAmt * homepodRate;
             let applePreorderReward = applePreorderAmt * applePreorderRate;
+            let games5packReward = games5packAmt * games5packRate;
+            let gamingGearReward = gamingGearAmt * gamingGearRate;
 
             let cod4Reward = 0;
             if (hasCod4) {
@@ -907,6 +958,8 @@
                                          (fellowAmt * fellowCardRate) + 
                                          (homepodAmt * cardRate) + 
                                          (applePreorderAmt * cardRate) + 
+                                         (games5packAmt * cardRate) + 
+                                         (gamingGearAmt * cardRate) + 
                                          (cod4TotalAmt * cardRate) + 
                                          (zeldaTotalAmt * cardRate) + 
                                          (gtaviTotalAmt * cardRate);
@@ -921,7 +974,7 @@
                 }
             }
 
-            const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + homepodReward + applePreorderReward + cod4Reward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + oledReward + kitchenaidReward + fellowReward + homepodReward + applePreorderReward + games5packReward + gamingGearReward + cod4Reward + zeldaReward + gtaviReward;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -936,6 +989,8 @@
             document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-homepod').innerText = "$" + homepodReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-games-5pack').innerText = "$" + games5packReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-gaming-gear').innerText = "$" + gamingGearReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('output-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1016,6 +1071,24 @@
 
                 if (applePreorderAmt > 0) {
                     let text = `• Select Apple Pre-Orders: $${applePreorderReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("2% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (games5packAmt > 0) {
+                    let text = `• 5 Select Video Games Package: $${games5packReward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("20% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                }
+
+                if (gamingGearAmt > 0) {
+                    let text = `• Select Games, Consoles & Gear: $${gamingGearReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -1139,6 +1212,8 @@
             document.getElementById('amt-fellow').value = '';
             document.getElementById('amt-homepod').value = '';
             document.getElementById('amt-apple-preorder').value = '';
+            document.getElementById('amt-games-5pack').value = '';
+            document.getElementById('amt-gaming-gear').value = '';
 
             document.getElementById('toggle-cod4').checked = false;
             document.getElementById('cod4-qty').value = '1';
