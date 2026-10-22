@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Best Buy Promo Calculator</title>
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .bg-bb-blue { background-color: #0046be; }
@@ -16,6 +17,7 @@
             -webkit-overflow-scrolling: touch;
         }
         
+        /* Custom Touch-Friendly Checkbox Styling */
         input[type="checkbox"] {
             -webkit-appearance: none;
             appearance: none;
@@ -62,6 +64,7 @@
             user-select: none;
         }
 
+        /* Smooth Accordion Expansion */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -78,37 +81,71 @@
         .chevron.open {
             transform: rotate(180deg);
         }
+
+        /* 🌟 Keyframe Glow & Pulse Animation for $30+ Membership Threshold */
+        @keyframes glowThrob {
+            0%, 100% {
+                box-shadow: 0 0 12px rgba(0, 70, 190, 0.45), 0 0 24px rgba(255, 242, 0, 0.35);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 70, 190, 0.75), 0 0 35px rgba(255, 242, 0, 0.6);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes textThrob {
+            0%, 100% {
+                transform: scale(1);
+                color: #0046be;
+            }
+            50% {
+                transform: scale(1.06);
+                color: #002d80;
+            }
+        }
+
+        .rewards-glow-active {
+            animation: glowThrob 2s infinite ease-in-out !important;
+            border-color: #0046be !important;
+            background: linear-gradient(135deg, #eff6ff 0%, #fffbeb 100%) !important;
+        }
+
+        .rewards-text-pulse {
+            display: inline-block;
+            animation: textThrob 2s infinite ease-in-out !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen font-sans flex flex-col pb-36">
 
-    <!-- KILL SWITCH SCREEN -->
+    <!-- KILL SWITCH DEACTIVATION SCREEN -->
     <div id="kill-switch-screen" class="hidden fixed inset-0 bg-gray-900 text-white flex flex-col items-center justify-center p-6 z-50 text-center">
         <div class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-flex items-center justify-center text-center">Access Suspended</div>
         <h1 class="text-2xl font-extrabold mb-2">Calculator Deactivated</h1>
         <p class="text-gray-400 max-w-sm text-sm">This version of the calculator has been deactivated due to the end of the promotions that this calculator calculates. The calculator will be updated soon, thank you for your patience.</p>
     </div>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN APP CONTAINER -->
     <div id="app-content" class="w-full">
-        <!-- Header -->
+        <!-- 1. HEADER -->
         <header class="bg-bb-blue text-white py-3.5 px-4 md:px-6 shadow-md sticky top-0 z-30">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
-                    <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Floor Tool</span>
+                    <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">FLOOR TOOL</span>
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Savings Event</h1>
                     <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 26, 2026 @ 12:00 AM Local Time</p>
                 </div>
-                <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer">
+                <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
                 </button>
             </div>
         </header>
 
-        <!-- Main Form Content -->
+        <!-- MAIN FORM GRID -->
         <main class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto p-3 md:p-5 lg:p-6 space-y-3 md:space-y-0 md:grid md:grid-cols-2 md:gap-5 lg:gap-6 items-start">
             
-            <!-- LEFT COLUMN: Customer Profile & Departmental Purchase Line Items -->
+            <!-- LEFT COLUMN: Profile & Line Items -->
             <div class="space-y-3 lg:space-y-4">
                 
                 <!-- SECTION 1: CUSTOMER PROFILE -->
@@ -150,7 +187,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 2: PURCHASE ITEMS (STANDALONE STOREWIDE & CATEGORIZED ACCORDIONS) -->
+                <!-- SECTION 2: LINE ITEMS & CATEGORIES -->
                 <div class="bg-white p-4 lg:p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 hover:shadow-md transition-shadow">
                     <div class="flex justify-between items-center border-b border-gray-100 pb-2">
                         <h2 class="text-[11px] lg:text-xs font-bold text-gray-400 uppercase tracking-wider">2. Line Items & Categories</h2>
@@ -617,7 +654,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 5: SHARE FLOOR TOOL -->
+                <!-- SECTION 5: SHARE FLOOR TOOL & SECTION 6: EMAIL FEEDBACK -->
                 <div class="bg-white p-4 lg:p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 text-center hover:shadow-md transition-shadow">
                     <div class="flex items-center justify-center gap-1.5">
                         <span class="bg-gray-200 text-gray-700 text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">Employee Tool</span>
@@ -658,7 +695,7 @@
                         </button>
                     </div>
 
-                    <!-- FEEDBACK SUB-SECTION -->
+                    <!-- SECTION 6: EMAIL FEEDBACK -->
                     <div class="pt-3 border-t border-gray-150 space-y-2">
                         <div class="flex items-center justify-center gap-1">
                             <span class="text-xs">✉️</span>
@@ -679,29 +716,30 @@
 
         </main>
 
-        <!-- STICKY BOTTOM RESULTS FOOTER -->
+        <!-- FLOATING BOTTOM RESULTS FOOTER -->
         <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] px-4 py-3 z-40">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-2 gap-3 md:gap-5">
                 <div class="bg-gray-50 p-2.5 lg:p-3 rounded-xl text-center border border-gray-100">
                     <p class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-gray-500">Purchase Total</p>
                     <p id="output-subtotal" class="text-base md:text-xl lg:text-2xl font-extrabold text-gray-800">$0.00</p>
                 </div>
-                <div class="bg-blue-50 p-2.5 lg:p-3 rounded-xl text-center border border-blue-100">
-                    <p class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
-                    <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue">$0.00</p>
+                <div id="rewards-output-box" class="bg-blue-50 p-2.5 lg:p-3 rounded-xl text-center border border-blue-100 transition-all duration-300">
+                    <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
+                    <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- LOGIC ENGINE -->
+    <!-- APPLICATION JAVASCRIPT LOGIC -->
     <script>
         const SHARE_TARGET_URL = "https://tdweyd.s.gy/BIRCal";
         const FORCE_KILL = false; 
         
+        // 9. Kill Switch Check
         function checkKillSwitch() {
             const now = new Date();
-            // Cutoff: October 26, 2026 @ 12:00 AM Local Time (following last valid day Oct 25 for OLED TVs & Limited-Time Financing)
+            // Deactivation Cutoff: October 26, 2026 @ 12:00 AM Local Time
             const expirationDate = new Date(2026, 9, 26, 0, 0, 0); 
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
@@ -724,6 +762,7 @@
             calculate();
         }
 
+        // Section 5 Share QR Gate
         let holdTimer = null;
         const HOLD_DURATION = 1500;
 
@@ -847,7 +886,7 @@
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
-            // Amounts
+            // Item Dollar Inputs
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const lgAppliancesAmt = parseFloat(document.getElementById('amt-lg-appliances').value) || 0;
             const oledAmt = parseFloat(document.getElementById('amt-oled').value) || 0;
@@ -857,7 +896,7 @@
             const games5packAmt = parseFloat(document.getElementById('amt-games-5pack').value) || 0;
             const gamingGearAmt = parseFloat(document.getElementById('amt-gaming-gear').value) || 0;
 
-            // Gaming Qty & Totals
+            // Gaming Line Items
             const hasZelda = document.getElementById('toggle-zelda').checked;
             const zeldaQtyContainer = document.getElementById('zelda-qty-container');
             zeldaQtyContainer.classList.toggle('hidden', !hasZelda);
@@ -874,18 +913,19 @@
 
             const totalSubtotal = generalAmt + lgAppliancesAmt + oledAmt + fellowAmt + homepodAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
 
-            // Standard Base Card Rate
+            // Standard Base Credit Card Rate
             let cardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
-            // Fellow Products 2x Card Rate
+            // Fellow Products 2x Card Promo Rate
             let fellowCardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
                 fellowCardRate = (cardStatus === 'new') ? 0.20 : 0.10;
             }
 
+            // Calculate Effective Rates
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
             const lgAppliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
             const oledRate = (hasMembership ? 0.05 : 0) + cardRate;
@@ -905,7 +945,7 @@
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
             document.getElementById('rate-gaming-gear').innerText = `Rate: ${formatRate(gamingGearRate)}%`;
 
-            // Active Department Badges
+            // Update Active Category Accordion Badges
             let activePromosCount = 0;
             if (generalAmt > 0) activePromosCount += 1;
 
@@ -923,7 +963,7 @@
 
             document.getElementById('active-promo-count-badge').innerText = `${activePromosCount} Promo${activePromosCount === 1 ? '' : 's'} Active`;
 
-            // Calculate Base Line Rewards
+            // Calculate Item Rewards
             let generalReward = generalAmt * generalRate;
             let lgAppliancesReward = lgAppliancesAmt * lgAppliancesRate;
             let oledReward = oledAmt * oledRate;
@@ -956,7 +996,7 @@
                                          (zeldaTotalAmt * cardRate) + 
                                          (gtaviTotalAmt * cardRate);
 
-            // Minimum $20 Guarantee for New Approved Cardholders on First-Day Purchases
+            // First-Day New Approved Cardholder Minimum $20 Guarantee
             let isNewCardGuaranteeApplied = false;
             if (cardStatus === 'new' && !isFinancing && totalSubtotal > 0) {
                 if (calculatedCardRewards < 20.00) {
@@ -985,12 +1025,25 @@
             document.getElementById('reward-gaming-gear').innerText = "$" + gamingGearReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('output-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            
+            const outputRewardsEl = document.getElementById('output-rewards');
+            const rewardsBoxEl = document.getElementById('rewards-output-box');
 
-            // Render Financing Offers
+            outputRewardsEl.innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // 🌟 Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
+            if (totalCombinedRewards >= 29.99) {
+                rewardsBoxEl.classList.add('rewards-glow-active');
+                outputRewardsEl.classList.add('rewards-text-pulse');
+            } else {
+                rewardsBoxEl.classList.remove('rewards-glow-active');
+                outputRewardsEl.classList.remove('rewards-text-pulse');
+            }
+
+            // Section 3: Financing Calculation
             renderFinancingOptions(totalSubtotal);
 
-            // Render Redemption Values
+            // Section 4: Rewards Redemption Values
             const totalPoints = Math.round(pointBasedRewards * 50);
             document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             document.getElementById('redemption-bb-value').innerText = "$" + pointBasedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1005,7 +1058,7 @@
                 el.innerText = `$${partnerValue.toFixed(2)} available`;
             });
 
-            // Breakdown
+            // Detailed Reward Breakdown Generator
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
 
@@ -1123,6 +1176,7 @@
             }
         }
 
+        // Render Financing Cards & Monthly Payment Badges
         function renderFinancingOptions(subtotal) {
             const container = document.getElementById('financing-options-list');
             if (!container) return;
@@ -1184,6 +1238,7 @@
             container.innerHTML = html;
         }
 
+        // Reset Basket Function
         function clearBasket() {
             document.getElementById('global-membership').checked = false;
             setCardStatus('none');
@@ -1208,7 +1263,7 @@
             calculate();
         }
 
-        // Initialize
+        // Initialize Application
         handleCardChange();
         calculate();
     </script>
