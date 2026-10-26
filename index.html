@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Best Buy Promo Calculator</title>
+    <title>Best Buy BIR Calculator</title>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -82,7 +82,7 @@
             transform: rotate(180deg);
         }
 
-        /* 🌟 Keyframe Glow & Pulse Animation for $30+ Membership Threshold */
+        /* Keyframe Glow & Pulse Animation for $30+ Membership Threshold & Highlighted Pitch */
         @keyframes glowThrob {
             0%, 100% {
                 box-shadow: 0 0 12px rgba(0, 70, 190, 0.45), 0 0 24px rgba(255, 242, 0, 0.35);
@@ -115,6 +115,13 @@
             display: inline-block;
             animation: textThrob 2s infinite ease-in-out !important;
         }
+
+        .financing-pitch-active {
+            animation: glowThrob 2s infinite ease-in-out !important;
+            border-color: #0046be !important;
+            background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%) !important;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen font-sans flex flex-col pb-36">
@@ -132,9 +139,9 @@
         <header class="bg-bb-blue text-white py-3.5 px-4 md:px-6 shadow-md sticky top-0 z-30">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
-                    <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">FLOOR TOOL</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Savings Event</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 26, 2026 @ 12:00 AM Local Time</p>
+                    <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Savings & Financing Event</h1>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 31, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -155,7 +162,7 @@
                     <label class="flex items-center justify-between p-3 lg:p-3.5 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3 hover:bg-blue-50">
                         <div class="min-w-0 flex-1">
                             <p class="text-sm lg:text-base font-bold text-blue-900 font-sans">Plus or Total Member?</p>
-                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% LG Appliances • 5% OLED TVs • 20% 5-Game Package</p>
+                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% LG Appliances • 20% 5-Game Package • 2% Games & Gear</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -222,7 +229,7 @@
                                 <span class="text-base">📺</span>
                                 <div>
                                     <h3 class="text-xs lg:text-sm font-bold text-gray-900">General & Appliances</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">5% All LG Major Appliances & 5% Select OLED TVs</p>
+                                    <p class="text-[10px] text-gray-500 font-medium">5% All LG Major Appliances</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -253,26 +260,6 @@
                                 </div>
                             </div>
 
-                            <!-- Select OLED TVs -->
-                            <div class="pt-2.5 border-t border-gray-100">
-                                <div class="flex justify-between items-start mb-1.5 gap-2">
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">5% MEMBER PROMO</span>
-                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">Select OLED TVs</label>
-                                        </div>
-                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">5% Back in Rewards for Plus/Total Members • Valid Oct 12 - Oct 25</span>
-                                    </div>
-                                    <span id="rate-oled" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <div class="relative flex-1">
-                                        <span class="absolute left-3 top-2.5 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-oled" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
-                                    </div>
-                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-700 shrink-0 text-center" id="reward-oled">$0.00</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -735,12 +722,12 @@
     <script>
         const SHARE_TARGET_URL = "https://tdweyd.s.gy/BIRCal";
         const FORCE_KILL = false; 
+        let selectedFinancingTitle = null; // Track highlighted financing card
         
-        // 9. Kill Switch Check
+        // Kill Switch Check - Deactivation Date: October 31, 2026 @ 12:00 AM Local Time
         function checkKillSwitch() {
             const now = new Date();
-            // Deactivation Cutoff: October 26, 2026 @ 12:00 AM Local Time
-            const expirationDate = new Date(2026, 9, 26, 0, 0, 0); 
+            const expirationDate = new Date(2026, 9, 31, 0, 0, 0); 
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -829,6 +816,15 @@
             calculate();
         }
 
+        function selectFinancingOffer(title) {
+            if (selectedFinancingTitle === title) {
+                selectedFinancingTitle = null;
+            } else {
+                selectedFinancingTitle = title;
+            }
+            calculate();
+        }
+
         function setRedemptionMode(mode) {
             currentRedemptionMode = mode;
             const btnBb = document.getElementById('btn-mode-bb');
@@ -889,7 +885,6 @@
             // Item Dollar Inputs
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const lgAppliancesAmt = parseFloat(document.getElementById('amt-lg-appliances').value) || 0;
-            const oledAmt = parseFloat(document.getElementById('amt-oled').value) || 0;
             const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
             const homepodAmt = parseFloat(document.getElementById('amt-homepod').value) || 0;
             const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
@@ -911,7 +906,7 @@
             const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
             const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            const totalSubtotal = generalAmt + lgAppliancesAmt + oledAmt + fellowAmt + homepodAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + lgAppliancesAmt + fellowAmt + homepodAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
@@ -928,7 +923,6 @@
             // Calculate Effective Rates
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
             const lgAppliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
-            const oledRate = (hasMembership ? 0.05 : 0) + cardRate;
             const homepodRate = (hasMembership ? 0.02 : 0) + cardRate;
             const applePreorderRate = (hasMembership ? 0.02 : 0) + cardRate;
             const games5packRate = (hasMembership ? 0.20 : 0) + cardRate;
@@ -938,7 +932,6 @@
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
             document.getElementById('rate-lg-appliances').innerText = `Rate: ${formatRate(lgAppliancesRate)}%`;
-            document.getElementById('rate-oled').innerText = `Rate: ${formatRate(oledRate)}%`;
             document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
             document.getElementById('rate-homepod').innerText = `Rate: ${formatRate(homepodRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
@@ -949,8 +942,8 @@
             let activePromosCount = 0;
             if (generalAmt > 0) activePromosCount += 1;
 
-            const hasGeneralActive = lgAppliancesAmt > 0 || oledAmt > 0;
-            if (hasGeneralActive) activePromosCount += (lgAppliancesAmt > 0 ? 1 : 0) + (oledAmt > 0 ? 1 : 0);
+            const hasGeneralActive = lgAppliancesAmt > 0;
+            if (hasGeneralActive) activePromosCount += 1;
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
             const hasLifestyleActive = fellowAmt > 0 || homepodAmt > 0 || applePreorderAmt > 0;
@@ -966,7 +959,6 @@
             // Calculate Item Rewards
             let generalReward = generalAmt * generalRate;
             let lgAppliancesReward = lgAppliancesAmt * lgAppliancesRate;
-            let oledReward = oledAmt * oledRate;
             let fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
             let homepodReward = homepodAmt * homepodRate;
             let applePreorderReward = applePreorderAmt * applePreorderRate;
@@ -987,7 +979,6 @@
 
             let calculatedCardRewards = (generalAmt * cardRate) + 
                                          (lgAppliancesAmt * cardRate) + 
-                                         (oledAmt * cardRate) + 
                                          (fellowAmt * fellowCardRate) + 
                                          (homepodAmt * cardRate) + 
                                          (applePreorderAmt * cardRate) + 
@@ -1006,7 +997,7 @@
                 }
             }
 
-            const pointBasedRewards = generalReward + lgAppliancesReward + oledReward + fellowReward + homepodReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + lgAppliancesReward + fellowReward + homepodReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -1017,7 +1008,6 @@
 
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-lg-appliances').innerText = "$" + lgAppliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-oled').innerText = "$" + oledReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-homepod').innerText = "$" + homepodReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1031,7 +1021,7 @@
 
             outputRewardsEl.innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-            // 🌟 Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
+            // Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
             if (totalCombinedRewards >= 29.99) {
                 rewardsBoxEl.classList.add('rewards-glow-active');
                 outputRewardsEl.classList.add('rewards-text-pulse');
@@ -1080,15 +1070,6 @@
 
                 if (lgAppliancesAmt > 0) {
                     let text = `• All LG Major Appliances: $${lgAppliancesReward.toFixed(2)}`;
-                    let details = [];
-                    if (hasMembership) details.push("5% Member Promo");
-                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')})`;
-                    parts.push(text);
-                }
-
-                if (oledAmt > 0) {
-                    let text = `• Select OLED TVs: $${oledReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -1176,26 +1157,22 @@
             }
         }
 
-        // Render Financing Cards & Monthly Payment Badges
+        // Render Financing Cards with Latest Screenshot Offers & Monthly Calculations
         function renderFinancingOptions(subtotal) {
             const container = document.getElementById('financing-options-list');
             if (!container) return;
 
             const offers = [
-                { title: "24 Month Financing on Apple Watch Ultra 4", min: 799, exp: "10/25/26", tag: "Limited Time" },
-                { title: "24 Month Financing on Mac mini (M6/M5) & Mac Studio (M5)", min: 899, exp: "10/25/26", tag: "Limited Time" },
-                { title: "24 Month Financing on Samsung Galaxy Tab S12 Series", min: 1199.99, exp: "10/25/26", tag: "Limited Time" },
-                { title: "24 Month Financing on NVIDIA RTX Spark PCs", min: 2599.99, exp: "10/25/26", tag: "Limited Time" },
-                { title: "24 Month Financing on Googlebook Purchases", min: 899, exp: "10/25/26", tag: "Limited Time" },
-                { title: "18 Month Financing on Appliance Purchases", min: 599, exp: "Everyday Offer", tag: "Standard" },
-                { title: "24 Month Financing on Home Theater Purchases", min: 999, exp: "Everyday Offer", tag: "Standard" },
-                { title: "24 Month Financing on Unlocked Phone Purchases", min: 649, exp: "Everyday Offer", tag: "Standard" },
-                { title: "12 Month Financing on Storewide Purchases", min: 299, exp: "Everyday Offer", tag: "Standard" }
+                { title: "24 Month Financing on Storewide Purchases", min: 699, exp: "12/25/26", tag: "Limited Time" },
+                { title: "18 Month Financing on Storewide Purchases", min: 499, exp: "12/25/26", tag: "Limited Time" },
+                { title: "12 Month Financing on Storewide Purchases", min: 299, exp: "12/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on Unlocked Phone Purchases", min: 649, exp: "Everyday Offer", tag: "Standard" }
             ];
 
             let html = "";
             offers.forEach(o => {
                 const qualifies = subtotal >= o.min;
+                const isSelectedPitch = selectedFinancingTitle === o.title;
                 
                 const matchTerm = o.title.match(/(\d+)\s*Month/i);
                 const termMonths = matchTerm ? parseInt(matchTerm[1], 10) : 12;
@@ -1211,11 +1188,21 @@
                 }
 
                 if (showAllFinancing || qualifies) {
+                    let cardStyleClass = "bg-gray-50 border-gray-200 opacity-70";
+                    if (isSelectedPitch) {
+                        cardStyleClass = "financing-pitch-active";
+                    } else if (qualifies) {
+                        cardStyleClass = "bg-blue-50/70 border-blue-200 hover:bg-blue-100/60";
+                    }
+
+                    const safeTitle = o.title.replace(/'/g, "\\'");
+
                     html += `
-                        <div class="p-2.5 rounded-xl border transition-all ${qualifies ? 'bg-blue-50/70 border-blue-200' : 'bg-gray-50 border-gray-200 opacity-70'} flex justify-between items-center gap-2">
+                        <div onclick="selectFinancingOffer('${safeTitle}')" class="p-2.5 rounded-xl border transition-all cursor-pointer relative ${cardStyleClass} flex justify-between items-center gap-2">
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center gap-1.5 flex-wrap">
                                     <span class="${qualifies ? 'bg-blue-700 text-white' : 'bg-gray-400 text-white'} text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">${o.tag}</span>
+                                    ${isSelectedPitch ? '<span class="bg-bb-blue text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 shadow-sm">★ Offer Selected</span>' : ''}
                                     <p class="text-xs font-bold text-gray-900 leading-tight">${o.title}</p>
                                 </div>
                                 <p class="text-[10px] text-gray-500 mt-0.5 font-medium">$${o.min.toLocaleString()} minimum • Ends: ${o.exp}</p>
@@ -1240,12 +1227,12 @@
 
         // Reset Basket Function
         function clearBasket() {
+            selectedFinancingTitle = null;
             document.getElementById('global-membership').checked = false;
             setCardStatus('none');
             
             document.getElementById('amt-general').value = '';
             document.getElementById('amt-lg-appliances').value = '';
-            document.getElementById('amt-oled').value = '';
             document.getElementById('amt-fellow').value = '';
             document.getElementById('amt-homepod').value = '';
             document.getElementById('amt-apple-preorder').value = '';
