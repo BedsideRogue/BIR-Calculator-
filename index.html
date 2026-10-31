@@ -140,8 +140,8 @@
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Fall Savings Event</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: October 31, 2026 @ 12:00 AM Local Time</p>
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">DoorBOOsters Event</h1>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 2, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -302,24 +302,24 @@
                                 </div>
                             </div>
 
-                            <!-- Apple HomePod mini 2 Pre-Order -->
+                            <!-- iPad mini (A20 Pro) Pre-Order -->
                             <div class="pt-2.5 border-t border-gray-100">
                                 <div class="flex justify-between items-start mb-1.5 gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
                                             <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% MEMBER PROMO</span>
-                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">Apple HomePod mini 2 Pre-Order</label>
+                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">iPad mini (A20 Pro) Pre-Order</label>
                                         </div>
-                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% Member Promo) • Valid Oct 13 - Oct 30</span>
+                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% Member Promo) • Valid Oct 28 - Nov 6</span>
                                     </div>
-                                    <span id="rate-homepod" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-ipad-mini" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-2.5 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-homepod" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
+                                        <input id="amt-ipad-mini" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-700 shrink-0 text-center" id="reward-homepod">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-700 shrink-0 text-center" id="reward-ipad-mini">$0.00</div>
                                 </div>
                             </div>
 
@@ -724,10 +724,10 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null; // Track highlighted financing card
         
-        // Kill Switch Check - Deactivation Date: October 31, 2026 @ 12:00 AM Local Time
+        // Kill Switch Check - Deactivation Date: November 2, 2026 @ 12:00 AM Local Time
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 9, 31, 0, 0, 0); 
+            const expirationDate = new Date(2026, 10, 2, 0, 0, 0); // Month index 10 = November
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -886,7 +886,7 @@
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const lgAppliancesAmt = parseFloat(document.getElementById('amt-lg-appliances').value) || 0;
             const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
-            const homepodAmt = parseFloat(document.getElementById('amt-homepod').value) || 0;
+            const ipadMiniAmt = parseFloat(document.getElementById('amt-ipad-mini').value) || 0;
             const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
             const games5packAmt = parseFloat(document.getElementById('amt-games-5pack').value) || 0;
             const gamingGearAmt = parseFloat(document.getElementById('amt-gaming-gear').value) || 0;
@@ -906,7 +906,7 @@
             const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
             const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            const totalSubtotal = generalAmt + lgAppliancesAmt + fellowAmt + homepodAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + lgAppliancesAmt + fellowAmt + ipadMiniAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
@@ -923,7 +923,7 @@
             // Calculate Effective Rates
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
             const lgAppliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
-            const homepodRate = (hasMembership ? 0.02 : 0) + cardRate;
+            const ipadMiniRate = (hasMembership ? 0.02 : 0) + cardRate;
             const applePreorderRate = (hasMembership ? 0.02 : 0) + cardRate;
             const games5packRate = (hasMembership ? 0.20 : 0) + cardRate;
             const gamingGearRate = (hasMembership ? 0.02 : 0) + cardRate;
@@ -933,7 +933,7 @@
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
             document.getElementById('rate-lg-appliances').innerText = `Rate: ${formatRate(lgAppliancesRate)}%`;
             document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
-            document.getElementById('rate-homepod').innerText = `Rate: ${formatRate(homepodRate)}%`;
+            document.getElementById('rate-ipad-mini').innerText = `Rate: ${formatRate(ipadMiniRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
             document.getElementById('rate-gaming-gear').innerText = `Rate: ${formatRate(gamingGearRate)}%`;
@@ -946,8 +946,8 @@
             if (hasGeneralActive) activePromosCount += 1;
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
-            const hasLifestyleActive = fellowAmt > 0 || homepodAmt > 0 || applePreorderAmt > 0;
-            if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (homepodAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
+            const hasLifestyleActive = fellowAmt > 0 || ipadMiniAmt > 0 || applePreorderAmt > 0;
+            if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (ipadMiniAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
             const hasGamingActive = games5packAmt > 0 || gamingGearAmt > 0 || hasZelda || hasGtaviConsole || hasGtaVi;
@@ -960,7 +960,7 @@
             let generalReward = generalAmt * generalRate;
             let lgAppliancesReward = lgAppliancesAmt * lgAppliancesRate;
             let fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
-            let homepodReward = homepodAmt * homepodRate;
+            let ipadMiniReward = ipadMiniAmt * ipadMiniRate;
             let applePreorderReward = applePreorderAmt * applePreorderRate;
             let games5packReward = games5packAmt * games5packRate;
             let gamingGearReward = gamingGearAmt * gamingGearRate;
@@ -980,7 +980,7 @@
             let calculatedCardRewards = (generalAmt * cardRate) + 
                                          (lgAppliancesAmt * cardRate) + 
                                          (fellowAmt * fellowCardRate) + 
-                                         (homepodAmt * cardRate) + 
+                                         (ipadMiniAmt * cardRate) + 
                                          (applePreorderAmt * cardRate) + 
                                          (games5packAmt * cardRate) + 
                                          (gamingGearAmt * cardRate) + 
@@ -997,7 +997,7 @@
                 }
             }
 
-            const pointBasedRewards = generalReward + lgAppliancesReward + fellowReward + homepodReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + lgAppliancesReward + fellowReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -1009,7 +1009,7 @@
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-lg-appliances').innerText = "$" + lgAppliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-homepod').innerText = "$" + homepodReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-ipad-mini').innerText = "$" + ipadMiniReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-games-5pack').innerText = "$" + games5packReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-gaming-gear').innerText = "$" + gamingGearReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1086,8 +1086,8 @@
                     parts.push(text);
                 }
 
-                if (homepodAmt > 0) {
-                    let text = `• Apple HomePod mini 2 Pre-Order: $${homepodReward.toFixed(2)}`;
+                if (ipadMiniAmt > 0) {
+                    let text = `• iPad mini (A20 Pro) Pre-Order: $${ipadMiniReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -1234,7 +1234,7 @@
             document.getElementById('amt-general').value = '';
             document.getElementById('amt-lg-appliances').value = '';
             document.getElementById('amt-fellow').value = '';
-            document.getElementById('amt-homepod').value = '';
+            document.getElementById('amt-ipad-mini').value = '';
             document.getElementById('amt-apple-preorder').value = '';
             document.getElementById('amt-games-5pack').value = '';
             document.getElementById('amt-gaming-gear').value = '';
