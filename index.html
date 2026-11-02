@@ -124,13 +124,13 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen font-sans flex flex-col pb-36">
+<body class="bg-gray-100 min-h-screen font-sans flex flex-col pb-44">
 
     <!-- KILL SWITCH DEACTIVATION SCREEN -->
     <div id="kill-switch-screen" class="hidden fixed inset-0 bg-gray-900 text-white flex flex-col items-center justify-center p-6 z-50 text-center">
         <div class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-flex items-center justify-center text-center">Access Suspended</div>
         <h1 class="text-2xl font-extrabold mb-2">Calculator Deactivated</h1>
-        <p class="text-gray-400 max-w-sm text-sm">This version of the calculator has been deactivated due to the end of the promotions that this calculator calculates. The calculator will be updated soon, thank you for your patience.</p>
+        <p class="text-gray-400 max-w-sm text-sm">This version of the calculator has reached its scheduled expiration on <strong>November 4, 2026 @ 12:00 AM</strong>. Please update to the latest promotional schedule.</p>
     </div>
 
     <!-- MAIN APP CONTAINER -->
@@ -140,8 +140,8 @@
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">DoorBOOsters Event</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 2, 2026 @ 12:00 AM Local Time</p>
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals</h1>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 4, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-700 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -159,14 +159,33 @@
                 <div class="bg-white p-4 lg:p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 hover:shadow-md transition-shadow">
                     <h2 class="text-[11px] lg:text-xs font-bold text-gray-400 uppercase tracking-wider">1. Customer Profile</h2>
                     
+                    <!-- MEMBERSHIP TOGGLE -->
                     <label class="flex items-center justify-between p-3 lg:p-3.5 bg-blue-50/50 rounded-xl border border-blue-100 active:bg-blue-100 transition-colors cursor-pointer gap-3 hover:bg-blue-50">
                         <div class="min-w-0 flex-1">
-                            <p class="text-sm lg:text-base font-bold text-blue-900 font-sans">Plus or Total Member?</p>
-                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% LG Appliances • 20% 5-Game Package • 2% Games & Gear</p>
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <p class="text-sm lg:text-base font-bold text-blue-900 font-sans">Plus or Total Member?</p>
+                                <span id="plus-discount-badge" class="hidden bg-amber-500 text-black text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% OFF PLUS ($15.00 SAVINGS)</span>
+                            </div>
+                            <p class="text-[10px] lg:text-xs text-blue-600 leading-snug">5% LG Appliances • 20% 5-Game Package • $25 Bonus @ $500+</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
 
+                    <!-- 50% OFF PLUS MEMBERSHIP PROMO QUALIFIER TOGGLE -->
+                    <div id="plus-promo-container" class="p-3 bg-amber-50/60 rounded-xl border border-amber-200/80 transition-all duration-300">
+                        <label class="flex items-center justify-between cursor-pointer gap-3">
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                    <span class="bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">50% OFF PLUS PROMO</span>
+                                    <span class="text-xs lg:text-sm font-bold text-gray-900 leading-snug">Product $500+ & Protection Plan Added?</span>
+                                </div>
+                                <p class="text-[10px] lg:text-xs text-amber-800 font-medium leading-snug">Saves 50% ($15.00 off $29.99) on 1st yr My Best Buy Plus • Valid 11/2 - 1/30</p>
+                            </div>
+                            <input id="toggle-plus-promo" type="checkbox" class="shrink-0" onchange="calculate()">
+                        </label>
+                    </div>
+
+                    <!-- CREDIT CARD STATUS -->
                     <div>
                         <label class="block text-[10px] lg:text-xs font-bold text-gray-500 uppercase mb-1.5">Best Buy Credit Card</label>
                         <input type="hidden" id="global-card" value="none">
@@ -228,8 +247,8 @@
                             <div class="flex items-center gap-2">
                                 <span class="text-base">📺</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">General & Appliances</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">5% All LG Major Appliances</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">General & LG Appliances</h3>
+                                    <p class="text-[10px] text-gray-500 font-medium">5% All LG Major Appliances (Oct 21 - Nov 3)</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -239,7 +258,7 @@
                         </button>
                         <div id="dept-general" class="accordion-content open p-3 space-y-3 border-t border-gray-100">
                             
-                            <!-- All LG Major Appliances -->
+                            <!-- All LG Major Appliances Promo -->
                             <div>
                                 <div class="flex justify-between items-start mb-1.5 gap-2">
                                     <div class="min-w-0 flex-1">
@@ -263,14 +282,14 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 2: TECH & LIFESTYLE -->
+                    <!-- DEPARTMENT 2: TECH & APPLE PRE-ORDERS -->
                     <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-lifestyle')" class="w-full bg-gray-50 hover:bg-gray-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
                                 <span class="text-base">☕</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">Tech & Lifestyle</h3>
-                                    <p class="text-[10px] text-gray-500 font-medium">Fellow Products (2x Card) & Apple Pre-Orders (2% Member)</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-gray-900">Tech & Apple Pre-Orders</h3>
+                                    <p class="text-[10px] text-gray-500 font-medium">iPad mini A20 Pro & Apple Pre-Orders (2% Member)</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -279,31 +298,9 @@
                             </div>
                         </button>
                         <div id="dept-lifestyle" class="accordion-content p-3 space-y-3 border-t border-gray-100">
-                            
-                            <!-- Fellow Products -->
-                            <div>
-                                <div class="flex justify-between items-start mb-1.5 gap-2">
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-amber-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2x CARD REWARDS</span>
-                                            <label class="text-xs lg:text-sm font-bold text-gray-900 block leading-snug break-words">Fellow Products ($99+)</label>
-                                        </div>
-                                        <span class="text-[10px] lg:text-xs text-amber-900 font-bold font-sans block leading-snug">2x Best Buy Credit Card Rewards</span>
-                                        <span class="text-[9.5px] lg:text-[11px] text-amber-700 font-medium font-sans block leading-snug mt-0.5">(10% Existing / 20% New Day 1) • Valid through Nov 1</span>
-                                    </div>
-                                    <span id="rate-fellow" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <div class="relative flex-1">
-                                        <span class="absolute left-3 top-2.5 text-gray-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-fellow" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500" oninput="calculate()">
-                                    </div>
-                                    <div class="w-20 lg:w-24 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-gray-700 shrink-0 text-center" id="reward-fellow">$0.00</div>
-                                </div>
-                            </div>
 
                             <!-- iPad mini (A20 Pro) Pre-Order -->
-                            <div class="pt-2.5 border-t border-gray-100">
+                            <div>
                                 <div class="flex justify-between items-start mb-1.5 gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
@@ -703,17 +700,34 @@
 
         </main>
 
-        <!-- FLOATING BOTTOM RESULTS FOOTER -->
-        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] px-4 py-3 z-40">
-            <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto grid grid-cols-2 gap-3 md:gap-5">
-                <div class="bg-gray-50 p-2.5 lg:p-3 rounded-xl text-center border border-gray-100">
-                    <p class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-gray-500">Purchase Total</p>
-                    <p id="output-subtotal" class="text-base md:text-xl lg:text-2xl font-extrabold text-gray-800">$0.00</p>
+        <!-- FLOATING BOTTOM RESULTS FOOTER WITH UNCONFLATED MEMBERSHIP SAVINGS BANNER -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] px-4 py-3 z-40">
+            <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto space-y-2">
+                
+                <!-- UNCONFLATED PLUS MEMBERSHIP DISCOUNT BANNER -->
+                <div id="footer-plus-savings-banner" class="hidden bg-amber-500 text-slate-950 text-xs lg:text-sm font-black py-1.5 px-3 rounded-xl flex items-center justify-between shadow-sm">
+                    <span class="flex items-center gap-1.5">
+                        <span>🏷️</span>
+                        <span>My Best Buy Plus™ Membership Savings:</span>
+                    </span>
+                    <span class="text-right text-xs lg:text-sm font-black leading-tight">
+                        -$15.00 INSTANT<br>
+                        <span class="text-[10px] lg:text-xs font-bold opacity-90">(50% Off $29.99)</span>
+                    </span>
                 </div>
-                <div id="rewards-output-box" class="bg-blue-50 p-2.5 lg:p-3 rounded-xl text-center border border-blue-100 transition-all duration-300">
-                    <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
-                    <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
+
+                <div class="grid grid-cols-2 gap-3 md:gap-5">
+                    <div class="bg-gray-50 p-2.5 lg:p-3 rounded-xl text-center border border-gray-100">
+                        <p class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-gray-500">Purchase Total</p>
+                        <p id="output-subtotal" class="text-base md:text-xl lg:text-2xl font-extrabold text-gray-800">$0.00</p>
+                    </div>
+                    <div id="rewards-output-box" class="bg-blue-50 p-2.5 lg:p-3 rounded-xl text-center border border-blue-100 transition-all duration-300">
+                        <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
+                        <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
+                        <span id="bonus-25-callout-badge" class="hidden mt-1 inline-block bg-amber-400 text-slate-950 text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🎁 INCLUDES $25 MEMBER BONUS</span>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -722,12 +736,12 @@
     <script>
         const SHARE_TARGET_URL = "https://tdweyd.s.gy/BIRCal";
         const FORCE_KILL = false; 
-        let selectedFinancingTitle = null; // Track highlighted financing card
+        let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: November 2, 2026 @ 12:00 AM Local Time
+        // Kill Switch Check - Deactivation Date: November 4, 2026 @ 12:00 AM Local Time
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 10, 2, 0, 0, 0); // Month index 10 = November
+            const expirationDate = new Date(2026, 10, 4, 0, 0, 0); // November 4, 2026
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -879,13 +893,13 @@
 
         function calculate() {
             const hasMembership = document.getElementById('global-membership').checked;
+            const isPlusPromoChecked = document.getElementById('toggle-plus-promo').checked;
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
             // Item Dollar Inputs
             const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
             const lgAppliancesAmt = parseFloat(document.getElementById('amt-lg-appliances').value) || 0;
-            const fellowAmt = parseFloat(document.getElementById('amt-fellow').value) || 0;
             const ipadMiniAmt = parseFloat(document.getElementById('amt-ipad-mini').value) || 0;
             const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
             const games5packAmt = parseFloat(document.getElementById('amt-games-5pack').value) || 0;
@@ -906,18 +920,12 @@
             const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
             const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            const totalSubtotal = generalAmt + lgAppliancesAmt + fellowAmt + ipadMiniAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + lgAppliancesAmt + ipadMiniAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
             if (cardStatus !== 'none' && !isFinancing) {
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
-            }
-
-            // Fellow Products 2x Card Promo Rate
-            let fellowCardRate = 0;
-            if (cardStatus !== 'none' && !isFinancing) {
-                fellowCardRate = (cardStatus === 'new') ? 0.20 : 0.10;
             }
 
             // Calculate Effective Rates
@@ -932,7 +940,6 @@
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
             document.getElementById('rate-lg-appliances').innerText = `Rate: ${formatRate(lgAppliancesRate)}%`;
-            document.getElementById('rate-fellow').innerText = `Rate: ${formatRate(fellowCardRate)}%`;
             document.getElementById('rate-ipad-mini').innerText = `Rate: ${formatRate(ipadMiniRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
@@ -946,8 +953,8 @@
             if (hasGeneralActive) activePromosCount += 1;
             document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
 
-            const hasLifestyleActive = fellowAmt > 0 || ipadMiniAmt > 0 || applePreorderAmt > 0;
-            if (hasLifestyleActive) activePromosCount += (fellowAmt > 0 ? 1 : 0) + (ipadMiniAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
+            const hasLifestyleActive = ipadMiniAmt > 0 || applePreorderAmt > 0;
+            if (hasLifestyleActive) activePromosCount += (ipadMiniAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
             const hasGamingActive = games5packAmt > 0 || gamingGearAmt > 0 || hasZelda || hasGtaviConsole || hasGtaVi;
@@ -959,7 +966,6 @@
             // Calculate Item Rewards
             let generalReward = generalAmt * generalRate;
             let lgAppliancesReward = lgAppliancesAmt * lgAppliancesRate;
-            let fellowReward = fellowAmt * ( (hasMembership ? 0.01 : 0) + fellowCardRate );
             let ipadMiniReward = ipadMiniAmt * ipadMiniRate;
             let applePreorderReward = applePreorderAmt * applePreorderRate;
             let games5packReward = games5packAmt * games5packRate;
@@ -979,7 +985,6 @@
 
             let calculatedCardRewards = (generalAmt * cardRate) + 
                                          (lgAppliancesAmt * cardRate) + 
-                                         (fellowAmt * fellowCardRate) + 
                                          (ipadMiniAmt * cardRate) + 
                                          (applePreorderAmt * cardRate) + 
                                          (games5packAmt * cardRate) + 
@@ -997,7 +1002,15 @@
                 }
             }
 
-            const pointBasedRewards = generalReward + lgAppliancesReward + fellowReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
+            // $25 BONUS REWARD ON $500+ PURCHASES FOR PLUS/TOTAL MEMBERS (NOV 2 - NOV 8)
+            let is25BonusApplied = false;
+            let bonus25Amount = 0;
+            if (hasMembership && totalSubtotal >= 500.00) {
+                is25BonusApplied = true;
+                bonus25Amount = 25.00;
+            }
+
+            const pointBasedRewards = generalReward + lgAppliancesReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward + bonus25Amount;
 
             let directPromoCerts = 0;
             if (hasGtaviConsole && hasMembership) {
@@ -1008,7 +1021,6 @@
 
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-lg-appliances').innerText = "$" + lgAppliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-fellow').innerText = "$" + fellowReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-ipad-mini').innerText = "$" + ipadMiniReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-games-5pack').innerText = "$" + games5packReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1018,8 +1030,19 @@
             
             const outputRewardsEl = document.getElementById('output-rewards');
             const rewardsBoxEl = document.getElementById('rewards-output-box');
+            const rewardsLabelEl = document.getElementById('rewards-output-label');
+            const bonusCalloutBadge = document.getElementById('bonus-25-callout-badge');
 
             outputRewardsEl.innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Callout badge & label for $25 Member Bonus Reward
+            if (is25BonusApplied) {
+                rewardsLabelEl.innerText = "Combined Rewards";
+                bonusCalloutBadge.classList.remove('hidden');
+            } else {
+                rewardsLabelEl.innerText = "Combined Rewards";
+                bonusCalloutBadge.classList.add('hidden');
+            }
 
             // Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
             if (totalCombinedRewards >= 29.99) {
@@ -1029,6 +1052,19 @@
                 rewardsBoxEl.classList.remove('rewards-glow-active');
                 outputRewardsEl.classList.remove('rewards-text-pulse');
             }
+
+            // Strobing Glow for 50% Off Plus Promo Box on Subtotal >= $500
+            const plusPromoBoxEl = document.getElementById('plus-promo-container');
+            if (totalSubtotal >= 500.00) {
+                plusPromoBoxEl.classList.add('rewards-glow-active');
+            } else {
+                plusPromoBoxEl.classList.remove('rewards-glow-active');
+            }
+
+            // 50% OFF PLUS MEMBERSHIP BANNER LOGIC (KEEPS MEMBERSHIP SAVINGS SEPARATE FROM REWARDS)
+            const isPlusQualified = isPlusPromoChecked && totalSubtotal >= 500.00;
+            document.getElementById('plus-discount-badge').classList.toggle('hidden', !isPlusQualified);
+            document.getElementById('footer-plus-savings-banner').classList.toggle('hidden', !isPlusQualified);
 
             // Section 3: Financing Calculation
             renderFinancingOptions(totalSubtotal);
@@ -1059,6 +1095,10 @@
                     parts.push(`• ✨ New Card Promo: Includes $20.00 Guaranteed Minimum Certificate (Purchase < $200)`);
                 }
 
+                if (is25BonusApplied) {
+                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Bonus Reward Certificate (Subtotal $500+)`);
+                }
+
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchases: $${generalReward.toFixed(2)}`;
                     let details = [];
@@ -1073,15 +1113,6 @@
                     let details = [];
                     if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')})`;
-                    parts.push(text);
-                }
-
-                if (fellowAmt > 0) {
-                    let text = `• Fellow Products ($99+): $${fellowReward.toFixed(2)}`;
-                    let details = [];
-                    if (hasMembership) details.push("1% Member Base");
-                    if (fellowCardRate > 0) details.push(`${(fellowCardRate*100).toFixed(0)}% 2x Card Promo`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
                 }
@@ -1229,11 +1260,11 @@
         function clearBasket() {
             selectedFinancingTitle = null;
             document.getElementById('global-membership').checked = false;
+            document.getElementById('toggle-plus-promo').checked = false;
             setCardStatus('none');
             
             document.getElementById('amt-general').value = '';
             document.getElementById('amt-lg-appliances').value = '';
-            document.getElementById('amt-fellow').value = '';
             document.getElementById('amt-ipad-mini').value = '';
             document.getElementById('amt-apple-preorder').value = '';
             document.getElementById('amt-games-5pack').value = '';
