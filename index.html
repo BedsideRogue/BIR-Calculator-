@@ -1002,7 +1002,10 @@
                 }
             }
 
-            // $25 BONUS REWARD ON $500+ PURCHASES FOR PLUS/TOTAL MEMBERS (NOV 2 - NOV 8)
+            // POINT-BASED REWARDS (Converts to Points & Partner eGift Cards)
+            const pointBasedRewards = generalReward + lgAppliancesReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
+
+            // DIRECT PROMOTIONAL CERTIFICATES (Issued directly as Best Buy Certificates; Not Reward Points)
             let is25BonusApplied = false;
             let bonus25Amount = 0;
             if (hasMembership && totalSubtotal >= 500.00) {
@@ -1010,9 +1013,7 @@
                 bonus25Amount = 25.00;
             }
 
-            const pointBasedRewards = generalReward + lgAppliancesReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward + bonus25Amount;
-
-            let directPromoCerts = 0;
+            let directPromoCerts = bonus25Amount;
             if (hasGtaviConsole && hasMembership) {
                 directPromoCerts += 50.00;
             }
@@ -1069,10 +1070,10 @@
             // Section 3: Financing Calculation
             renderFinancingOptions(totalSubtotal);
 
-            // Section 4: Rewards Redemption Values
+            // Section 4: Rewards Redemption Values (Strictly point-earning rewards)
             const totalPoints = Math.round(pointBasedRewards * 50);
             document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
-            document.getElementById('redemption-bb-value').innerText = "$" + pointBasedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('redemption-bb-value').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             const partnerValue = pointBasedRewards * 0.50;
             document.getElementById('redemption-partner-value').innerText = "$" + partnerValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1096,7 +1097,7 @@
                 }
 
                 if (is25BonusApplied) {
-                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Bonus Reward Certificate (Subtotal $500+)`);
+                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Direct Best Buy Promo Certificate (Subtotal $500+)`);
                 }
 
                 if (generalAmt > 0) {
