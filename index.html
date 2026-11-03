@@ -123,6 +123,12 @@
             background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%) !important;
             z-index: 10;
         }
+
+        /* Temporary prompt pulse when snapping to Section 3 */
+        .financing-prompt-pulse {
+            animation: glowThrob 1.8s ease-in-out 2 !important;
+            border-color: #0046be !important;
+        }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen font-sans flex flex-col pb-48 text-slate-900">
@@ -137,7 +143,7 @@
     <!-- MAIN APP CONTAINER -->
     <div id="app-content" class="w-full">
         <!-- 1. HEADER -->
-        <header class="bg-bb-blue text-white py-3.5 px-4 md:px-6 shadow-md sticky top-0 z-30">
+        <header id="main-app-header" class="bg-bb-blue text-white py-3.5 px-4 md:px-6 shadow-md sticky top-0 z-30">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
@@ -206,10 +212,13 @@
                     <div id="financing-container" class="hidden">
                         <label class="flex items-center justify-between p-3 bg-yellow-50/70 rounded-xl border border-yellow-200 active:bg-yellow-100 transition-colors cursor-pointer gap-3">
                             <div class="min-w-0 flex-1">
-                                <p class="text-sm lg:text-base font-bold text-yellow-950 font-sans">Using Financing?</p>
-                                <p class="text-[10px] lg:text-xs text-yellow-800 leading-snug">Forfeits card points; keeps member points.</p>
+                                <div class="flex items-center gap-1.5">
+                                    <p class="text-sm lg:text-base font-bold text-yellow-950 font-sans">Using Financing?</p>
+                                    <span class="text-[9px] font-bold bg-yellow-200 text-yellow-900 px-1.5 py-0.2 rounded">Prompts Offer Choice</span>
+                                </div>
+                                <p class="text-[10px] lg:text-xs text-yellow-800 leading-snug">Forfeits card points; keeps member points & selects plan below.</p>
                             </div>
-                            <input id="global-financing" type="checkbox" class="shrink-0" onchange="calculate()">
+                            <input id="global-financing" type="checkbox" class="shrink-0" onchange="handleFinancingCheckboxChange()">
                         </label>
                     </div>
                 </div>
@@ -476,7 +485,7 @@
             <div class="space-y-3 lg:space-y-4">
                 
                 <!-- SECTION 3: FINANCING OFFERS -->
-                <div id="suggested-financing" class="bg-white p-4 lg:p-5 rounded-2xl shadow-sm border border-slate-200/90 space-y-2 hover:shadow-md transition-shadow">
+                <div id="suggested-financing" class="bg-white p-4 lg:p-5 rounded-2xl shadow-sm border border-slate-200/90 space-y-2 hover:shadow-md transition-shadow transition-all duration-300">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-2 gap-2 flex-wrap">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h2 class="text-[11px] lg:text-xs font-bold text-slate-400 uppercase tracking-wider">3. Qualified Financing</h2>
@@ -536,13 +545,13 @@
                     <div id="view-mode-partner" class="hidden space-y-3">
                         <div class="bg-gradient-to-br from-amber-50/70 to-orange-50/50 p-3.5 rounded-xl border border-amber-200/80 flex items-center justify-between gap-2">
                             <div>
-                                <span class="bg-amber-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">50% Conversion</span>
+                                <span class="bg-blue-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">40% Off Select Brands</span>
                                 <p class="text-xs lg:text-sm font-bold text-amber-950 mt-1">Partner eGift Card Value</p>
-                                <p id="redemption-partner-subdetail" class="text-[10px] lg:text-xs text-amber-800 font-medium leading-snug">$0.01 / point • 500 points = $5.00</p>
+                                <p id="redemption-partner-subdetail" class="text-[10px] lg:text-xs text-amber-800 font-medium leading-snug">300 pts = $5.00 on promo brands • 500 pts = $5.00 standard</p>
                             </div>
                             <div class="text-right shrink-0">
                                 <p id="redemption-partner-value" class="text-xl lg:text-2xl font-black text-amber-800">$0.00</p>
-                                <p class="text-[9px] lg:text-[10px] text-slate-500 font-bold uppercase tracking-wider text-center">in Partner eCards</p>
+                                <p class="text-[9px] lg:text-[10px] text-slate-500 font-bold uppercase tracking-wider text-center">Promo Value (Up to)</p>
                             </div>
                         </div>
 
@@ -554,74 +563,90 @@
 
                         <div>
                             <div class="flex justify-between items-center mb-2 gap-2">
-                                <p class="text-[11px] lg:text-xs font-bold text-slate-700 uppercase tracking-wider">Top 8 Partner Brands</p>
-                                <span class="text-[9.5px] lg:text-[10px] font-bold text-amber-900 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full inline-flex items-center justify-center text-center">
-                                    60+ More Brands Available
+                                <p class="text-[11px] lg:text-xs font-bold text-slate-700 uppercase tracking-wider">Popular Partner Brands</p>
+                                <span class="text-[9.5px] lg:text-[10px] font-bold text-blue-900 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded-full inline-flex items-center justify-center text-center">
+                                    ★ 40% Off Points Promo Thru 12/30
                                 </span>
                             </div>
 
                             <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-amber-700 text-xs shrink-0 text-center">a</div>
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate">Amazon</p>
-                                        <p class="text-[10px] font-extrabold text-amber-700 partner-card-denom">$0.00 available</p>
-                                    </div>
-                                </div>
-
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-600 text-xs shrink-0 text-center">◎</div>
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate">Target</p>
-                                        <p class="text-[10px] font-extrabold text-red-600 partner-card-denom">$0.00 available</p>
-                                    </div>
-                                </div>
-
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center font-black text-blue-600 text-xs shrink-0 text-center">✹</div>
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate">Walmart</p>
-                                        <p class="text-[10px] font-extrabold text-blue-600 partner-card-denom">$0.00 available</p>
-                                    </div>
-                                </div>
-
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
+                                <!-- PROMO BRAND 1: STARBUCKS -->
+                                <div class="p-2.5 bg-emerald-50/50 hover:bg-emerald-50 rounded-xl border border-emerald-300 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 bg-blue-600 text-white text-[8px] font-black px-1 rounded uppercase">40% OFF</span>
                                     <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center font-black text-emerald-700 text-xs shrink-0 text-center">☕</div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-xs font-bold text-slate-900 truncate">Starbucks</p>
-                                        <p class="text-[10px] font-extrabold text-emerald-700 partner-card-denom">$0.00 available</p>
+                                        <p id="partner-val-starbucks" class="text-[10px] font-extrabold text-emerald-700 partner-card-denom-promo">$0.00 available</p>
                                     </div>
                                 </div>
 
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center font-black text-base shrink-0 text-center">🍎</div>
+                                <!-- PROMO BRAND 2: SEPHORA -->
+                                <div class="p-2.5 bg-purple-50/50 hover:bg-purple-50 rounded-xl border border-purple-300 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 bg-blue-600 text-white text-[8px] font-black px-1 rounded uppercase">40% OFF</span>
+                                    <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-black text-[10px] tracking-widest shrink-0 text-center">S</div>
                                     <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate">Apple</p>
-                                        <p class="text-[10px] font-extrabold text-slate-800 partner-card-denom">$0.00 available</p>
+                                        <p class="text-xs font-bold text-slate-900 truncate">Sephora</p>
+                                        <p id="partner-val-sephora" class="text-[10px] font-extrabold text-purple-800 partner-card-denom-promo">$0.00 available</p>
                                     </div>
                                 </div>
 
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-black text-xs shrink-0 text-center">U</div>
+                                <!-- PROMO BRAND 3: XBOX -->
+                                <div class="p-2.5 bg-emerald-50/50 hover:bg-emerald-50 rounded-xl border border-emerald-300 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 bg-blue-600 text-white text-[8px] font-black px-1 rounded uppercase">40% OFF</span>
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-black text-xs shrink-0 text-center">🎮</div>
                                     <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate leading-tight">Uber / Eats</p>
-                                        <p class="text-[10px] font-extrabold text-emerald-600 partner-card-denom">$0.00 available</p>
+                                        <p class="text-xs font-bold text-slate-900 truncate">Xbox Cash</p>
+                                        <p id="partner-val-xbox" class="text-[10px] font-extrabold text-emerald-800 partner-card-denom-promo">$0.00 available</p>
                                     </div>
                                 </div>
 
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
-                                    <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-500 text-xs shrink-0 text-center">◖</div>
+                                <!-- PROMO BRAND 4: AMC THEATRES -->
+                                <div class="p-2.5 bg-red-50/50 hover:bg-red-50 rounded-xl border border-red-300 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 bg-blue-600 text-white text-[8px] font-black px-1 rounded uppercase">40% OFF</span>
+                                    <div class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-black text-[9px] shrink-0 text-center">AMC</div>
                                     <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-slate-900 truncate">DoorDash</p>
-                                        <p class="text-[10px] font-extrabold text-red-500 partner-card-denom">$0.00 available</p>
+                                        <p class="text-xs font-bold text-slate-900 truncate">AMC Theatres</p>
+                                        <p id="partner-val-amc" class="text-[10px] font-extrabold text-red-700 partner-card-denom-promo">$0.00 available</p>
                                     </div>
                                 </div>
 
-                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors">
+                                <!-- STANDARD BRAND 1: AMAZON -->
+                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 text-[8px] font-bold text-slate-400">Standard</span>
+                                    <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-amber-700 text-xs shrink-0 text-center">a</div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs font-bold text-slate-900 truncate">Amazon</p>
+                                        <p class="text-[10px] font-extrabold text-amber-700 partner-card-denom-std">$0.00 available</p>
+                                    </div>
+                                </div>
+
+                                <!-- STANDARD BRAND 2: TARGET -->
+                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 text-[8px] font-bold text-slate-400">Standard</span>
+                                    <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center font-black text-red-600 text-xs shrink-0 text-center">◎</div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs font-bold text-slate-900 truncate">Target</p>
+                                        <p class="text-[10px] font-extrabold text-red-600 partner-card-denom-std">$0.00 available</p>
+                                    </div>
+                                </div>
+
+                                <!-- STANDARD BRAND 3: WALMART -->
+                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 text-[8px] font-bold text-slate-400">Standard</span>
+                                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center font-black text-blue-600 text-xs shrink-0 text-center">✹</div>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs font-bold text-slate-900 truncate">Walmart</p>
+                                        <p class="text-[10px] font-extrabold text-blue-600 partner-card-denom-std">$0.00 available</p>
+                                    </div>
+                                </div>
+
+                                <!-- STANDARD BRAND 4: HOME DEPOT -->
+                                <div class="p-2.5 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 flex items-center space-x-2.5 transition-colors relative">
+                                    <span class="absolute top-1 right-1.5 text-[8px] font-bold text-slate-400">Standard</span>
                                     <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center font-black text-orange-600 text-xs shrink-0 text-center">⌂</div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-xs font-bold text-slate-900 truncate">Home Depot</p>
-                                        <p class="text-[10px] font-extrabold text-orange-600 partner-card-denom">$0.00 available</p>
+                                        <p class="text-[10px] font-extrabold text-orange-600 partner-card-denom-std">$0.00 available</p>
                                     </div>
                                 </div>
                             </div>
@@ -629,10 +654,10 @@
 
                         <div class="bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-2.5 rounded-xl border border-amber-200/80 text-center">
                             <p class="text-xs font-bold text-amber-950 flex items-center justify-center gap-1">
-                                <span>🎁</span> 60+ More Brands Available in Member Portal
+                                <span>🎁</span> 40% Off Promo Includes Roblox, Ulta, Panera, Bloomin' & More!
                             </p>
                             <p class="text-[10px] lg:text-xs text-amber-900 font-medium mt-0.5 leading-snug">
-                                Includes Nike, Lowe's, Sephora, Chipotle, Delta, Airbnb, Kohl's & more.
+                                60+ total brands available in member portal • Promo ends 12/30/26.
                             </p>
                         </div>
                     </div>
@@ -852,6 +877,49 @@
             calculate();
         }
 
+        // Section 1 -> Section 3 Adaptive Snap Navigation
+        function handleFinancingCheckboxChange() {
+            const isChecked = document.getElementById('global-financing').checked;
+            calculate();
+
+            if (isChecked) {
+                // Ensure all financing offers are shown if not already qualified
+                const financingSection = document.getElementById('suggested-financing');
+                if (!financingSection) return;
+
+                // Responsive header offset calculation
+                const header = document.getElementById('main-app-header');
+                const headerHeight = header ? header.offsetHeight : 60;
+                const buffer = 16; // breathing space above section
+
+                // Compute exact element top relative to window scroll
+                const elementPosition = financingSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight - buffer;
+
+                // Smooth responsive scroll
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Apply transient pulse animation to prompt offer choice
+                financingSection.classList.remove('financing-prompt-pulse');
+                // Trigger DOM reflow to restart animation reliably
+                void financingSection.offsetWidth;
+                financingSection.classList.add('financing-prompt-pulse');
+
+                setTimeout(() => {
+                    financingSection.classList.remove('financing-prompt-pulse');
+                }, 3600);
+            } else {
+                // Deselect active offer if unchecked manually
+                if (selectedFinancingTitle) {
+                    selectedFinancingTitle = null;
+                    calculate();
+                }
+            }
+        }
+
         // Feature #3: Presentation Modal Controls
         function openPresentationModal() {
             const modal = document.getElementById('presentation-modal');
@@ -994,6 +1062,7 @@
             } else {
                 finContainer.classList.add('hidden');
                 finCheckbox.checked = false;
+                selectedFinancingTitle = null;
             }
             calculate();
         }
@@ -1193,8 +1262,25 @@
             document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             document.getElementById('redemption-bb-value').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-            const partnerValue = pointBasedRewards * 0.50;
-            document.getElementById('redemption-partner-value').innerText = "$" + partnerValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            // Standard Rate: 500 pts = $5.00 ($0.01/pt)
+            const partnerStandardValue = pointBasedRewards * 0.50;
+            // 40% Off Promo Rate: 300 pts = $5.00 ($0.01667/pt) -> Value = points * (5 / 300) = points / 60
+            const partnerPromoValue = (totalPoints / 60);
+
+            document.getElementById('redemption-partner-value').innerText = "$" + partnerPromoValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('redemption-partner-subdetail').innerText = `Up to $${partnerPromoValue.toFixed(2)} on 40% off promo brands • $${partnerStandardValue.toFixed(2)} on standard brands`;
+
+            // Update Standard Brand Badges
+            const partnerStdDenomEls = document.querySelectorAll('.partner-card-denom-std');
+            partnerStdDenomEls.forEach(el => {
+                el.innerText = `$${partnerStandardValue.toFixed(2)} available`;
+            });
+
+            // Update 40% Off Promo Brand Badges
+            const partnerPromoDenomEls = document.querySelectorAll('.partner-card-denom-promo');
+            partnerPromoDenomEls.forEach(el => {
+                el.innerText = `$${partnerPromoValue.toFixed(2)} available`;
+            });
             
             // Feature #3: Sync Customer Presentation Modal Values
             document.getElementById('pres-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
