@@ -137,7 +137,7 @@
     <div id="kill-switch-screen" class="hidden fixed inset-0 bg-slate-950 text-white flex flex-col items-center justify-center p-6 z-50 text-center">
         <div class="bg-bb-yellow text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-flex items-center justify-center text-center">Access Suspended</div>
         <h1 class="text-2xl font-black mb-2">Calculator Deactivated</h1>
-        <p class="text-slate-400 max-w-sm text-sm">This version of the calculator has reached its scheduled expiration on <strong>November 4, 2026 @ 12:00 AM</strong>. Please update to the latest promotional schedule.</p>
+        <p class="text-slate-400 max-w-sm text-sm">This version of the calculator has reached its scheduled expiration on <strong>November 5, 2026 @ 12:00 AM</strong>. Please update to the latest promotional schedule.</p>
     </div>
 
     <!-- MAIN APP CONTAINER -->
@@ -148,7 +148,7 @@
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 4, 2026 @ 12:00 AM Local Time</p>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 5, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -173,7 +173,7 @@
                                 <p class="text-sm lg:text-base font-bold text-blue-950 font-sans">Plus or Total Member?</p>
                                 <span id="plus-discount-badge" class="hidden bg-bb-yellow text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% OFF PLUS ($15.00 SAVINGS)</span>
                             </div>
-                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">5% LG Appliances • 20% 5-Game Package • $25 Bonus @ $500+</p>
+                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">5% All Appliances • 20% 5-Game Package • $25 Bonus @ $500+</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -251,14 +251,14 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 1: GENERAL & APPLIANCES -->
+                    <!-- DEPARTMENT 1: APPLIANCES -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-general')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
                                 <span class="text-base">📺</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-slate-900">General & LG Appliances</h3>
-                                    <p class="text-[10px] text-slate-500 font-medium">5% All LG Major Appliances (Oct 21 - Nov 3)</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-slate-900">Major & Small Appliances</h3>
+                                    <p class="text-[10px] text-slate-500 font-medium">5% All Major and Small Appliances (Nov 4 - Dec 2)</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -268,24 +268,24 @@
                         </button>
                         <div id="dept-general" class="accordion-content open p-3 space-y-3 border-t border-slate-100">
                             
-                            <!-- All LG Major Appliances Promo -->
+                            <!-- 5% Rewards on All Appliances Promo -->
                             <div>
                                 <div class="flex justify-between items-start mb-1.5 gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
                                             <span class="bg-red-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">5% MEMBER PROMO</span>
-                                            <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug break-words">All LG Major Appliances</label>
+                                            <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug break-words">All Major & Small Appliances</label>
                                         </div>
-                                        <span class="text-[10px] lg:text-xs text-red-700 font-medium font-sans block leading-snug break-words">5% Back in Rewards for Plus/Total Members • Valid Oct 21 - Nov 3</span>
+                                        <span class="text-[10px] lg:text-xs text-red-700 font-medium font-sans block leading-snug break-words">5% Back in Rewards for Plus/Total Members (normally 1%) • Valid Nov 4 - Dec 2</span>
                                     </div>
-                                    <span id="rate-lg-appliances" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-appliances" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-2.5 text-slate-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-lg-appliances" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500 font-semibold" oninput="calculate()">
+                                        <input id="amt-appliances" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500 font-semibold" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-slate-700 shrink-0 text-center" id="reward-lg-appliances">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-slate-700 shrink-0 text-center" id="reward-appliances">$0.00</div>
                                 </div>
                             </div>
 
@@ -819,10 +819,17 @@
                         <span class="text-xs text-slate-600 font-semibold">Total Value Earned:</span>
                         <span id="pres-rewards" class="text-3xl font-black text-bb-blue tracking-tight">$0.00</span>
                     </div>
-                    <div id="pres-bonus-badge" class="hidden pt-1">
-                        <span class="bg-bb-yellow text-slate-950 text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
-                            <span>🎁</span> Includes $25 Bonus Reward Certificate
-                        </span>
+                    <div id="pres-bonus-badge" class="hidden pt-1 space-y-1">
+                        <div id="pres-bonus-25-pill" class="hidden">
+                            <span class="bg-bb-yellow text-slate-950 text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
+                                <span>🎁</span> Includes $25 Bonus Reward Certificate
+                            </span>
+                        </div>
+                        <div id="pres-bonus-50-pill" class="hidden">
+                            <span class="bg-purple-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
+                                <span>🎮</span> Includes $50 GTA VI + Console Certificate
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -852,10 +859,10 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: November 4, 2026 @ 12:00 AM Local Time
+        // Kill Switch Check - Deactivation Date: November 5, 2026 @ 12:00 AM Local Time (Following Legend of Zelda Pre-Order expiration on Nov 4)
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 10, 4, 0, 0, 0); // November 4, 2026
+            const expirationDate = new Date(2026, 10, 5, 0, 0, 0); // Month 10 = November
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -883,28 +890,22 @@
             calculate();
 
             if (isChecked) {
-                // Ensure all financing offers are shown if not already qualified
                 const financingSection = document.getElementById('suggested-financing');
                 if (!financingSection) return;
 
-                // Responsive header offset calculation
                 const header = document.getElementById('main-app-header');
                 const headerHeight = header ? header.offsetHeight : 60;
-                const buffer = 16; // breathing space above section
+                const buffer = 16;
 
-                // Compute exact element top relative to window scroll
                 const elementPosition = financingSection.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerHeight - buffer;
 
-                // Smooth responsive scroll
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
 
-                // Apply transient pulse animation to prompt offer choice
                 financingSection.classList.remove('financing-prompt-pulse');
-                // Trigger DOM reflow to restart animation reliably
                 void financingSection.offsetWidth;
                 financingSection.classList.add('financing-prompt-pulse');
 
@@ -912,7 +913,6 @@
                     financingSection.classList.remove('financing-prompt-pulse');
                 }, 3600);
             } else {
-                // Deselect active offer if unchecked manually
                 if (selectedFinancingTitle) {
                     selectedFinancingTitle = null;
                     calculate();
@@ -1000,15 +1000,22 @@
 
         function selectFinancingOffer(title) {
             const finCheckbox = document.getElementById('global-financing');
+            const finContainer = document.getElementById('financing-container');
             if (selectedFinancingTitle === title) {
                 selectedFinancingTitle = null;
                 if (finCheckbox) {
                     finCheckbox.checked = false;
                 }
+                if (document.getElementById('global-card').value === 'none' && finContainer) {
+                    finContainer.classList.add('hidden');
+                }
             } else {
                 selectedFinancingTitle = title;
                 if (finCheckbox) {
                     finCheckbox.checked = true;
+                }
+                if (finContainer) {
+                    finContainer.classList.remove('hidden');
                 }
             }
             calculate();
@@ -1073,13 +1080,13 @@
             const cardStatus = document.getElementById('global-card').value;
             const isFinancing = document.getElementById('global-financing').checked;
             
-            // Item Dollar Inputs
-            const generalAmt = parseFloat(document.getElementById('amt-general').value) || 0;
-            const lgAppliancesAmt = parseFloat(document.getElementById('amt-lg-appliances').value) || 0;
-            const ipadMiniAmt = parseFloat(document.getElementById('amt-ipad-mini').value) || 0;
-            const applePreorderAmt = parseFloat(document.getElementById('amt-apple-preorder').value) || 0;
-            const games5packAmt = parseFloat(document.getElementById('amt-games-5pack').value) || 0;
-            const gamingGearAmt = parseFloat(document.getElementById('amt-gaming-gear').value) || 0;
+            // Item Dollar Inputs (Clamp at 0 to prevent negative numbers)
+            const generalAmt = Math.max(0, parseFloat(document.getElementById('amt-general').value) || 0);
+            const appliancesAmt = Math.max(0, parseFloat(document.getElementById('amt-appliances').value) || 0);
+            const ipadMiniAmt = Math.max(0, parseFloat(document.getElementById('amt-ipad-mini').value) || 0);
+            const applePreorderAmt = Math.max(0, parseFloat(document.getElementById('amt-apple-preorder').value) || 0);
+            const games5packAmt = Math.max(0, parseFloat(document.getElementById('amt-games-5pack').value) || 0);
+            const gamingGearAmt = Math.max(0, parseFloat(document.getElementById('amt-gaming-gear').value) || 0);
 
             // Gaming Line Items
             const hasZelda = document.getElementById('toggle-zelda').checked;
@@ -1096,7 +1103,7 @@
             const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
             const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
 
-            const totalSubtotal = generalAmt + lgAppliancesAmt + ipadMiniAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + appliancesAmt + ipadMiniAmt + applePreorderAmt + games5packAmt + gamingGearAmt + zeldaTotalAmt + gtaviTotalAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
@@ -1104,9 +1111,9 @@
                 cardRate = (cardStatus === 'new') ? 0.10 : 0.05;
             }
 
-            // Calculate Effective Rates
+            // Calculate Effective Rates (0% base when not a Plus/Total member and no credit card is selected)
             const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
-            const lgAppliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
+            const appliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
             const ipadMiniRate = (hasMembership ? 0.02 : 0) + cardRate;
             const applePreorderRate = (hasMembership ? 0.02 : 0) + cardRate;
             const games5packRate = (hasMembership ? 0.20 : 0) + cardRate;
@@ -1115,7 +1122,7 @@
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
-            document.getElementById('rate-lg-appliances').innerText = `Rate: ${formatRate(lgAppliancesRate)}%`;
+            document.getElementById('rate-appliances').innerText = `Rate: ${formatRate(appliancesRate)}%`;
             document.getElementById('rate-ipad-mini').innerText = `Rate: ${formatRate(ipadMiniRate)}%`;
             document.getElementById('rate-apple-preorder').innerText = `Rate: ${formatRate(applePreorderRate)}%`;
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
@@ -1125,9 +1132,9 @@
             let activePromosCount = 0;
             if (generalAmt > 0) activePromosCount += 1;
 
-            const hasGeneralActive = lgAppliancesAmt > 0;
-            if (hasGeneralActive) activePromosCount += 1;
-            document.getElementById('badge-dept-general').classList.toggle('hidden', !hasGeneralActive);
+            const hasAppliancesActive = appliancesAmt > 0;
+            if (hasAppliancesActive) activePromosCount += 1;
+            document.getElementById('badge-dept-general').classList.toggle('hidden', !hasAppliancesActive);
 
             const hasLifestyleActive = ipadMiniAmt > 0 || applePreorderAmt > 0;
             if (hasLifestyleActive) activePromosCount += (ipadMiniAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
@@ -1141,7 +1148,7 @@
 
             // Calculate Item Rewards
             let generalReward = generalAmt * generalRate;
-            let lgAppliancesReward = lgAppliancesAmt * lgAppliancesRate;
+            let appliancesReward = appliancesAmt * appliancesRate;
             let ipadMiniReward = ipadMiniAmt * ipadMiniRate;
             let applePreorderReward = applePreorderAmt * applePreorderRate;
             let games5packReward = games5packAmt * games5packRate;
@@ -1160,7 +1167,7 @@
             }
 
             let calculatedCardRewards = (generalAmt * cardRate) + 
-                                         (lgAppliancesAmt * cardRate) + 
+                                         (appliancesAmt * cardRate) + 
                                          (ipadMiniAmt * cardRate) + 
                                          (applePreorderAmt * cardRate) + 
                                          (games5packAmt * cardRate) + 
@@ -1170,21 +1177,23 @@
 
             // First-Day New Approved Cardholder Minimum $20 Guarantee
             let isNewCardGuaranteeApplied = false;
+            let cardRewardDeficit = 0;
             if (cardStatus === 'new' && !isFinancing && totalSubtotal > 0) {
                 if (calculatedCardRewards < 20.00) {
                     isNewCardGuaranteeApplied = true;
-                    const cardRewardDeficit = 20.00 - calculatedCardRewards;
-                    generalReward += cardRewardDeficit;
+                    cardRewardDeficit = 20.00 - calculatedCardRewards;
                 }
             }
 
             // POINT-BASED REWARDS (Converts to Points & Partner eGift Cards)
-            const pointBasedRewards = generalReward + lgAppliancesReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward;
+            const pointBasedRewards = generalReward + appliancesReward + ipadMiniReward + applePreorderReward + games5packReward + gamingGearReward + zeldaReward + gtaviReward + cardRewardDeficit;
 
             // DIRECT PROMOTIONAL CERTIFICATES (Issued directly as Best Buy Certificates; Not Reward Points)
+            // Note: Per Best Buy T&Cs, the $25 Member Bonus on $500+ excludes pre-order items
+            const nonPreorderSubtotal = generalAmt + appliancesAmt + games5packAmt + gamingGearAmt;
             let is25BonusApplied = false;
             let bonus25Amount = 0;
-            if (hasMembership && totalSubtotal >= 500.00) {
+            if (hasMembership && nonPreorderSubtotal >= 500.00) {
                 is25BonusApplied = true;
                 bonus25Amount = 25.00;
             }
@@ -1197,7 +1206,7 @@
             const totalCombinedRewards = pointBasedRewards + directPromoCerts;
 
             document.getElementById('reward-general').innerText = "$" + generalReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-lg-appliances').innerText = "$" + lgAppliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('reward-appliances').innerText = "$" + appliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-ipad-mini').innerText = "$" + ipadMiniReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-apple-preorder').innerText = "$" + applePreorderReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-games-5pack').innerText = "$" + games5packReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -1243,7 +1252,7 @@
             const upsellNudgeText = document.getElementById('footer-upsell-text');
             if (totalSubtotal >= 400.00 && totalSubtotal < 500.00) {
                 const diffTo500 = (500.00 - totalSubtotal).toFixed(2);
-                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo500}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`;
+                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo500}</span> more to unlock the <span class="underline">50% Off Plus Promo</span>, <span class="underline">$25 Bonus</span> & <span class="underline">18-Mo Financing</span>!`;
                 upsellNudgeBanner.classList.remove('hidden');
             } else {
                 upsellNudgeBanner.classList.add('hidden');
@@ -1261,6 +1270,14 @@
             const totalPoints = Math.round(pointBasedRewards * 50);
             document.getElementById('redemption-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             document.getElementById('redemption-bb-value').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+            // Dynamic subdetail showing point certificates vs direct promo certificates
+            const bbSubdetailEl = document.getElementById('redemption-bb-subdetail');
+            if (directPromoCerts > 0) {
+                bbSubdetailEl.innerText = `$${pointBasedRewards.toFixed(2)} from points + $${directPromoCerts.toFixed(2)} Direct Promo Cert`;
+            } else {
+                bbSubdetailEl.innerText = `$0.02 / point • 250 points = $5.00`;
+            }
 
             // Standard Rate: 500 pts = $5.00 ($0.01/pt)
             const partnerStandardValue = pointBasedRewards * 0.50;
@@ -1286,7 +1303,12 @@
             document.getElementById('pres-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('pres-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('pres-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
-            document.getElementById('pres-bonus-badge').classList.toggle('hidden', !is25BonusApplied);
+            
+            const hasAnyBonusCert = is25BonusApplied || (hasGtaviConsole && hasMembership);
+            document.getElementById('pres-bonus-badge').classList.toggle('hidden', !hasAnyBonusCert);
+            document.getElementById('pres-bonus-25-pill').classList.toggle('hidden', !is25BonusApplied);
+            document.getElementById('pres-bonus-50-pill').classList.toggle('hidden', !(hasGtaviConsole && hasMembership));
+
             document.getElementById('pres-plus-savings-row').classList.toggle('hidden', !isPlusQualified);
 
             const presFinancingRow = document.getElementById('pres-financing-row');
@@ -1322,11 +1344,6 @@
                 promoCertTextEl.innerHTML = '';
             }
 
-            const partnerDenomEls = document.querySelectorAll('.partner-card-denom');
-            partnerDenomEls.forEach(el => {
-                el.innerText = `$${partnerValue.toFixed(2)} available`;
-            });
-
             // Detailed Reward Breakdown Generator
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
@@ -1335,11 +1352,11 @@
                 let parts = [];
 
                 if (isNewCardGuaranteeApplied) {
-                    parts.push(`• ✨ New Card Promo: Includes $20.00 Guaranteed Minimum Certificate (Purchase < $200)`);
+                    parts.push(`• ✨ New Card Guarantee: +$${cardRewardDeficit.toFixed(2)} Top-Up to reach $20.00 Min Card Reward`);
                 }
 
                 if (is25BonusApplied) {
-                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Direct Best Buy Promo Certificate (Subtotal $500+)`);
+                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Direct Best Buy Promo Certificate (Eligible Subtotal $500+)`);
                 }
 
                 if (generalAmt > 0) {
@@ -1351,8 +1368,8 @@
                     parts.push(text);
                 }
 
-                if (lgAppliancesAmt > 0) {
-                    let text = `• All LG Major Appliances: $${lgAppliancesReward.toFixed(2)}`;
+                if (appliancesAmt > 0) {
+                    let text = `• All Major & Small Appliances: $${appliancesReward.toFixed(2)}`;
                     let details = [];
                     if (hasMembership) details.push("5% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
@@ -1511,7 +1528,7 @@
             setCardStatus('none');
             
             document.getElementById('amt-general').value = '';
-            document.getElementById('amt-lg-appliances').value = '';
+            document.getElementById('amt-appliances').value = '';
             document.getElementById('amt-ipad-mini').value = '';
             document.getElementById('amt-apple-preorder').value = '';
             document.getElementById('amt-games-5pack').value = '';
@@ -1525,7 +1542,13 @@
             document.getElementById('toggle-gtavi').checked = false;
             document.getElementById('gtavi-qty').value = '1';
 
+            closePresentationModal();
             calculate();
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // Initialize Application
