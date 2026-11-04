@@ -360,7 +360,7 @@
                                 <span class="text-base">🎮</span>
                                 <div>
                                     <h3 class="text-xs lg:text-sm font-bold text-slate-900">Gaming & Pre-Orders</h3>
-                                    <p class="text-[10px] text-slate-500 font-medium">20% on 5 Games, 2% Games & Gear, 10x Zelda & GTA VI</p>
+                                    <p class="text-[10px] text-slate-500 font-medium">$5 Gamers Beta, 20% 5-Game Pack, 2% Gear, Zelda & GTA VI</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -370,6 +370,20 @@
                         </button>
                         <div id="dept-gaming" class="accordion-content p-3 space-y-3 border-t border-slate-100">
                             
+                            <!-- Join Best Buy Gamers [BETA] $5 Promo Certificate -->
+                            <div class="p-3 bg-violet-50/60 rounded-xl border border-violet-300">
+                                <label class="flex items-center justify-between cursor-pointer gap-3">
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                                            <span class="bg-violet-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">🏆 $5 CERTIFICATE</span>
+                                            <span class="text-xs lg:text-sm font-bold text-slate-900 leading-snug break-words">Join Best Buy Gamers™ [BETA]</span>
+                                        </div>
+                                        <p class="text-[10px] lg:text-xs text-violet-900 font-medium leading-snug break-words">Create a free Gamers™ profile w/ My Best Buy™ account & get a $5 Direct Promo Certificate • Valid 10/20 - 12/31</p>
+                                    </div>
+                                    <input id="toggle-gamers-beta" type="checkbox" class="shrink-0" onchange="calculate()">
+                                </label>
+                            </div>
+
                             <!-- 20% Rewards on 5 Select Video Games -->
                             <div class="p-3 bg-emerald-50/50 rounded-xl border border-emerald-200 space-y-1.5">
                                 <div class="flex justify-between items-start gap-2">
@@ -764,6 +778,7 @@
                         <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
                         <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
                         <span id="bonus-25-callout-badge" class="hidden mt-1 inline-block bg-bb-yellow text-slate-950 text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🎁 INCLUDES $25 MEMBER BONUS</span>
+                        <span id="gamers-5-callout-badge" class="hidden mt-1 inline-block bg-violet-700 text-white text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🏆 INCLUDES $5 GAMERS BETA CERT</span>
                     </div>
                 </div>
 
@@ -828,6 +843,11 @@
                         <div id="pres-bonus-50-pill" class="hidden">
                             <span class="bg-purple-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
                                 <span>🎮</span> Includes $50 GTA VI + Console Certificate
+                            </span>
+                        </div>
+                        <div id="pres-bonus-5-gamers-pill" class="hidden">
+                            <span class="bg-violet-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
+                                <span>🏆</span> Includes $5 Best Buy Gamers™ Beta Certificate
                             </span>
                         </div>
                     </div>
@@ -1089,6 +1109,7 @@
             const gamingGearAmt = Math.max(0, parseFloat(document.getElementById('amt-gaming-gear').value) || 0);
 
             // Gaming Line Items
+            const hasGamersBeta = document.getElementById('toggle-gamers-beta').checked;
             const hasZelda = document.getElementById('toggle-zelda').checked;
             const zeldaQtyContainer = document.getElementById('zelda-qty-container');
             zeldaQtyContainer.classList.toggle('hidden', !hasZelda);
@@ -1140,8 +1161,8 @@
             if (hasLifestyleActive) activePromosCount += (ipadMiniAmt > 0 ? 1 : 0) + (applePreorderAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-lifestyle').classList.toggle('hidden', !hasLifestyleActive);
 
-            const hasGamingActive = games5packAmt > 0 || gamingGearAmt > 0 || hasZelda || hasGtaviConsole || hasGtaVi;
-            if (hasGamingActive) activePromosCount += (games5packAmt > 0 ? 1 : 0) + (gamingGearAmt > 0 ? 1 : 0) + (hasZelda ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
+            const hasGamingActive = hasGamersBeta || games5packAmt > 0 || gamingGearAmt > 0 || hasZelda || hasGtaviConsole || hasGtaVi;
+            if (hasGamingActive) activePromosCount += (hasGamersBeta ? 1 : 0) + (games5packAmt > 0 ? 1 : 0) + (gamingGearAmt > 0 ? 1 : 0) + (hasZelda ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
             document.getElementById('badge-dept-gaming').classList.toggle('hidden', !hasGamingActive);
 
             document.getElementById('active-promo-count-badge').innerText = `${activePromosCount} Promo${activePromosCount === 1 ? '' : 's'} Active`;
@@ -1199,6 +1220,9 @@
             }
 
             let directPromoCerts = bonus25Amount;
+            if (hasGamersBeta) {
+                directPromoCerts += 5.00;
+            }
             if (hasGtaviConsole && hasMembership) {
                 directPromoCerts += 50.00;
             }
@@ -1218,17 +1242,14 @@
             const rewardsBoxEl = document.getElementById('rewards-output-box');
             const rewardsLabelEl = document.getElementById('rewards-output-label');
             const bonusCalloutBadge = document.getElementById('bonus-25-callout-badge');
+            const gamersCalloutBadge = document.getElementById('gamers-5-callout-badge');
 
             outputRewardsEl.innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-            // Callout badge & label for $25 Member Bonus Reward
-            if (is25BonusApplied) {
-                rewardsLabelEl.innerText = "Combined Rewards";
-                bonusCalloutBadge.classList.remove('hidden');
-            } else {
-                rewardsLabelEl.innerText = "Combined Rewards";
-                bonusCalloutBadge.classList.add('hidden');
-            }
+            // Callout badges for Direct Promo Certificates
+            rewardsLabelEl.innerText = "Combined Rewards";
+            bonusCalloutBadge.classList.toggle('hidden', !is25BonusApplied);
+            gamersCalloutBadge.classList.toggle('hidden', !hasGamersBeta);
 
             // Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
             if (totalCombinedRewards >= 29.99) {
@@ -1304,10 +1325,11 @@
             document.getElementById('pres-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('pres-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             
-            const hasAnyBonusCert = is25BonusApplied || (hasGtaviConsole && hasMembership);
+            const hasAnyBonusCert = is25BonusApplied || hasGamersBeta || (hasGtaviConsole && hasMembership);
             document.getElementById('pres-bonus-badge').classList.toggle('hidden', !hasAnyBonusCert);
             document.getElementById('pres-bonus-25-pill').classList.toggle('hidden', !is25BonusApplied);
             document.getElementById('pres-bonus-50-pill').classList.toggle('hidden', !(hasGtaviConsole && hasMembership));
+            document.getElementById('pres-bonus-5-gamers-pill').classList.toggle('hidden', !hasGamersBeta);
 
             document.getElementById('pres-plus-savings-row').classList.toggle('hidden', !isPlusQualified);
 
@@ -1330,6 +1352,9 @@
             if (is25BonusApplied) {
                 activePromoCertNames.push('<span class="font-bold text-amber-950">$25 Member Bonus ($500+ Basket)</span>');
             }
+            if (hasGamersBeta) {
+                activePromoCertNames.push('<span class="font-bold text-amber-950">$5 Best Buy Gamers™ Beta Cert</span>');
+            }
             if (hasGtaviConsole && hasMembership) {
                 activePromoCertNames.push('<span class="font-bold text-amber-950">$50 GTA VI + Console Promo Cert</span>');
             }
@@ -1348,7 +1373,7 @@
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
 
-            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGtaviConsole) {
+            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGtaviConsole || hasGamersBeta) {
                 let parts = [];
 
                 if (isNewCardGuaranteeApplied) {
@@ -1357,6 +1382,10 @@
 
                 if (is25BonusApplied) {
                     parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Direct Best Buy Promo Certificate (Eligible Subtotal $500+)`);
+                }
+
+                if (hasGamersBeta) {
+                    parts.push(`• 🏆 Best Buy Gamers™ [BETA]: $5.00 Direct Best Buy Promo Certificate (Free My Best Buy™ Signup)`);
                 }
 
                 if (generalAmt > 0) {
@@ -1534,6 +1563,7 @@
             document.getElementById('amt-games-5pack').value = '';
             document.getElementById('amt-gaming-gear').value = '';
 
+            document.getElementById('toggle-gamers-beta').checked = false;
             document.getElementById('toggle-zelda').checked = false;
             document.getElementById('zelda-qty').value = '1';
 
