@@ -382,6 +382,16 @@
                                     </div>
                                     <input id="toggle-gamers-beta" type="checkbox" class="shrink-0" onchange="calculate()">
                                 </label>
+                                <!-- Inline Expandable QR Code for Gamers Beta -->
+                                <div id="gamers-beta-qr-container" class="hidden mt-3 pt-3 border-t border-violet-200/80 flex items-center justify-between gap-3 bg-white/90 p-2.5 rounded-xl border border-violet-100 shadow-2xs">
+                                    <div class="min-w-0 flex-1 space-y-1">
+                                        <span class="bg-violet-100 text-violet-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-block">Customer Scan</span>
+                                        <p class="text-xs font-extrabold text-slate-900 leading-tight">Scan to Join Gamers™ [BETA]</p>
+                                        <p class="text-[10px] text-slate-500 leading-snug">Sign in with a free My Best Buy™ account to claim your $5 certificate.</p>
+                                        <p class="text-[9.5px] font-mono text-violet-700 font-bold truncate">bestbuy.com/gamers</p>
+                                    </div>
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Best Buy Gamers QR Code" class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg border border-slate-200 bg-white p-1 shrink-0 shadow-xs">
+                                </div>
                             </div>
 
                             <!-- 20% Rewards on 5 Select Video Games -->
@@ -831,6 +841,18 @@
                     </div>
                 </div>
 
+                <!-- 3B. Best Buy Gamers Beta Scan Card inside Present Mode (Conditional) -->
+                <div id="pres-gamers-qr-row" class="hidden p-3 bg-violet-50/80 rounded-2xl border border-violet-200 flex items-center justify-between gap-3">
+                    <div class="min-w-0 flex-1 space-y-0.5">
+                        <span class="text-[9.5px] font-extrabold text-violet-800 uppercase tracking-wider block flex items-center gap-1">
+                            <span>🏆</span> Claim Your $5 Certificate
+                        </span>
+                        <span class="text-xs font-bold text-slate-900 block leading-snug">Scan to Join Best Buy Gamers™</span>
+                        <span class="text-[10px] text-violet-700 font-medium block leading-tight">bestbuy.com/gamers</span>
+                    </div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Scan to Join Best Buy Gamers" class="w-16 h-16 rounded-xl border border-violet-200 bg-white p-1 shrink-0 shadow-xs">
+                </div>
+
                 <!-- 4. Selected Financing Tile (Conditional) -->
                 <div id="pres-financing-row" class="hidden p-3.5 bg-slate-900 text-white rounded-2xl border border-slate-800 flex justify-between items-center shadow-xs">
                     <div class="min-w-0 flex-1 pr-3">
@@ -1088,6 +1110,10 @@
 
             // Gaming Line Items
             const hasGamersBeta = document.getElementById('toggle-gamers-beta').checked;
+            const gamersQrContainer = document.getElementById('gamers-beta-qr-container');
+            if (gamersQrContainer) {
+                gamersQrContainer.classList.toggle('hidden', !hasGamersBeta);
+            }
             const hasGtaviConsole = document.getElementById('toggle-gtavi-console').checked;
 
             const hasGtaVi = document.getElementById('toggle-gtavi').checked;
@@ -1295,6 +1321,7 @@
             document.getElementById('pres-bonus-25-pill').classList.toggle('hidden', !is25BonusApplied);
             document.getElementById('pres-bonus-50-pill').classList.toggle('hidden', !(hasGtaviConsole && hasMembership));
             document.getElementById('pres-bonus-5-gamers-pill').classList.toggle('hidden', !hasGamersBeta);
+            document.getElementById('pres-gamers-qr-row').classList.toggle('hidden', !hasGamersBeta);
 
             document.getElementById('pres-plus-savings-row').classList.toggle('hidden', !isPlusQualified);
 
