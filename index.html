@@ -148,7 +148,7 @@
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 9, 2026 @ 12:00 AM Local Time</p>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 14, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -173,7 +173,7 @@
                                 <p class="text-sm lg:text-base font-bold text-blue-950 font-sans">Plus or Total Member?</p>
                                 <span id="plus-discount-badge" class="hidden bg-bb-yellow text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% OFF PLUS ($15.00 SAVINGS)</span>
                             </div>
-                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">5% All Appliances • 20% 5-Game Package • $25 Bonus @ $500+</p>
+                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">5% All Appliances • 20% 5-Game Package • 2% Apple & Gaming</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -714,7 +714,7 @@
                 <div id="footer-upsell-nudge" class="hidden bg-slate-900 text-white text-[11px] lg:text-xs font-bold py-2 px-3.5 rounded-xl flex items-center justify-between shadow-sm border border-slate-800">
                     <span class="flex items-center gap-2 leading-snug">
                         <span class="text-sm">💡</span>
-                        <span id="footer-upsell-text">Add $0.00 more to unlock the $25 Member Bonus, 50% Off Plus & 18-Mo Financing!</span>
+                        <span id="footer-upsell-text">Add $0.00 more to unlock 50% Off Plus & 18-Mo Financing!</span>
                     </span>
                     <span class="bg-bb-yellow text-slate-950 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider shrink-0 ml-2">$500 Goal</span>
                 </div>
@@ -744,7 +744,6 @@
                     <div id="rewards-output-box" class="bg-blue-50/70 p-2.5 lg:p-3 rounded-xl text-center border border-blue-200 transition-all duration-300">
                         <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
                         <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
-                        <span id="bonus-25-callout-badge" class="hidden mt-1 inline-block bg-bb-yellow text-slate-950 text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🎁 INCLUDES $25 MEMBER BONUS</span>
                         <span id="gamers-5-callout-badge" class="hidden mt-1 inline-block bg-violet-700 text-white text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🏆 INCLUDES $5 GAMERS BETA CERT</span>
                     </div>
                 </div>
@@ -802,11 +801,6 @@
                         <span id="pres-rewards" class="text-3xl font-black text-bb-blue tracking-tight">$0.00</span>
                     </div>
                     <div id="pres-bonus-badge" class="hidden pt-1 space-y-1">
-                        <div id="pres-bonus-25-pill" class="hidden">
-                            <span class="bg-bb-yellow text-slate-950 text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
-                                <span>🎁</span> Includes $25 Bonus Reward Certificate
-                            </span>
-                        </div>
                         <div id="pres-bonus-50-pill" class="hidden">
                             <span class="bg-purple-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
                                 <span>🎮</span> Includes $50 GTA VI + Console Certificate
@@ -858,10 +852,10 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: November 9, 2026 @ 12:00 AM Local Time (Following $25 Member Bonus on $500+ Purchases expiration on Nov 8)
+        // Kill Switch Check - Deactivation Date: November 14, 2026 @ 12:00 AM Local Time (Following Select Apple Pre-Orders expiration on Nov 13)
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 10, 9, 0, 0, 0); // Month 10 = November
+            const expirationDate = new Date(2026, 10, 14, 0, 0, 0); // Month 10 = November
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -1175,16 +1169,7 @@
             const pointBasedRewards = generalReward + appliancesReward + applePreorderReward + games5packReward + gamingGearReward + gtaviReward + cardRewardDeficit;
 
             // DIRECT PROMOTIONAL CERTIFICATES (Issued directly as Best Buy Certificates; Not Reward Points)
-            // Note: Per Best Buy T&Cs, the $25 Member Bonus on $500+ excludes pre-order items
-            const nonPreorderSubtotal = generalAmt + appliancesAmt + games5packAmt + gamingGearAmt;
-            let is25BonusApplied = false;
-            let bonus25Amount = 0;
-            if (hasMembership && nonPreorderSubtotal >= 500.00) {
-                is25BonusApplied = true;
-                bonus25Amount = 25.00;
-            }
-
-            let directPromoCerts = bonus25Amount;
+            let directPromoCerts = 0;
             if (hasGamersBeta) {
                 directPromoCerts += 5.00;
             }
@@ -1205,14 +1190,12 @@
             const outputRewardsEl = document.getElementById('output-rewards');
             const rewardsBoxEl = document.getElementById('rewards-output-box');
             const rewardsLabelEl = document.getElementById('rewards-output-label');
-            const bonusCalloutBadge = document.getElementById('bonus-25-callout-badge');
             const gamersCalloutBadge = document.getElementById('gamers-5-callout-badge');
 
             outputRewardsEl.innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             // Callout badges for Direct Promo Certificates
             rewardsLabelEl.innerText = "Combined Rewards";
-            bonusCalloutBadge.classList.toggle('hidden', !is25BonusApplied);
             gamersCalloutBadge.classList.toggle('hidden', !hasGamersBeta);
 
             // Dynamic Pulsing Glow Effect for $30+ ($29.99 Threshold) Member Wash Trigger
@@ -1237,7 +1220,7 @@
             const upsellNudgeText = document.getElementById('footer-upsell-text');
             if (totalSubtotal >= 400.00 && totalSubtotal < 500.00) {
                 const diffTo500 = (500.00 - totalSubtotal).toFixed(2);
-                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo500}</span> more to unlock the <span class="underline">50% Off Plus Promo</span>, <span class="underline">$25 Bonus</span> & <span class="underline">18-Mo Financing</span>!`;
+                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo500}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`;
                 upsellNudgeBanner.classList.remove('hidden');
             } else {
                 upsellNudgeBanner.classList.add('hidden');
@@ -1289,9 +1272,8 @@
             document.getElementById('pres-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('pres-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             
-            const hasAnyBonusCert = is25BonusApplied || hasGamersBeta || (hasGtaviConsole && hasMembership);
+            const hasAnyBonusCert = hasGamersBeta || (hasGtaviConsole && hasMembership);
             document.getElementById('pres-bonus-badge').classList.toggle('hidden', !hasAnyBonusCert);
-            document.getElementById('pres-bonus-25-pill').classList.toggle('hidden', !is25BonusApplied);
             document.getElementById('pres-bonus-50-pill').classList.toggle('hidden', !(hasGtaviConsole && hasMembership));
             document.getElementById('pres-bonus-5-gamers-pill').classList.toggle('hidden', !hasGamersBeta);
             document.getElementById('pres-gamers-qr-row').classList.toggle('hidden', !hasGamersBeta);
@@ -1314,9 +1296,6 @@
             const promoCertNoticeEl = document.getElementById('partner-promo-cert-notice');
             const promoCertTextEl = document.getElementById('partner-promo-cert-text');
             let activePromoCertNames = [];
-            if (is25BonusApplied) {
-                activePromoCertNames.push('<span class="font-bold text-amber-950">$25 Member Bonus ($500+ Basket)</span>');
-            }
             if (hasGamersBeta) {
                 activePromoCertNames.push('<span class="font-bold text-amber-950">$5 Best Buy Gamers™ Beta Cert</span>');
             }
@@ -1343,10 +1322,6 @@
 
                 if (isNewCardGuaranteeApplied) {
                     parts.push(`• ✨ New Card Guarantee: +$${cardRewardDeficit.toFixed(2)} Top-Up to reach $20.00 Min Card Reward`);
-                }
-
-                if (is25BonusApplied) {
-                    parts.push(`• 🎁 Nov 2-8 Member Bonus: $25.00 Direct Best Buy Promo Certificate (Eligible Subtotal $500+)`);
                 }
 
                 if (hasGamersBeta) {
