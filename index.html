@@ -1409,6 +1409,7 @@
                 { title: "24 Month Financing on Storewide Purchases", min: 699, exp: "12/25/26", tag: "Limited Time" },
                 { title: "18 Month Financing on Storewide Purchases", min: 499, exp: "12/25/26", tag: "Limited Time" },
                 { title: "12 Month Financing on Storewide Purchases", min: 299, exp: "12/25/26", tag: "Limited Time" },
+                { title: "24 Month Financing on PlayStation 5 Console Purchases", min: 599.99, exp: "12/25/26", tag: "Limited Time" },
                 { title: "24 Month Financing on Unlocked Phone Purchases", min: 649, exp: "Everyday Offer", tag: "Standard" }
             ];
 
@@ -1439,6 +1440,7 @@
                     }
 
                     const safeTitle = o.title.replace(/'/g, "\\'");
+                    const minFormatted = o.min % 1 === 0 ? o.min.toLocaleString() : o.min.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
                     html += `
                         <div onclick="selectFinancingOffer('${safeTitle}')" class="p-2.5 rounded-xl border transition-all cursor-pointer relative ${cardStyleClass} flex justify-between items-center gap-2">
@@ -1448,7 +1450,7 @@
                                     ${isSelectedPitch ? '<span class="bg-bb-yellow text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 shadow-sm">★ Offer Selected</span>' : ''}
                                     <p class="text-xs font-bold text-slate-900 leading-tight">${o.title}</p>
                                 </div>
-                                <p class="text-[10px] text-slate-500 mt-0.5 font-medium">$${o.min.toLocaleString()} minimum • Ends: ${o.exp}</p>
+                                <p class="text-[10px] text-slate-500 mt-0.5 font-medium">$${minFormatted} minimum • Ends: ${o.exp}</p>
                             </div>
                             <div class="flex flex-col items-end gap-1 shrink-0">
                                 <span class="text-[10px] font-black px-2 py-0.5 rounded-md shrink-0 ${qualifies ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-slate-200 text-slate-600'} whitespace-nowrap">
