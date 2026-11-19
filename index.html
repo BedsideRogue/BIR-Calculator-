@@ -148,7 +148,7 @@
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
                     <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 19, 2026 @ 12:00 AM Local Time</p>
+                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: December 1, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
@@ -173,7 +173,7 @@
                                 <p class="text-sm lg:text-base font-bold text-blue-950 font-sans">Plus or Total Member?</p>
                                 <span id="plus-discount-badge" class="hidden bg-bb-yellow text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% OFF PLUS ($15.00 SAVINGS)</span>
                             </div>
-                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">5% All Appliances • 4% Ring • 20% 5-Game Pack • 10x GTA VI</p>
+                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">2% Storewide • 5% All Appliances • 4% Ring • 20% 5-Game Pack</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -204,7 +204,7 @@
                                 Existing (5%)
                             </button>
                             <button id="btn-card-new" type="button" onclick="setCardStatus('new')" class="py-2.5 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900 cursor-pointer leading-tight active:scale-95">
-                                New Approved (10% / Min $20)
+                                New Approved (10%)
                             </button>
                         </div>
                     </div>
@@ -230,24 +230,24 @@
                         <span id="active-promo-count-badge" class="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">0 Promos Active</span>
                     </div>
 
-                    <!-- STANDALONE STOREWIDE PURCHASE FIELD -->
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+                    <!-- STANDALONE STOREWIDE PURCHASE FIELD (2% MEMBER PROMO NOV 19 - DEC 6) -->
+                    <div class="p-3 bg-blue-50/50 border border-blue-200 rounded-xl space-y-1.5">
                         <div class="flex justify-between items-start gap-2">
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                    <span class="bg-slate-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">STANDARD BENEFIT</span>
+                                    <span class="bg-bb-blue text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% MEMBER PROMO</span>
                                     <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug break-words">All Other Storewide Purchases</label>
                                 </div>
-                                <span class="text-[10px] lg:text-xs text-slate-500 font-medium font-sans block leading-snug break-words">Standard Everyday Benefits (1% Member Base)</span>
+                                <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% back, normally 1%) for Plus/Total Members • Valid Nov 19 - Dec 6</span>
                             </div>
-                            <span id="rate-general" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                            <span id="rate-general" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                         </div>
                         <div class="flex space-x-2">
                             <div class="relative flex-1">
                                 <span class="absolute left-3 top-2.5 text-slate-400 text-sm lg:text-base">$</span>
                                 <input id="amt-general" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-blue-500 font-semibold" oninput="calculate()">
                             </div>
-                            <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-slate-700 shrink-0 text-center" id="reward-general">$0.00</div>
+                            <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-blue-800 shrink-0 text-center" id="reward-general">$0.00</div>
                         </div>
                     </div>
 
@@ -333,14 +333,14 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 3: GAMING & PRE-ORDERS -->
+                    <!-- DEPARTMENT 3: GAMING -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-gaming')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
                                 <span class="text-base">🎮</span>
                                 <div>
-                                    <h3 class="text-xs lg:text-sm font-bold text-slate-900">Gaming & Pre-Orders</h3>
-                                    <p class="text-[10px] text-slate-500 font-medium">$5 Gamers Beta, 20% 5-Game Pack, 2% Gear & GTA VI</p>
+                                    <h3 class="text-xs lg:text-sm font-bold text-slate-900">Gaming</h3>
+                                    <p class="text-[10px] text-slate-500 font-medium">$5 Gamers Beta & 20% 5-Game Package</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -395,62 +395,6 @@
                                 </div>
                             </div>
 
-                            <!-- Double Rewards (2%) on Select Games and Gear -->
-                            <div class="p-3 bg-blue-50/40 rounded-xl border border-blue-200 space-y-1.5">
-                                <div class="flex justify-between items-start gap-2">
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-blue-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">2% MEMBER PROMO</span>
-                                            <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug break-words">Select Games, Consoles & Gear</label>
-                                        </div>
-                                        <span class="text-[10px] lg:text-xs text-blue-700 font-medium font-sans block leading-snug break-words">Double Rewards (2% Member Promo) on games, consoles & gaming PCs • Valid Oct 20 - Nov 18</span>
-                                    </div>
-                                    <span id="rate-gaming-gear" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-blue-700 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <div class="relative flex-1">
-                                        <span class="absolute left-3 top-2.5 text-slate-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-gaming-gear" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-blue-500 font-semibold" oninput="calculate()">
-                                    </div>
-                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-blue-800 shrink-0 text-center" id="reward-gaming-gear">$0.00</div>
-                                </div>
-                            </div>
-
-                            <!-- GTA VI + Console -->
-                            <div class="p-3 bg-purple-50/40 rounded-xl border border-purple-200">
-                                <label class="flex items-center justify-between cursor-pointer gap-3">
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-purple-700 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">$50 CERTIFICATE</span>
-                                            <span class="text-xs lg:text-sm font-bold text-slate-900 leading-snug break-words">GTA VI Pre-Order + Eligible Console</span>
-                                        </div>
-                                        <p class="text-[10px] lg:text-xs text-purple-800 font-medium leading-snug break-words">Members get $50 Direct Promo Certificate when buying GTA VI pre-order + PS5 or Xbox Series X|S</p>
-                                    </div>
-                                    <input id="toggle-gtavi-console" type="checkbox" class="shrink-0" onchange="handleGtaviConsoleToggle()">
-                                </label>
-                            </div>
-
-                            <!-- GTA VI Game Only -->
-                            <div class="p-3 bg-purple-50/20 rounded-xl border border-slate-200">
-                                <label class="flex items-center justify-between cursor-pointer gap-3">
-                                    <div class="min-w-0 flex-1">
-                                        <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
-                                            <span class="bg-purple-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">10x REWARDS</span>
-                                            <span class="text-xs lg:text-sm font-bold text-slate-900 leading-snug break-words">GTA VI Pre-Order (Game Only)</span>
-                                        </div>
-                                        <p class="text-[10px] lg:text-xs text-purple-700 font-medium leading-snug break-words">Adds $79.99 • Plus & Total Members get 10% back ($8.00) • Valid Jul 27 - Nov 18</p>
-                                    </div>
-                                    <input id="toggle-gtavi" type="checkbox" class="shrink-0" onchange="calculate()">
-                                </label>
-                                <div id="gtavi-qty-container" class="hidden mt-2 pt-2 border-t border-purple-200 flex justify-between items-center text-xs lg:text-sm">
-                                    <span class="font-bold text-purple-900">Copies Pre-Ordered:</span>
-                                    <select id="gtavi-qty" class="bg-white border border-purple-200 rounded-lg px-2 py-1 text-xs lg:text-sm font-bold text-purple-900 outline-none cursor-pointer" onchange="calculate()">
-                                        <option value="1">1 Copy ($79.99)</option>
-                                        <option value="2">2 Copies ($159.98)</option>
-                                        <option value="3">3 Copies ($239.97)</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -802,11 +746,6 @@
                         <span id="pres-rewards" class="text-3xl font-black text-bb-blue tracking-tight">$0.00</span>
                     </div>
                     <div id="pres-bonus-badge" class="hidden pt-1 space-y-1">
-                        <div id="pres-bonus-50-pill" class="hidden">
-                            <span class="bg-purple-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
-                                <span>🎮</span> Includes $50 GTA VI + Console Certificate
-                            </span>
-                        </div>
                         <div id="pres-bonus-5-gamers-pill" class="hidden">
                             <span class="bg-violet-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
                                 <span>🏆</span> Includes $5 Best Buy Gamers™ Beta Certificate
@@ -853,10 +792,10 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: November 19, 2026 @ 12:00 AM Local Time (Following Select Games/Gear & GTA VI Pre-Order expiration on Nov 18)
+        // Kill Switch Check - Deactivation Date: December 1, 2026 @ 12:00 AM Local Time (Following 4% Ring Products Promo expiration on Nov 30)
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 10, 19, 0, 0, 0); // Month 10 = November
+            const expirationDate = new Date(2026, 11, 1, 0, 0, 0); // Month 11 = December
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
@@ -869,13 +808,6 @@
             const chevron = document.getElementById('chevron-' + id);
             content.classList.toggle('open');
             chevron.classList.toggle('open');
-        }
-
-        function handleGtaviConsoleToggle() {
-            if (document.getElementById('toggle-gtavi-console').checked) {
-                document.getElementById('toggle-gtavi').checked = true;
-            }
-            calculate();
         }
 
         // Section 1 -> Section 3 Adaptive Snap Navigation
@@ -1079,7 +1011,6 @@
             const appliancesAmt = Math.max(0, parseFloat(document.getElementById('amt-appliances').value) || 0);
             const ringAmt = Math.max(0, parseFloat(document.getElementById('amt-ring').value) || 0);
             const games5packAmt = Math.max(0, parseFloat(document.getElementById('amt-games-5pack').value) || 0);
-            const gamingGearAmt = Math.max(0, parseFloat(document.getElementById('amt-gaming-gear').value) || 0);
 
             // Gaming Line Items
             const hasGamersBeta = document.getElementById('toggle-gamers-beta').checked;
@@ -1087,15 +1018,8 @@
             if (gamersQrContainer) {
                 gamersQrContainer.classList.toggle('hidden', !hasGamersBeta);
             }
-            const hasGtaviConsole = document.getElementById('toggle-gtavi-console').checked;
 
-            const hasGtaVi = document.getElementById('toggle-gtavi').checked;
-            const gtaviQtyContainer = document.getElementById('gtavi-qty-container');
-            gtaviQtyContainer.classList.toggle('hidden', !hasGtaVi);
-            const gtaviQty = parseInt(document.getElementById('gtavi-qty').value) || 1;
-            const gtaviTotalAmt = hasGtaVi ? gtaviQty * 79.99 : 0;
-
-            const totalSubtotal = generalAmt + appliancesAmt + ringAmt + games5packAmt + gamingGearAmt + gtaviTotalAmt;
+            const totalSubtotal = generalAmt + appliancesAmt + ringAmt + games5packAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
@@ -1104,11 +1028,11 @@
             }
 
             // Calculate Effective Rates (0% base when not a Plus/Total member and no credit card is selected)
-            const generalRate = (hasMembership ? 0.01 : 0) + cardRate;
+            // Storewide Purchases upgraded to 2% member rate (Nov 19 - Dec 6)
+            const generalRate = (hasMembership ? 0.02 : 0) + cardRate;
             const appliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
             const ringRate = (hasMembership ? 0.04 : 0) + cardRate;
             const games5packRate = (hasMembership ? 0.20 : 0) + cardRate;
-            const gamingGearRate = (hasMembership ? 0.02 : 0) + cardRate;
 
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
@@ -1116,7 +1040,6 @@
             document.getElementById('rate-appliances').innerText = `Rate: ${formatRate(appliancesRate)}%`;
             document.getElementById('rate-ring').innerText = `Rate: ${formatRate(ringRate)}%`;
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
-            document.getElementById('rate-gaming-gear').innerText = `Rate: ${formatRate(gamingGearRate)}%`;
 
             // Update Active Category Accordion Badges
             let activePromosCount = 0;
@@ -1130,8 +1053,8 @@
             if (hasSmartHomeActive) activePromosCount += 1;
             document.getElementById('badge-dept-smarthome').classList.toggle('hidden', !hasSmartHomeActive);
 
-            const hasGamingActive = hasGamersBeta || games5packAmt > 0 || gamingGearAmt > 0 || hasGtaviConsole || hasGtaVi;
-            if (hasGamingActive) activePromosCount += (hasGamersBeta ? 1 : 0) + (games5packAmt > 0 ? 1 : 0) + (gamingGearAmt > 0 ? 1 : 0) + (hasGtaviConsole ? 1 : 0) + (hasGtaVi ? 1 : 0);
+            const hasGamingActive = hasGamersBeta || games5packAmt > 0;
+            if (hasGamingActive) activePromosCount += (hasGamersBeta ? 1 : 0) + (games5packAmt > 0 ? 1 : 0);
             document.getElementById('badge-dept-gaming').classList.toggle('hidden', !hasGamingActive);
 
             document.getElementById('active-promo-count-badge').innerText = `${activePromosCount} Promo${activePromosCount === 1 ? '' : 's'} Active`;
@@ -1141,41 +1064,14 @@
             let appliancesReward = appliancesAmt * appliancesRate;
             let ringReward = ringAmt * ringRate;
             let games5packReward = games5packAmt * games5packRate;
-            let gamingGearReward = gamingGearAmt * gamingGearRate;
-
-            let gtaviReward = 0;
-            if (hasGtaVi) {
-                const gtaviMemberRate = hasMembership ? 0.10 : 0;
-                gtaviReward = gtaviTotalAmt * (gtaviMemberRate + cardRate);
-            }
-
-            let calculatedCardRewards = (generalAmt * cardRate) + 
-                                         (appliancesAmt * cardRate) + 
-                                         (ringAmt * cardRate) + 
-                                         (games5packAmt * cardRate) + 
-                                         (gamingGearAmt * cardRate) + 
-                                         (gtaviTotalAmt * cardRate);
-
-            // First-Day New Approved Cardholder Minimum $20 Guarantee
-            let isNewCardGuaranteeApplied = false;
-            let cardRewardDeficit = 0;
-            if (cardStatus === 'new' && !isFinancing && totalSubtotal > 0) {
-                if (calculatedCardRewards < 20.00) {
-                    isNewCardGuaranteeApplied = true;
-                    cardRewardDeficit = 20.00 - calculatedCardRewards;
-                }
-            }
 
             // POINT-BASED REWARDS (Converts to Points & Partner eGift Cards)
-            const pointBasedRewards = generalReward + appliancesReward + ringReward + games5packReward + gamingGearReward + gtaviReward + cardRewardDeficit;
+            const pointBasedRewards = generalReward + appliancesReward + ringReward + games5packReward;
 
             // DIRECT PROMOTIONAL CERTIFICATES (Issued directly as Best Buy Certificates; Not Reward Points)
             let directPromoCerts = 0;
             if (hasGamersBeta) {
                 directPromoCerts += 5.00;
-            }
-            if (hasGtaviConsole && hasMembership) {
-                directPromoCerts += 50.00;
             }
 
             const totalCombinedRewards = pointBasedRewards + directPromoCerts;
@@ -1184,7 +1080,6 @@
             document.getElementById('reward-appliances').innerText = "$" + appliancesReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-ring').innerText = "$" + ringReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('reward-games-5pack').innerText = "$" + games5packReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('reward-gaming-gear').innerText = "$" + gamingGearReward.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
             document.getElementById('output-subtotal').innerText = "$" + totalSubtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             
@@ -1273,9 +1168,7 @@
             document.getElementById('pres-rewards').innerText = "$" + totalCombinedRewards.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('pres-points-badge').innerText = `${totalPoints.toLocaleString()} Points`;
             
-            const hasAnyBonusCert = hasGamersBeta || (hasGtaviConsole && hasMembership);
-            document.getElementById('pres-bonus-badge').classList.toggle('hidden', !hasAnyBonusCert);
-            document.getElementById('pres-bonus-50-pill').classList.toggle('hidden', !(hasGtaviConsole && hasMembership));
+            document.getElementById('pres-bonus-badge').classList.toggle('hidden', !hasGamersBeta);
             document.getElementById('pres-bonus-5-gamers-pill').classList.toggle('hidden', !hasGamersBeta);
             document.getElementById('pres-gamers-qr-row').classList.toggle('hidden', !hasGamersBeta);
 
@@ -1296,18 +1189,8 @@
             // FEATURE #5: DYNAMIC PROMOTIONAL CERTIFICATE NOTICE IN PARTNER VIEW
             const promoCertNoticeEl = document.getElementById('partner-promo-cert-notice');
             const promoCertTextEl = document.getElementById('partner-promo-cert-text');
-            let activePromoCertNames = [];
             if (hasGamersBeta) {
-                activePromoCertNames.push('<span class="font-bold text-amber-950">$5 Best Buy Gamers™ Beta Cert</span>');
-            }
-            if (hasGtaviConsole && hasMembership) {
-                activePromoCertNames.push('<span class="font-bold text-amber-950">$50 GTA VI + Console Promo Cert</span>');
-            }
-
-            if (activePromoCertNames.length > 0) {
-                const joinedNames = activePromoCertNames.join(' and ');
-                const verb = activePromoCertNames.length > 1 ? 'are issued directly as promotional certificates' : 'is issued directly as a promotional certificate';
-                promoCertTextEl.innerHTML = `<span class="font-bold">Promotional Certificate Notice:</span> The ${joinedNames} ${verb} and can only be redeemed at Best Buy (not eligible for Partner eGift Card conversion).`;
+                promoCertTextEl.innerHTML = `<span class="font-bold">Promotional Certificate Notice:</span> The <span class="font-bold text-amber-950">$5 Best Buy Gamers™ Beta Cert</span> is issued directly as a promotional certificate and can only be redeemed at Best Buy (not eligible for Partner eGift Card conversion).`;
                 promoCertNoticeEl.classList.remove('hidden');
             } else {
                 promoCertNoticeEl.classList.add('hidden');
@@ -1318,12 +1201,8 @@
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
 
-            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGtaviConsole || hasGamersBeta) {
+            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGamersBeta) {
                 let parts = [];
-
-                if (isNewCardGuaranteeApplied) {
-                    parts.push(`• ✨ New Card Guarantee: +$${cardRewardDeficit.toFixed(2)} Top-Up to reach $20.00 Min Card Reward`);
-                }
 
                 if (hasGamersBeta) {
                     parts.push(`• 🏆 Best Buy Gamers™ [BETA]: $5.00 Direct Best Buy Promo Certificate (Free My Best Buy™ Signup)`);
@@ -1332,7 +1211,7 @@
                 if (generalAmt > 0) {
                     let text = `• Storewide Purchases: $${generalReward.toFixed(2)}`;
                     let details = [];
-                    if (hasMembership) details.push("1% Member Base");
+                    if (hasMembership) details.push("2% Member Promo");
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
@@ -1363,28 +1242,6 @@
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
-                }
-
-                if (gamingGearAmt > 0) {
-                    let text = `• Select Games, Consoles & Gear: $${gamingGearReward.toFixed(2)}`;
-                    let details = [];
-                    if (hasMembership) details.push("2% Member Promo");
-                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')})`;
-                    parts.push(text);
-                }
-
-                if (hasGtaVi) {
-                    let text = `• GTA VI Pre-Order (${gtaviQty}x): $${gtaviReward.toFixed(2)}`;
-                    let details = [];
-                    if (hasMembership) details.push("10% Member (10x)");
-                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
-                    if (details.length > 0) text += ` (${details.join(' + ')})`;
-                    parts.push(text);
-                }
-
-                if (hasGtaviConsole && hasMembership) {
-                    parts.push(`• GTA VI + Console Promo: $50.00 Direct Best Buy Promo Certificate`);
                 }
 
                 if (parts.length > 0) {
@@ -1485,13 +1342,8 @@
             document.getElementById('amt-appliances').value = '';
             document.getElementById('amt-ring').value = '';
             document.getElementById('amt-games-5pack').value = '';
-            document.getElementById('amt-gaming-gear').value = '';
 
             document.getElementById('toggle-gamers-beta').checked = false;
-            document.getElementById('toggle-gtavi-console').checked = false;
-
-            document.getElementById('toggle-gtavi').checked = false;
-            document.getElementById('gtavi-qty').value = '1';
 
             closePresentationModal();
             calculate();
