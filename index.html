@@ -147,7 +147,7 @@
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals</h1>
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals Are Here!</h1>
                     <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: December 1, 2026 @ 12:00 AM Local Time</p>
                 </div>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
@@ -184,9 +184,9 @@
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
                                     <span class="bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">50% OFF PLUS PROMO</span>
-                                    <span class="text-xs lg:text-sm font-bold text-slate-900 leading-snug">Product $500+ & Protection Plan Added?</span>
+                                    <span class="text-xs lg:text-sm font-bold text-slate-900 leading-snug">Product $499.99+ & Any Protection Plan Added?</span>
                                 </div>
-                                <p class="text-[10px] lg:text-xs text-amber-900 font-medium leading-snug">Saves 50% ($15.00 off $29.99) on 1st yr My Best Buy Plus • Valid 11/2 - 1/30</p>
+                                <p class="text-[10px] lg:text-xs text-amber-900 font-medium leading-snug">Saves 50% ($15.00 off $29.99) on 1st yr My Best Buy Plus™ • Ends 1/30/27</p>
                             </div>
                             <input id="toggle-plus-promo" type="checkbox" class="shrink-0" onchange="calculate()">
                         </label>
@@ -269,8 +269,8 @@
                         <div id="dept-general" class="accordion-content open p-3 space-y-3 border-t border-slate-100">
                             
                             <!-- 5% Rewards on All Appliances Promo -->
-                            <div>
-                                <div class="flex justify-between items-start mb-1.5 gap-2">
+                            <div class="p-3 bg-red-50/40 rounded-xl border border-red-200 space-y-1.5">
+                                <div class="flex justify-between items-start gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
                                             <span class="bg-red-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">5% MEMBER PROMO</span>
@@ -278,14 +278,14 @@
                                         </div>
                                         <span class="text-[10px] lg:text-xs text-red-700 font-medium font-sans block leading-snug break-words">5% Back in Rewards for Plus/Total Members (normally 1%) • Valid Nov 4 - Dec 2</span>
                                     </div>
-                                    <span id="rate-appliances" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-appliances" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-red-700 bg-red-100 border border-red-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-2.5 text-slate-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-appliances" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500 font-semibold" oninput="calculate()">
+                                        <input id="amt-appliances" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-red-500 font-semibold" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-slate-700 shrink-0 text-center" id="reward-appliances">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-red-800 shrink-0 text-center" id="reward-appliances">$0.00</div>
                                 </div>
                             </div>
 
@@ -310,8 +310,8 @@
                         <div id="dept-smarthome" class="accordion-content p-3 space-y-3 border-t border-slate-100">
                             
                             <!-- 4% Rewards on Ring Products Promo -->
-                            <div>
-                                <div class="flex justify-between items-start mb-1.5 gap-2">
+                            <div class="p-3 bg-sky-50/40 rounded-xl border border-sky-200 space-y-1.5">
+                                <div class="flex justify-between items-start gap-2">
                                     <div class="min-w-0 flex-1">
                                         <div class="flex items-center gap-1.5 mb-0.5 flex-wrap">
                                             <span class="bg-sky-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">4% MEMBER PROMO</span>
@@ -319,14 +319,14 @@
                                         </div>
                                         <span class="text-[10px] lg:text-xs text-sky-800 font-medium font-sans block leading-snug break-words">4% Back in Rewards for Plus/Total Members (normally 1%) • Online/App Activation • Valid Nov 15 - Nov 30</span>
                                     </div>
-                                    <span id="rate-ring" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    <span id="rate-ring" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-sky-700 bg-sky-100 border border-sky-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="relative flex-1">
                                         <span class="absolute left-3 top-2.5 text-slate-400 text-sm lg:text-base">$</span>
-                                        <input id="amt-ring" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:bg-white focus:border-blue-500 font-semibold" oninput="calculate()">
+                                        <input id="amt-ring" type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-white border border-slate-200 rounded-lg pl-7 pr-3 py-2 text-sm lg:text-base outline-none focus:border-sky-500 font-semibold" oninput="calculate()">
                                     </div>
-                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-slate-700 shrink-0 text-center" id="reward-ring">$0.00</div>
+                                    <div class="w-20 lg:w-24 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-xs lg:text-sm font-extrabold text-sky-800 shrink-0 text-center" id="reward-ring">$0.00</div>
                                 </div>
                             </div>
 
@@ -655,13 +655,13 @@
         <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] px-4 py-3 z-40">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto space-y-2">
                 
-                <!-- FEATURE #1: SMART THRESHOLD UPSELL NUDGE BANNER ($400 - $499.99) -->
+                <!-- FEATURE #1: SMART THRESHOLD UPSELL NUDGE BANNER ($400 - $499.98) -->
                 <div id="footer-upsell-nudge" class="hidden bg-slate-900 text-white text-[11px] lg:text-xs font-bold py-2 px-3.5 rounded-xl flex items-center justify-between shadow-sm border border-slate-800">
                     <span class="flex items-center gap-2 leading-snug">
                         <span class="text-sm">💡</span>
                         <span id="footer-upsell-text">Add $0.00 more to unlock 50% Off Plus & 18-Mo Financing!</span>
                     </span>
-                    <span class="bg-bb-yellow text-slate-950 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider shrink-0 ml-2">$500 Goal</span>
+                    <span class="bg-bb-yellow text-slate-950 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider shrink-0 ml-2">$499.99 Goal</span>
                 </div>
 
                 <!-- UNCONFLATED PLUS MEMBERSHIP DISCOUNT BANNER -->
@@ -689,7 +689,7 @@
                     <div id="rewards-output-box" class="bg-blue-50/70 p-2.5 lg:p-3 rounded-xl text-center border border-blue-200 transition-all duration-300">
                         <p id="rewards-output-label" class="text-[9px] md:text-[10px] lg:text-xs uppercase font-bold text-blue-700">Combined Rewards</p>
                         <p id="output-rewards" class="text-lg md:text-2xl lg:text-3xl font-black text-bb-blue transition-all duration-300">$0.00</p>
-                        <span id="gamers-5-callout-badge" class="hidden mt-1 inline-block bg-violet-700 text-white text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm">🏆 INCLUDES $5 GAMERS BETA CERT</span>
+                        <span id="gamers-5-callout-badge" class="hidden mt-1 inline-block bg-violet-700 text-white text-[9px] lg:text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide shadow-sm leading-tight text-balance">🏆 INCLUDES $5<br class="sm:hidden"> GAMERS BETA CERT</span>
                     </div>
                 </div>
 
@@ -1103,27 +1103,27 @@
                 outputRewardsEl.classList.remove('rewards-text-pulse');
             }
 
-            // Strobing Glow for 50% Off Plus Promo Box on Subtotal >= $500
+            // Strobing Glow for 50% Off Plus Promo Box on Subtotal >= $499.99
             const plusPromoBoxEl = document.getElementById('plus-promo-container');
-            if (totalSubtotal >= 500.00) {
+            if (totalSubtotal >= 499.99) {
                 plusPromoBoxEl.classList.add('rewards-glow-active');
             } else {
                 plusPromoBoxEl.classList.remove('rewards-glow-active');
             }
 
-            // FEATURE #1: SMART THRESHOLD UPSELL NUDGE ($400.00 - $499.99)
+            // FEATURE #1: SMART THRESHOLD UPSELL NUDGE ($400.00 - $499.98)
             const upsellNudgeBanner = document.getElementById('footer-upsell-nudge');
             const upsellNudgeText = document.getElementById('footer-upsell-text');
-            if (totalSubtotal >= 400.00 && totalSubtotal < 500.00) {
-                const diffTo500 = (500.00 - totalSubtotal).toFixed(2);
-                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo500}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`;
+            if (totalSubtotal >= 400.00 && totalSubtotal < 499.99) {
+                const diffTo499 = (499.99 - totalSubtotal).toFixed(2);
+                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo499}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`;
                 upsellNudgeBanner.classList.remove('hidden');
             } else {
                 upsellNudgeBanner.classList.add('hidden');
             }
 
             // 50% OFF PLUS MEMBERSHIP BANNER LOGIC (KEEPS MEMBERSHIP SAVINGS SEPARATE FROM REWARDS)
-            const isPlusQualified = isPlusPromoChecked && totalSubtotal >= 500.00;
+            const isPlusQualified = isPlusPromoChecked && totalSubtotal >= 499.99;
             document.getElementById('plus-discount-badge').classList.toggle('hidden', !isPlusQualified);
             document.getElementById('footer-plus-savings-banner').classList.toggle('hidden', !isPlusQualified);
 
