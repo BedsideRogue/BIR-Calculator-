@@ -145,11 +145,11 @@
         <!-- 1. HEADER -->
         <header id="main-app-header" class="bg-bb-blue text-white py-3.5 px-4 md:px-6 shadow-md sticky top-0 z-30">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto flex justify-between items-center">
-                <div>
+                <button type="button" onclick="openPromoCheckinModal()" class="text-left focus:outline-none cursor-pointer select-none bg-transparent border-0 p-0 m-0" aria-label="Open Employee Promo Check-In">
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
-                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals Are Here!</h1>
-                    <p class="text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: December 1, 2026 @ 12:00 AM Local Time</p>
-                </div>
+                    <span class="block text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals Are Here!</span>
+                    <span class="block text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: December 1, 2026 @ 12:00 AM Local Time</span>
+                </button>
                 <button onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95">
                     Reset App
                 </button>
@@ -173,7 +173,7 @@
                                 <p class="text-sm lg:text-base font-bold text-blue-950 font-sans">Plus or Total Member?</p>
                                 <span id="plus-discount-badge" class="hidden bg-bb-yellow text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">50% OFF PLUS ($15.00 SAVINGS)</span>
                             </div>
-                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">2% Storewide • 5% All Appliances • 4% Ring • 20% 5-Game Pack</p>
+                            <p class="text-[10px] lg:text-xs text-blue-700 leading-snug">2% Storewide • $50 Off M365 • 5% All Appliances • 4% Ring • 20% 5-Game Pack</p>
                         </div>
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
@@ -214,7 +214,7 @@
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center gap-1.5">
                                     <p class="text-sm lg:text-base font-bold text-yellow-950 font-sans">Using Financing?</p>
-                                    <span class="text-[9px] font-bold bg-yellow-200 text-yellow-900 px-1.5 py-0.2 rounded">Prompts Offer Choice</span>
+                                    <span class="text-[9px] font-bold bg-yellow-200 text-yellow-900 px-1.5 py-0.5 rounded">Prompts Offer Choice</span>
                                 </div>
                                 <p class="text-[10px] lg:text-xs text-yellow-800 leading-snug">Forfeits card points; keeps member points & selects plan below.</p>
                             </div>
@@ -251,7 +251,57 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 1: APPLIANCES -->
+                    <!-- DEPARTMENT 1: COMPUTERS & SOFTWARE -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+                        <button type="button" onclick="toggleAccordion('dept-computers')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
+                            <div class="flex items-center gap-2">
+                                <span class="text-base">💻</span>
+                                <div>
+                                    <h3 class="text-xs lg:text-sm font-bold text-slate-900">Computers & Software</h3>
+                                    <p class="text-[10px] text-slate-500 font-medium text-balance">Microsoft 365 w/ PC or Apple Device ($50 Members / $20 Non-Members)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span id="badge-dept-computers" class="hidden text-[10px] font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-md">Active</span>
+                                <span id="chevron-dept-computers" class="chevron open text-slate-400 text-xs">▼</span>
+                            </div>
+                        </button>
+                        <div id="dept-computers" class="accordion-content open p-3 space-y-3 border-t border-slate-100">
+                            
+                            <!-- Microsoft 365 Personal or Family (12-Mo) 3-Option Selector -->
+                            <div class="p-3 bg-indigo-50/40 rounded-xl border border-indigo-200 space-y-2">
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <span id="m365-promo-badge" class="bg-indigo-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">🏷️ $20 NON-MEMBERS</span>
+                                        <span id="rate-m365" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-indigo-700 bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-md inline-flex items-center justify-center text-center">Rate: 0%</span>
+                                    </div>
+                                    <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug text-balance">Microsoft 365 (12-Mo) w/ Select PC or Apple Device</label>
+                                    <span class="text-[10px] lg:text-xs text-indigo-800 font-medium font-sans block leading-snug text-balance">Adds discounted plan to basket & earns storewide rewards • Valid Nov 19 - Nov 30</span>
+                                </div>
+
+                                <input type="hidden" id="m365-plan" value="none">
+                                <div class="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl">
+                                    <button id="btn-m365-none" type="button" onclick="setM365Plan('none')" class="py-2 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all bg-bb-blue text-white shadow-sm cursor-pointer leading-tight active:scale-95">
+                                        None
+                                    </button>
+                                    <button id="btn-m365-personal" type="button" onclick="setM365Plan('personal')" class="py-2 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900 cursor-pointer leading-tight active:scale-95">
+                                        Personal<br><span id="label-m365-personal-price" class="text-[10px] font-semibold opacity-90">$79.99</span>
+                                    </button>
+                                    <button id="btn-m365-family" type="button" onclick="setM365Plan('family')" class="py-2 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900 cursor-pointer leading-tight active:scale-95">
+                                        Family<br><span id="label-m365-family-price" class="text-[10px] font-semibold opacity-90">$109.99</span>
+                                    </button>
+                                </div>
+
+                                <div id="m365-summary-bar" class="hidden flex items-center justify-between bg-white px-2.5 py-1.5 rounded-lg border border-indigo-100 text-[11px] lg:text-xs">
+                                    <span id="m365-added-label" class="font-semibold text-slate-700">Basket: $0.00</span>
+                                    <span id="reward-m365" class="font-extrabold text-indigo-800">Rewards: $0.00</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- DEPARTMENT 2: APPLIANCES -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-general')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
@@ -292,7 +342,7 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 2: SMART HOME & SECURITY -->
+                    <!-- DEPARTMENT 3: SMART HOME & SECURITY -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-smarthome')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
@@ -317,7 +367,7 @@
                                             <span class="bg-sky-600 text-white text-[9px] lg:text-[10px] font-black px-1.5 py-0.5 rounded uppercase shrink-0 inline-flex items-center justify-center text-center">4% MEMBER PROMO</span>
                                             <label class="text-xs lg:text-sm font-bold text-slate-900 block leading-snug break-words">Ring Smart Home & Security Products</label>
                                         </div>
-                                        <span class="text-[10px] lg:text-xs text-sky-800 font-medium font-sans block leading-snug break-words">4% Back in Rewards for Plus/Total Members (normally 1%) • Online/App Activation • Valid Nov 15 - Nov 30</span>
+                                        <span class="text-[10px] lg:text-xs text-sky-800 font-medium font-sans block leading-snug break-words">4% Back in Rewards for Plus/Total Members (normally 1%) • Valid Nov 15 - Nov 30</span>
                                     </div>
                                     <span id="rate-ring" class="shrink-0 whitespace-nowrap text-[10px] lg:text-xs font-black text-sky-700 bg-sky-100 border border-sky-200 px-2 py-0.5 rounded-md self-start inline-flex items-center justify-center text-center">Rate: 0%</span>
                                 </div>
@@ -333,7 +383,7 @@
                         </div>
                     </div>
 
-                    <!-- DEPARTMENT 3: GAMING -->
+                    <!-- DEPARTMENT 4: GAMING -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
                         <button type="button" onclick="toggleAccordion('dept-gaming')" class="w-full bg-slate-50 hover:bg-slate-100/80 p-3 flex justify-between items-center text-left transition-colors cursor-pointer">
                             <div class="flex items-center gap-2">
@@ -363,14 +413,14 @@
                                     <input id="toggle-gamers-beta" type="checkbox" class="shrink-0" onchange="calculate()">
                                 </label>
                                 <!-- Inline Expandable QR Code for Gamers Beta -->
-                                <div id="gamers-beta-qr-container" class="hidden mt-3 pt-3 border-t border-violet-200/80 flex items-center justify-between gap-3 bg-white/90 p-2.5 rounded-xl border border-violet-100 shadow-2xs">
+                                <div id="gamers-beta-qr-container" class="hidden mt-3 pt-3 border-t border-violet-200/80 flex items-center justify-between gap-3 bg-white/90 p-2.5 rounded-xl border border-violet-100 shadow-sm">
                                     <div class="min-w-0 flex-1 space-y-1">
                                         <span class="bg-violet-100 text-violet-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-block">Customer Scan</span>
                                         <p class="text-xs font-extrabold text-slate-900 leading-tight">Scan to Join Gamers™ [BETA]</p>
                                         <p class="text-[10px] text-slate-500 leading-snug">Sign in with a free My Best Buy™ account to claim your $5 certificate.</p>
                                         <p class="text-[9.5px] font-mono text-violet-700 font-bold truncate">bestbuy.com/gamers</p>
                                     </div>
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Best Buy Gamers QR Code" class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg border border-slate-200 bg-white p-1 shrink-0 shadow-xs">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Best Buy Gamers QR Code" class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg border border-slate-200 bg-white p-1 shrink-0 shadow-sm">
                                 </div>
                             </div>
 
@@ -631,7 +681,7 @@
                     </div>
 
                     <!-- SECTION 6: EMAIL FEEDBACK -->
-                    <div class="pt-3 border-t border-slate-150 space-y-2">
+                    <div class="pt-3 border-t border-slate-200 space-y-2">
                         <div class="flex items-center justify-center gap-1">
                             <span class="text-xs">✉️</span>
                             <span class="text-[10.5px] lg:text-xs font-bold text-slate-500 uppercase tracking-wider">Feedback & Suggestions</span>
@@ -639,9 +689,9 @@
                         <p class="text-[10px] lg:text-[11px] text-slate-500 max-w-xs mx-auto leading-snug">
                             Have an idea or spotted a promo bug? Send feedback directly to <span class="font-bold text-slate-700">josh.pike@bestbuy.com</span>.
                         </p>
-                        <a href="mailto:josh.pike@bestbuy.com?subject=Best%20Buy%20Promo%20Calculator%20Feedback&body=Hi%20Josh%2C%0A%0AFeedback%2F Bug%20Report%3A%0A%0A-%20Role%2FStore%20%23%20(Optional)%3A%0A-%20Specific%20Promo%20or%20Feature%3A%0A-%20Comments%3A%0A%0AThanks!" 
+                        <a href="mailto:josh.pike@bestbuy.com?subject=Best%20Buy%20Promo%20Calculator%20Feedback&body=Hi%20Josh%2C%0A%0AFeedback%2F%20Bug%20Report%3A%0A%0A-%20Role%2FStore%20%23%20(Optional)%3A%0A-%20Specific%20Promo%20or%20Feature%3A%0A-%20Comments%3A%0A%0AThanks!" 
                            class="inline-flex items-center justify-center gap-2 w-full max-w-xs py-2.5 px-3 bg-slate-900 hover:bg-slate-800 active:bg-black text-white text-xs lg:text-sm font-bold rounded-xl transition-colors shadow-sm cursor-pointer">
-                            <svg class="w-4 h-4 text-blue-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <svg class="w-4 h-4 text-blue-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             <span>Send Email Feedback</span>
                         </a>
                     </div>
@@ -651,7 +701,7 @@
 
         </main>
 
-        <!-- FLOATING BOTTOM RESULTS FOOTER WITH SMART NUDGE & UNCONFLATED MEMBERSHIP SAVINGS BANNER -->
+        <!-- FLOATING BOTTOM RESULTS FOOTER WITH SMART NUDGE & UNCONFLATED SAVINGS BANNER -->
         <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] px-4 py-3 z-40">
             <div class="max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto space-y-2">
                 
@@ -664,16 +714,16 @@
                     <span class="bg-bb-yellow text-slate-950 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider shrink-0 ml-2">$499.99 Goal</span>
                 </div>
 
-                <!-- UNCONFLATED PLUS MEMBERSHIP DISCOUNT BANNER -->
-                <div id="footer-plus-savings-banner" class="hidden bg-emerald-600 text-white text-xs lg:text-sm font-black py-2 px-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                    <span class="flex items-center gap-1.5">
-                        <span>🏷️</span>
-                        <span>My Best Buy Plus™ Membership Savings:</span>
-                    </span>
-                    <span class="text-right text-xs lg:text-sm font-black leading-tight">
-                        -$15.00 INSTANT<br>
-                        <span class="text-[10px] lg:text-xs font-semibold text-emerald-100">(50% Off $29.99)</span>
-                    </span>
+                <!-- UNCONFLATED INSTANT SAVINGS BANNER (PLUS MEMBERSHIP & MICROSOFT 365) -->
+                <div id="footer-plus-savings-banner" class="hidden bg-emerald-600 text-white text-xs lg:text-sm font-black py-2 px-3.5 rounded-xl flex flex-col gap-0.5 shadow-sm">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="flex items-center gap-1.5 min-w-0">
+                            <span class="shrink-0">🏷️</span>
+                            <span id="footer-savings-title" class="truncate">My Best Buy Plus™ Membership Savings:</span>
+                        </span>
+                        <span id="footer-savings-amount" class="shrink-0 whitespace-nowrap text-xs lg:text-sm font-black leading-tight">-$15.00 INSTANT</span>
+                    </div>
+                    <div id="footer-savings-subtext" class="text-right text-[10px] lg:text-xs font-semibold text-emerald-100 leading-tight text-balance">(50% Off $29.99)</div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 md:gap-5">
@@ -698,16 +748,16 @@
     </div>
 
     <!-- UNIFIED CUSTOMER-FACING PRESENTATION MODE MODAL (BEST BUY DESIGN SYSTEM) -->
-    <div id="presentation-modal" class="hidden fixed inset-0 bg-slate-950/75 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div id="presentation-modal" onclick="if(event.target === this) closePresentationModal()" class="hidden fixed inset-0 bg-slate-950/75 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-200 relative space-y-4">
             
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <div class="flex items-center gap-2">
-                    <span class="bg-bb-yellow text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider inline-flex items-center shadow-xs">BEST BUY VALUE</span>
+                    <span class="bg-bb-yellow text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider inline-flex items-center shadow-sm">BEST BUY VALUE</span>
                     <span class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Summary</span>
                 </div>
-                <button onclick="closePresentationModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 font-bold flex items-center justify-center text-sm transition">
+                <button type="button" onclick="closePresentationModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 font-bold flex items-center justify-center text-sm transition cursor-pointer">
                     ✕
                 </button>
             </div>
@@ -724,22 +774,22 @@
                     <span id="pres-subtotal" class="text-2xl font-black text-slate-900 tracking-tight">$0.00</span>
                 </div>
 
-                <!-- 2. Instant Membership Savings (Conditional) -->
+                <!-- 2. Instant Savings (Conditional: Plus Membership &/or Microsoft 365) -->
                 <div id="pres-plus-savings-row" class="hidden p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 flex justify-between items-center">
                     <div>
-                        <span class="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider block flex items-center gap-1">
+                        <span id="pres-savings-title" class="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider block flex items-center gap-1">
                             <span>🏷️</span> Instant Member Savings
                         </span>
-                        <span class="text-[11px] text-emerald-700 font-medium">50% Off 1st Year My Best Buy Plus™</span>
+                        <span id="pres-savings-subtext" class="text-[11px] text-emerald-700 font-medium">50% Off 1st Year My Best Buy Plus™</span>
                     </div>
-                    <span class="text-xl font-black text-emerald-700 tracking-tight">-$15.00</span>
+                    <span id="pres-savings-amount" class="text-xl font-black text-emerald-700 tracking-tight">-$15.00</span>
                 </div>
 
                 <!-- 3. Rewards & Certificates Tile -->
                 <div class="p-4 bg-blue-50/60 rounded-2xl border border-blue-200 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-[10px] font-extrabold text-blue-700 uppercase tracking-wider">Rewards & Certificates</span>
-                        <span id="pres-points-badge" class="text-[10px] font-black text-blue-900 bg-white border border-blue-200 px-2 py-0.5 rounded-full shadow-2xs">0 Points</span>
+                        <span id="pres-points-badge" class="text-[10px] font-black text-blue-900 bg-white border border-blue-200 px-2 py-0.5 rounded-full shadow-sm">0 Points</span>
                     </div>
                     <div class="flex justify-between items-baseline pt-0.5">
                         <span class="text-xs text-slate-600 font-semibold">Total Value Earned:</span>
@@ -747,7 +797,7 @@
                     </div>
                     <div id="pres-bonus-badge" class="hidden pt-1 space-y-1">
                         <div id="pres-bonus-5-gamers-pill" class="hidden">
-                            <span class="bg-violet-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-xs">
+                            <span class="bg-violet-700 text-white text-[9.5px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider inline-flex items-center gap-1 shadow-sm">
                                 <span>🏆</span> Includes $5 Best Buy Gamers™ Beta Certificate
                             </span>
                         </div>
@@ -763,11 +813,11 @@
                         <span class="text-xs font-bold text-slate-900 block leading-snug">Scan to Join Best Buy Gamers™</span>
                         <span class="text-[10px] text-violet-700 font-medium block leading-tight">bestbuy.com/gamers</span>
                     </div>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Scan to Join Best Buy Gamers" class="w-16 h-16 rounded-xl border border-violet-200 bg-white p-1 shrink-0 shadow-xs">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.bestbuy.com%2Fgamers" alt="Scan to Join Best Buy Gamers" class="w-16 h-16 rounded-xl border border-violet-200 bg-white p-1 shrink-0 shadow-sm">
                 </div>
 
                 <!-- 4. Selected Financing Tile (Conditional) -->
-                <div id="pres-financing-row" class="hidden p-3.5 bg-slate-900 text-white rounded-2xl border border-slate-800 flex justify-between items-center shadow-xs">
+                <div id="pres-financing-row" class="hidden p-3.5 bg-slate-900 text-white rounded-2xl border border-slate-800 flex justify-between items-center shadow-sm">
                     <div class="min-w-0 flex-1 pr-3">
                         <span class="text-[9.5px] font-extrabold text-blue-300 uppercase tracking-wider block">💳 0% Interest Financing</span>
                         <span id="pres-financing-title" class="text-xs text-slate-200 font-bold truncate block mt-0.5"></span>
@@ -780,8 +830,167 @@
             </div>
 
             <!-- Best Buy Brand Primary Action Button -->
-            <button onclick="closePresentationModal()" class="w-full py-3 bg-bb-blue hover:bg-blue-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition active:scale-95 cursor-pointer">
+            <button type="button" onclick="closePresentationModal()" class="w-full py-3 bg-bb-blue hover:bg-blue-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition active:scale-95 cursor-pointer">
                 Close Customer Summary
+            </button>
+        </div>
+    </div>
+
+    <!-- EMPLOYEE PROMO CHECK-IN MODAL (MATCHING PRESENTATION MODE VISUAL LANGUAGE) -->
+    <div id="promo-checkin-modal" onclick="if(event.target === this) closePromoCheckinModal()" class="hidden fixed inset-0 bg-slate-950/75 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl p-5 sm:p-6 shadow-2xl border border-slate-200 relative flex flex-col max-h-[88vh]">
+            
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="bg-bb-yellow text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider inline-flex items-center shadow-sm">EMPLOYEE CHECK-IN</span>
+                    <span class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Active Promos</span>
+                </div>
+                <button type="button" onclick="closePromoCheckinModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 font-bold flex items-center justify-center text-sm transition cursor-pointer">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Scrollable Comprehensive Promo List -->
+            <div class="overflow-y-auto pr-1 space-y-3 my-3">
+
+                <!-- Event & Kill Switch Status Tile -->
+                <div class="p-3 bg-slate-900 text-white rounded-2xl border border-slate-800 flex items-center justify-between gap-2 shadow-sm">
+                    <div class="min-w-0">
+                        <span class="text-[9.5px] font-extrabold text-bb-yellow uppercase tracking-wider block">Active Event Cycle</span>
+                        <span class="text-xs font-bold text-white block leading-snug">Black Friday Deals Are Here!</span>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span class="text-[9px] font-bold text-slate-400 uppercase block">Auto-Cutoff</span>
+                        <span class="text-[11px] font-black text-blue-300">Dec 1, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Group 1: Member Rewards Promotions -->
+                <div class="p-3.5 bg-blue-50/60 rounded-2xl border border-blue-200 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-extrabold text-blue-800 uppercase tracking-wider">Member Rewards (Plus & Total)</span>
+                        <span class="text-[9px] font-black text-blue-900 bg-white border border-blue-200 px-2 py-0.5 rounded-full">4 Active</span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-blue-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">2% Storewide Double Rewards</span>
+                                <span class="bg-bb-blue text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 19 – Dec 6</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">2% back (normally 1%) on all other storewide purchases.</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-red-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🍳 5% All Major & Small Appliances</span>
+                                <span class="bg-red-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 4 – Dec 2</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">5% back in rewards (normally 1%) for Plus/Total members.</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-sky-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🏠 4% Ring Smart Home & Security</span>
+                                <span class="bg-sky-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 15 – Nov 30</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">4% back in rewards (normally 1%) for Plus/Total members.</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-emerald-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🎮 20% 5 Select Video Games Pack</span>
+                                <span class="bg-emerald-700 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Oct 20 – Jan 31</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">20% back in rewards when purchasing 5 qualifying titles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 2: Instant Savings & Direct Certificates -->
+                <div class="p-3.5 bg-emerald-50/60 rounded-2xl border border-emerald-200 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider">Instant Savings & Certificates</span>
+                        <span class="text-[9px] font-black text-emerald-900 bg-white border border-emerald-200 px-2 py-0.5 rounded-full">3 Active</span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-indigo-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">💻 Microsoft 365 (12-Mo) Bundle</span>
+                                <span class="bg-indigo-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 19 – Nov 30</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">With select PC or Apple Device: <strong>$50 Off</strong> for Plus/Total ($49.99 Personal / $79.99 Family) or <strong>$20 off</strong> for non-members ($79.99 / $109.99).</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🏷️ 50% Off 1st Yr My Best Buy Plus™</span>
+                                <span class="bg-amber-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Ends Jan 30</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">Saves <strong>$15.00</strong> (off $29.99) with any <strong>$499.99+</strong> product & any Protection Plan.</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-violet-200">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🏆 Join Best Buy Gamers™ [BETA]</span>
+                                <span class="bg-violet-700 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Oct 20 – Dec 31</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug"><strong>$5.00 Direct Promo Certificate</strong> for creating a free Gamers™ profile (bestbuy.com/gamers). Best Buy redemption only.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 3: Credit Card & Redemption -->
+                <div class="p-3.5 bg-amber-50/60 rounded-2xl border border-amber-200 space-y-2">
+                    <span class="text-[10px] font-extrabold text-amber-900 uppercase tracking-wider block">Credit Card & Redemption Offers</span>
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-amber-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">💳 Best Buy Credit Card Rewards</span>
+                                <span class="bg-slate-700 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Everyday</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug"><strong>5% Back</strong> (Existing) or <strong>10% Back</strong> (New Approved First-Day). Stacks with member promos; forfeited if financing.</p>
+                        </div>
+                        <div class="bg-white/90 p-2.5 rounded-xl border border-amber-100">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-bold text-slate-900">🎁 40% Off Partner eGift Cards</span>
+                                <span class="bg-blue-600 text-white text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Ends Dec 30</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">300 pts = $5.00 (vs. 500 pts std) on Starbucks, Sephora, Xbox Cash, AMC, Roblox, Ulta, Panera & more.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 4: 0% Interest Financing Offers -->
+                <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-extrabold text-slate-600 uppercase tracking-wider">0% Interest Financing Offers</span>
+                        <span class="text-[9px] font-black text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-full">5 Active</span>
+                    </div>
+                    <ul class="space-y-1.5 text-[11px] text-slate-700">
+                        <li class="flex justify-between items-center bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-900">24-Mo Storewide ($699+)</span>
+                            <span class="text-[10px] text-slate-500 font-semibold">Ends 12/25/26</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-900">18-Mo Storewide ($499+)</span>
+                            <span class="text-[10px] text-slate-500 font-semibold">Ends 12/25/26</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-900">12-Mo Storewide ($299+)</span>
+                            <span class="text-[10px] text-slate-500 font-semibold">Ends 12/25/26</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-900">24-Mo PS5 Console ($599.99+)</span>
+                            <span class="text-[10px] text-slate-500 font-semibold">Ends 12/25/26</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-900">24-Mo Unlocked Phone ($649+)</span>
+                            <span class="text-[10px] text-slate-500 font-semibold">Everyday</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Best Buy Brand Primary Action Button -->
+            <button type="button" onclick="closePromoCheckinModal()" class="w-full py-3 bg-bb-blue hover:bg-blue-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition active:scale-95 cursor-pointer shrink-0">
+                Close Promo Check-In
             </button>
         </div>
     </div>
@@ -792,7 +1001,7 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: December 1, 2026 @ 12:00 AM Local Time (Following 4% Ring Products Promo expiration on Nov 30)
+        // Kill Switch Check - Deactivation Date: December 1, 2026 @ 12:00 AM Local Time (Following 4% Ring & M365 Promo expirations on Nov 30)
         function checkKillSwitch() {
             const now = new Date();
             const expirationDate = new Date(2026, 11, 1, 0, 0, 0); // Month 11 = December
@@ -839,6 +1048,10 @@
                     financingSection.classList.remove('financing-prompt-pulse');
                 }, 3600);
             } else {
+                const finContainer = document.getElementById('financing-container');
+                if (document.getElementById('global-card').value === 'none' && finContainer) {
+                    finContainer.classList.add('hidden');
+                }
                 if (selectedFinancingTitle) {
                     selectedFinancingTitle = null;
                     calculate();
@@ -855,6 +1068,17 @@
         function closePresentationModal() {
             const modal = document.getElementById('presentation-modal');
             modal.classList.add('hidden');
+        }
+
+        // Employee Promo Check-In Modal Controls (Triggered by invisible header button)
+        function openPromoCheckinModal() {
+            const modal = document.getElementById('promo-checkin-modal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closePromoCheckinModal() {
+            const modal = document.getElementById('promo-checkin-modal');
+            if (modal) modal.classList.add('hidden');
         }
 
         // Section 5 Share QR Gate
@@ -972,6 +1196,11 @@
             handleCardChange();
         }
 
+        function setM365Plan(plan) {
+            document.getElementById('m365-plan').value = plan;
+            calculate();
+        }
+
         function handleCardChange() {
             const cardStatus = document.getElementById('global-card').value;
             const finContainer = document.getElementById('financing-container');
@@ -1012,6 +1241,39 @@
             const ringAmt = Math.max(0, parseFloat(document.getElementById('amt-ring').value) || 0);
             const games5packAmt = Math.max(0, parseFloat(document.getElementById('amt-games-5pack').value) || 0);
 
+            // Computers & Software: Microsoft 365 3-Option Selector (None / Personal / Family)
+            const m365Plan = document.getElementById('m365-plan').value;
+            const m365Discount = hasMembership ? 50.00 : 20.00;
+            const m365PersonalNet = 99.99 - m365Discount; // $49.99 Member / $79.99 Non-Member
+            const m365FamilyNet = 129.99 - m365Discount;  // $79.99 Member / $109.99 Non-Member
+
+            document.getElementById('label-m365-personal-price').innerText = `$${m365PersonalNet.toFixed(2)}`;
+            document.getElementById('label-m365-family-price').innerText = `$${m365FamilyNet.toFixed(2)}`;
+            document.getElementById('m365-promo-badge').innerText = hasMembership ? '🏷️ $50 MEMBER SAVINGS' : '🏷️ $20 NON-MEMBERS';
+
+            const btnM365None = document.getElementById('btn-m365-none');
+            const btnM365Personal = document.getElementById('btn-m365-personal');
+            const btnM365Family = document.getElementById('btn-m365-family');
+            const m365ActiveClass = "py-2 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all bg-bb-blue text-white shadow-sm cursor-pointer leading-tight active:scale-95";
+            const m365InactiveClass = "py-2 px-1 text-center text-xs lg:text-sm font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900 cursor-pointer leading-tight active:scale-95";
+
+            btnM365None.className = m365Plan === 'none' ? m365ActiveClass : m365InactiveClass;
+            btnM365Personal.className = m365Plan === 'personal' ? m365ActiveClass : m365InactiveClass;
+            btnM365Family.className = m365Plan === 'family' ? m365ActiveClass : m365InactiveClass;
+
+            let m365Amt = 0;
+            let m365RegPrice = 0;
+            let m365PlanLabel = '';
+            if (m365Plan === 'personal') {
+                m365Amt = m365PersonalNet;
+                m365RegPrice = 99.99;
+                m365PlanLabel = 'Microsoft 365 Personal (12-Mo)';
+            } else if (m365Plan === 'family') {
+                m365Amt = m365FamilyNet;
+                m365RegPrice = 129.99;
+                m365PlanLabel = 'Microsoft 365 Family (12-Mo)';
+            }
+
             // Gaming Line Items
             const hasGamersBeta = document.getElementById('toggle-gamers-beta').checked;
             const gamersQrContainer = document.getElementById('gamers-beta-qr-container');
@@ -1019,7 +1281,7 @@
                 gamersQrContainer.classList.toggle('hidden', !hasGamersBeta);
             }
 
-            const totalSubtotal = generalAmt + appliancesAmt + ringAmt + games5packAmt;
+            const totalSubtotal = generalAmt + m365Amt + appliancesAmt + ringAmt + games5packAmt;
 
             // Standard Base Credit Card Rate
             let cardRate = 0;
@@ -1028,7 +1290,7 @@
             }
 
             // Calculate Effective Rates (0% base when not a Plus/Total member and no credit card is selected)
-            // Storewide Purchases upgraded to 2% member rate (Nov 19 - Dec 6)
+            // Storewide Purchases & M365 earn 2% member rate (Nov 19 - Dec 6) + applicable card rate
             const generalRate = (hasMembership ? 0.02 : 0) + cardRate;
             const appliancesRate = (hasMembership ? 0.05 : 0) + cardRate;
             const ringRate = (hasMembership ? 0.04 : 0) + cardRate;
@@ -1037,6 +1299,7 @@
             const formatRate = (r) => (r * 100) % 1 === 0 ? (r * 100).toFixed(0) : (r * 100).toFixed(1);
 
             document.getElementById('rate-general').innerText = `Rate: ${formatRate(generalRate)}%`;
+            document.getElementById('rate-m365').innerText = `Rate: ${formatRate(generalRate)}%`;
             document.getElementById('rate-appliances').innerText = `Rate: ${formatRate(appliancesRate)}%`;
             document.getElementById('rate-ring').innerText = `Rate: ${formatRate(ringRate)}%`;
             document.getElementById('rate-games-5pack').innerText = `Rate: ${formatRate(games5packRate)}%`;
@@ -1044,6 +1307,10 @@
             // Update Active Category Accordion Badges
             let activePromosCount = 0;
             if (generalAmt > 0) activePromosCount += 1;
+
+            const hasM365Active = m365Plan !== 'none';
+            if (hasM365Active) activePromosCount += 1;
+            document.getElementById('badge-dept-computers').classList.toggle('hidden', !hasM365Active);
 
             const hasAppliancesActive = appliancesAmt > 0;
             if (hasAppliancesActive) activePromosCount += 1;
@@ -1061,12 +1328,22 @@
 
             // Calculate Item Rewards
             let generalReward = generalAmt * generalRate;
+            let m365Reward = m365Amt * generalRate;
             let appliancesReward = appliancesAmt * appliancesRate;
             let ringReward = ringAmt * ringRate;
             let games5packReward = games5packAmt * games5packRate;
 
+            const m365SummaryBar = document.getElementById('m365-summary-bar');
+            if (hasM365Active) {
+                m365SummaryBar.classList.remove('hidden');
+                document.getElementById('m365-added-label').innerText = `Basket: $${m365Amt.toFixed(2)} (Reg $${m365RegPrice.toFixed(2)})`;
+                document.getElementById('reward-m365').innerText = `Rewards: $${m365Reward.toFixed(2)}`;
+            } else {
+                m365SummaryBar.classList.add('hidden');
+            }
+
             // POINT-BASED REWARDS (Converts to Points & Partner eGift Cards)
-            const pointBasedRewards = generalReward + appliancesReward + ringReward + games5packReward;
+            const pointBasedRewards = generalReward + m365Reward + appliancesReward + ringReward + games5packReward;
 
             // DIRECT PROMOTIONAL CERTIFICATES (Issued directly as Best Buy Certificates; Not Reward Points)
             let directPromoCerts = 0;
@@ -1116,16 +1393,40 @@
             const upsellNudgeText = document.getElementById('footer-upsell-text');
             if (totalSubtotal >= 400.00 && totalSubtotal < 499.99) {
                 const diffTo499 = (499.99 - totalSubtotal).toFixed(2);
-                upsellNudgeText.innerHTML = `Add <span class="text-bb-yellow font-black">$${diffTo499}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`;
+                upsellNudgeText.innerHTML = totalSubtotal < 499.00
+                    ? `Add <span class="text-bb-yellow font-black">$${diffTo499}</span> more to unlock the <span class="underline">50% Off Plus Promo</span> & <span class="underline">18-Mo Financing</span>!`
+                    : `Add <span class="text-bb-yellow font-black">$${diffTo499}</span> more to unlock the <span class="underline">50% Off Plus Promo</span>!`;
                 upsellNudgeBanner.classList.remove('hidden');
             } else {
                 upsellNudgeBanner.classList.add('hidden');
             }
 
-            // 50% OFF PLUS MEMBERSHIP BANNER LOGIC (KEEPS MEMBERSHIP SAVINGS SEPARATE FROM REWARDS)
+            // UNCONFLATED INSTANT SAVINGS BANNER LOGIC (PLUS MEMBERSHIP & MICROSOFT 365)
             const isPlusQualified = isPlusPromoChecked && totalSubtotal >= 499.99;
             document.getElementById('plus-discount-badge').classList.toggle('hidden', !isPlusQualified);
-            document.getElementById('footer-plus-savings-banner').classList.toggle('hidden', !isPlusQualified);
+
+            let totalInstantSavings = 0;
+            let savingsDetails = [];
+            if (isPlusQualified) {
+                totalInstantSavings += 15.00;
+                savingsDetails.push("50% Off $29.99 Plus™");
+            }
+            if (hasM365Active) {
+                totalInstantSavings += m365Discount;
+                savingsDetails.push(`$${m365Discount.toFixed(0)} Off M365 ${m365Plan === 'personal' ? 'Personal' : 'Family'}`);
+            }
+
+            const footerSavingsBanner = document.getElementById('footer-plus-savings-banner');
+            if (totalInstantSavings > 0) {
+                document.getElementById('footer-savings-title').innerText = (isPlusQualified && hasM365Active)
+                    ? "Combined Instant Savings:"
+                    : (isPlusQualified ? "My Best Buy Plus™ Membership Savings:" : (hasMembership ? "Microsoft 365 Member Savings:" : "Microsoft 365 Bundle Savings:"));
+                document.getElementById('footer-savings-amount').innerText = `-$${totalInstantSavings.toFixed(2)} INSTANT`;
+                document.getElementById('footer-savings-subtext').innerText = `(${savingsDetails.join(' + ')})`;
+                footerSavingsBanner.classList.remove('hidden');
+            } else {
+                footerSavingsBanner.classList.add('hidden');
+            }
 
             // Section 3: Financing Calculation
             renderFinancingOptions(totalSubtotal);
@@ -1172,7 +1473,15 @@
             document.getElementById('pres-bonus-5-gamers-pill').classList.toggle('hidden', !hasGamersBeta);
             document.getElementById('pres-gamers-qr-row').classList.toggle('hidden', !hasGamersBeta);
 
-            document.getElementById('pres-plus-savings-row').classList.toggle('hidden', !isPlusQualified);
+            const presSavingsRow = document.getElementById('pres-plus-savings-row');
+            if (totalInstantSavings > 0) {
+                document.getElementById('pres-savings-title').innerHTML = `<span>🏷️</span> ${(isPlusQualified && hasM365Active) ? 'Combined Instant Savings' : (isPlusQualified ? 'Instant Member Savings' : (hasMembership ? 'Microsoft 365 Member Savings' : 'Microsoft 365 Bundle Savings'))}`;
+                document.getElementById('pres-savings-subtext').innerText = savingsDetails.join(' + ');
+                document.getElementById('pres-savings-amount').innerText = `-$${totalInstantSavings.toFixed(2)}`;
+                presSavingsRow.classList.remove('hidden');
+            } else {
+                presSavingsRow.classList.add('hidden');
+            }
 
             const presFinancingRow = document.getElementById('pres-financing-row');
             if (selectedFinancingTitle && totalSubtotal > 0) {
@@ -1201,7 +1510,7 @@
             const breakdownBox = document.getElementById('reward-breakdown-box');
             const breakdownText = document.getElementById('reward-breakdown-text');
 
-            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGamersBeta) {
+            if (totalCombinedRewards > 0 || totalSubtotal > 0 || hasGamersBeta || totalInstantSavings > 0) {
                 let parts = [];
 
                 if (hasGamersBeta) {
@@ -1215,6 +1524,16 @@
                     if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
                     if (details.length > 0) text += ` (${details.join(' + ')})`;
                     parts.push(text);
+                }
+
+                if (m365Amt > 0) {
+                    let text = `• ${m365PlanLabel} ($${m365Amt.toFixed(2)}): $${m365Reward.toFixed(2)}`;
+                    let details = [];
+                    if (hasMembership) details.push("2% Member Promo");
+                    if (cardRate > 0) details.push(`${(cardRate*100).toFixed(0)}% Card`);
+                    if (details.length > 0) text += ` (${details.join(' + ')})`;
+                    parts.push(text);
+                    parts.push(`• 💻 ${m365PlanLabel} Discount: -$${m365Discount.toFixed(2)} Instant Savings (${hasMembership ? 'Plus/Total Member' : 'Non-Member'})`);
                 }
 
                 if (appliancesAmt > 0) {
@@ -1339,6 +1658,7 @@
             setCardStatus('none');
             
             document.getElementById('amt-general').value = '';
+            document.getElementById('m365-plan').value = 'none';
             document.getElementById('amt-appliances').value = '';
             document.getElementById('amt-ring').value = '';
             document.getElementById('amt-games-5pack').value = '';
@@ -1346,6 +1666,7 @@
             document.getElementById('toggle-gamers-beta').checked = false;
 
             closePresentationModal();
+            closePromoCheckinModal();
             calculate();
 
             window.scrollTo({
