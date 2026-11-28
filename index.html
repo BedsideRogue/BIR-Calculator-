@@ -155,7 +155,7 @@
                 <button type="button" onclick="openPromoCheckInModal()" aria-label="Open Employee Promo Check-In" class="text-left bg-transparent border-0 p-0 m-0 cursor-pointer focus:outline-none select-none active:opacity-90 transition-opacity">
                     <span class="bg-bb-yellow text-black text-[9px] md:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider inline-flex items-center justify-center text-center">BIR Calculator</span>
                     <span class="block text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-tight">Black Friday Deals Are Here!</span>
-                    <span class="block text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 28, 2026 @ 12:00 AM Local Time</span>
+                    <span class="block text-[10px] md:text-xs text-blue-200 mt-0.5 font-medium tracking-wide">Deactivates: November 29, 2026 @ 12:00 AM Local Time</span>
                 </button>
                 <button type="button" onclick="clearBasket()" class="bg-blue-800 hover:bg-blue-900 text-white text-xs md:text-sm font-bold py-1.5 px-3 md:px-4 lg:px-5 rounded-lg transition-colors shadow-sm cursor-pointer active:scale-95 shrink-0">
                     Reset App
@@ -185,12 +185,12 @@
                         <input id="global-membership" type="checkbox" class="shrink-0" onchange="calculate()">
                     </label>
 
-                    <!-- BLACK FRIDAY ONE-DAY PROMO: FREE PLUS WITH APPLE/BEATS + APPLECARE+ (STROBING AT ALL TIMES) -->
+                    <!-- BLACK FRIDAY PROMO: FREE PLUS WITH APPLE/BEATS + APPLECARE+ (EXTENDED THRU NOV 28, STROBING AT ALL TIMES) -->
                     <div id="free-plus-apple-container" class="p-3 rounded-xl border-2 border-bb-blue rewards-glow-active transition-all duration-300">
                         <label class="flex items-center justify-between cursor-pointer gap-3">
                             <div class="min-w-0 flex-1">
                                 <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                                    <span class="bg-slate-950 text-bb-yellow text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">🖤 BLACK FRIDAY ONLY (NOV 27)</span>
+                                    <span class="bg-slate-950 text-bb-yellow text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">🖤 BLACK FRIDAY PROMO (THRU NOV 28)</span>
                                     <span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">FREE PLUS ($29.99 VALUE)</span>
                                 </div>
                                 <span class="text-xs lg:text-sm font-extrabold text-slate-950 block leading-snug">Apple/Beats Hardware + Paid Upfront AppleCare+?</span>
@@ -886,7 +886,7 @@
                     </div>
                     <div class="text-right shrink-0">
                         <span class="text-[9px] font-bold text-slate-400 uppercase block">Auto-Cutoff</span>
-                        <span class="text-[11px] font-black text-blue-300">Nov 28, 2026</span>
+                        <span class="text-[11px] font-black text-blue-300">Nov 29, 2026</span>
                     </div>
                 </div>
 
@@ -938,7 +938,7 @@
                         <div class="bg-white p-2.5 rounded-xl border-2 border-bb-blue shadow-sm">
                             <div class="flex justify-between items-start gap-2">
                                 <span class="font-extrabold text-slate-950">🖤 Free 1st Yr My Best Buy Plus™ (Apple)</span>
-                                <span class="bg-slate-950 text-bb-yellow text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 27 Only</span>
+                                <span class="bg-slate-950 text-bb-yellow text-[8.5px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Nov 27 – Nov 28</span>
                             </div>
                             <p class="text-slate-700 mt-0.5"><strong>$29.99 Instant Savings (Free)</strong> w/ any Apple or Beats hardware + paid upfront AppleCare+ (incl. $29 AirPods & Open Box). <strong>New Plus members only</strong>; excl. refurb, monthly & Loss/Theft. Add Plus manually at POS. <em>Supersedes 50% Off Plus.</em></p>
                         </div>
@@ -1007,10 +1007,10 @@
         const FORCE_KILL = false; 
         let selectedFinancingTitle = null;
         
-        // Kill Switch Check - Deactivation Date: November 28, 2026 @ 12:00 AM Local Time
+        // Kill Switch Check - Deactivation Date: November 29, 2026 @ 12:00 AM Local Time
         function checkKillSwitch() {
             const now = new Date();
-            const expirationDate = new Date(2026, 10, 28, 0, 0, 0); // Month 10 = November
+            const expirationDate = new Date(2026, 10, 29, 0, 0, 0); // Month 10 = November
             if (FORCE_KILL || now >= expirationDate) {
                 document.getElementById('kill-switch-screen').classList.remove('hidden');
                 document.getElementById('app-content').classList.add('hidden');
